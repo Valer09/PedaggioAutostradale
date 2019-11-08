@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * Class for Heavy Vehicles class B.
+ * Class for Heavy Vehicles class B
  *
  **/
 public class HVB extends HV {

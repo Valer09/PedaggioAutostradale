@@ -3,7 +3,7 @@ package Model;
 /**
  * This abstract class HV, represents all kind of heavy vehicles (class 3to5)
  * Differently to Light Vehicles, Heavy Vehicles differs by category.
- * So, this HV abstract class will be implemented in classes which refers to proper vehicle classes.
+ * So, this HV abstract class will be implemented in classes which refers to proper vehicle classes
  */
 
 public abstract class HV implements IVehicle {

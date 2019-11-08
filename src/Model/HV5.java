@@ -24,7 +24,7 @@ public class HV5 extends HV4 {
 
     /**
      * Costruttore classe HV5.
-     * Inizializzazione dei dati del veicolo pesante classe 5.
+     * Inizializzazione dei dati del veicolo pesante classe 5
      *
      * @param model Modello veicolo <b>(String)</b>
      * @param brand Marca veicolo  <b>(String)</b>

@@ -2,7 +2,7 @@ package Model;
 
 /**
  * The interface IVehicla defines a pattern for vehicles modeling even for different  vehicle classes types
- *  as for light and heavy vehicles
+ *  as for light and heavy vehicles.
  */
 
 public interface IVehicle {

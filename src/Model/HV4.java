@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * Class for Heavy Vehicles class 4.
+ * Class for Heavy Vehicles class 4
  *
  **/
 

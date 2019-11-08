@@ -2,10 +2,12 @@ package Testing;
 import Model.*;
 
 /**
+ * 
  * @author Vale09
  * @author Jacic
  * @author Mattu
  * @author Bob
+ *
  */
 public class Test {
     public static void main(String []args){

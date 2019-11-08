@@ -71,7 +71,7 @@ public class HV3 extends HVB {
 
     /**
      * Costruttore classe HV3.
-     * Inizializzazione dei dati del veicolo pesante classe 3 con cilindrata, peso e altezza.
+     * Inizializzazione dei dati del veicolo pesante classe 3 con cilindrata, peso e altezza
      *
      * @param model Modello veicolo <b>(String)</b>
      * @param brand Marca veicolo  <b>(String)</b>

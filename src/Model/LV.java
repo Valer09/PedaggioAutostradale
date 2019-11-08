@@ -3,7 +3,7 @@
 package Model;
 
 /**
- * Class for manage light Vehicle. It belongs to Class A Vehicle only.
+ * Class for manage light Vehicle. It belongs to Class A Vehicle only
  *
 **/
 public class LV implements IVehicle {
