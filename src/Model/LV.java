@@ -89,6 +89,14 @@ public class LV implements IVehicle {
 
     }
 
+    public String prinfInfo(){
+        return "Class: " + vclass + "; Axes: " + axes + "Height: " + this.height +"\n"
+                + "Weight: " + this.weight + "cc: " + this.cc + "\n"
+                + "Brand: " + this.brand + "Model: " + this.model + "\n"
+                + "Year: " + this.year;
+    }
+
+
     /**
      * Costruttore classe lightVehicle.
      * Inizializzazione dei dati del veicolo leggero.
@@ -96,8 +104,8 @@ public class LV implements IVehicle {
      * @param brand Marca veicolo  <b>(String)</b>
      * @param VLI Targa Veicolo <b>(string)</b>
      */
-    LV(String model,
-       String brand,
+    public LV(String brand,
+       String model,
        String VLI
                )
     {
@@ -120,19 +128,26 @@ public class LV implements IVehicle {
      * @param cc Cilindrata veicolo <b>(int)</b>
      * @param height Altezza veicolo <b>(double)</b>
      */
-    LV(String model,
-       String brand,
-       String VLI,
-       int cc,
-       double height)
+    public LV(
+            String brand,
+            String model,
+            String VLI,
+            int cc,
+            double height
+            )
 
     {
-        this.model=model;
-        this.brand=brand;
-        this.VLI=VLI;
-        this.height=height;
-        this.weight=0;
-
+        if (height > limit)
+            System.out.println("ERRORE ALTEZZA"); // GESTIRE ECCEZIONE
+        else
+        {
+            this.height = height;
+            this.model = model;
+            this.brand = brand;
+            this.VLI = VLI;
+            this.height = height;
+            this.weight = 0;
+        }
 
     }
 
@@ -147,19 +162,27 @@ public class LV implements IVehicle {
      * @param height Altezza veicolo <b>(double)</b>
      * @param weight Peso veicolo <b>(double)</b>
      */
-    LV(String model,
-       String brand,
+    public LV(String brand,
+       String model,
        String VLI,
        int cc,
        double height,
        double weight)
 
     {
-        this.model=model;
-        this.brand=brand;
-        this.VLI=VLI;
-        this.height=height;
-        this.weight=weight;
+        if (height > limit)
+            System.out.println("ERRORE ALTEZZA"); // GESTIRE ECCEZIONE
+        else
+        {
+            this.height=height;
+            this.model=model;
+            this.brand=brand;
+            this.VLI=VLI;
+            this.height=height;
+            this.weight=weight;
+        }
+
+
 
     }
 

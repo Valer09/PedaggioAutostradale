@@ -31,6 +31,13 @@ public class HVB extends HV {
         return height;
     }
 
+    public String prinfInfo(){
+        return "Class: " + vclass + "; Axes: " + axes + "Height: " + this.height +"\n"
+                + "Weight: " + this.weight + "cc: " + this.cc + "\n"
+                + "Brand: " + this.brand + "Model: " + this.model + "\n"
+                + "Year: " + this.year;
+    }
+
 
     /**
      * Costruttore classe HVB.
@@ -40,13 +47,13 @@ public class HVB extends HV {
      * @param brand Marca veicolo  <b>(String)</b>
      * @param VLI Targa Veicolo <b>(string)</b>
      */
-    HVB(      String model,
-                 String brand,
+    public HVB(      String brand,
+                 String model,
                  String VLI
                 )
 
     {
-        super(model,brand,VLI);
+        super(brand,model,VLI);
 
     }
 
@@ -60,15 +67,15 @@ public class HVB extends HV {
      * @param cc Cilindrata veicolo <b>(int)</b>
      * @param height Altezza veicolo <b>(double)</b>
      */
-    HVB(String model,
-           String brand,
+    public HVB(String brand,
+           String model,
            String VLI,
            int cc,
            double height
            )
 
     {
-        super(model,brand,VLI,cc,height);
+        super(brand,model,VLI,cc,height);
 
     }
 
@@ -84,15 +91,15 @@ public class HVB extends HV {
      * @param height Altezza veicolo <b>(double)</b>
      * @param weight Peso veicolo <b>(double)</b>
      */
-    HVB(String model,
-                 String brand,
+    public HVB(String brand,
+                 String model,
                  String VLI,
                  int cc,
                  double height,
                  double weight)
 
     {
-        super(model,brand,VLI,cc,height,weight);
+        super(brand,model,VLI,cc,height,weight);
 
 
     }

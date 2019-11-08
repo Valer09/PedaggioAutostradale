@@ -86,8 +86,8 @@ public abstract class HV implements IVehicle {
      * @param brand Marca veicolo  <b>(String)</b>
      * @param VLI Targa Veicolo <b>(string)</b>
      */
-    HV(      String model,
-              String brand,
+    HV(      String brand,
+              String model,
               String VLI
     )
 
@@ -108,18 +108,23 @@ public abstract class HV implements IVehicle {
      * @param cc Cilindrata veicolo <b>(int)</b>
      * @param height Altezza veicolo <b>(double)</b>
      */
-    HV(String model,
-        String brand,
+    HV(String brand,
+        String model,
         String VLI,
         int cc,
         double height
     )
-
     {
-        this.model=model;
-        this.brand=brand;
-        this.VLI=VLI;
-        this.height=height;
+
+        if (height < limit)
+            System.out.println("ERRORE ALTEZZA"); // GESTIRE ECCEZIONE
+        else
+        {
+            this.model=model;
+            this.brand=brand;
+            this.VLI=VLI;
+            this.height=height;
+        }
 
     }
 
@@ -135,23 +140,28 @@ public abstract class HV implements IVehicle {
      * @param height Altezza veicolo <b>(double)</b>
      * @param weight Peso veicolo <b>(double)</b>
      */
-    HV(String model,
-        String brand,
+    HV(String brand,
+        String model,
         String VLI,
         int cc,
         double height,
         double weight)
 
     {
-        this.model=model;
-        this.brand=brand;
-        this.VLI=VLI;
-        this.height=height;
-        this.weight=weight;
-        if (this.height < limit)
+        if (height < limit)
             System.out.println("ERRORE ALTEZZA"); // GESTIRE ECCEZIONE
         else
+        {
             this.height=height;
+            this.model=model;
+            this.brand=brand;
+            this.VLI=VLI;
+            this.height=height;
+            this.weight=weight;
+        }
+
+
+
 
     }
 

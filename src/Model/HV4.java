@@ -35,13 +35,13 @@ public class HV4 extends HVB {
      * @param brand Marca veicolo  <b>(String)</b>
      * @param VLI Targa Veicolo <b>(string)</b>
      */
-    HV4(      String model,
-              String brand,
+    public HV4(      String brand,
+              String model,
               String VLI
     )
 
     {
-        super(model,brand,VLI);
+        super(brand,model,VLI);
 
     }
 
@@ -55,15 +55,15 @@ public class HV4 extends HVB {
      * @param cc Cilindrata veicolo <b>(int)</b>
      * @param height Altezza veicolo <b>(double)</b>
      */
-    HV4(String model,
-        String brand,
+    public HV4(String brand,
+        String model,
         String VLI,
         int cc,
         double height
     )
 
     {
-        super(model,brand,VLI,cc,height);
+        super(brand,model,VLI,cc,height);
 
     }
 
@@ -79,15 +79,15 @@ public class HV4 extends HVB {
      * @param height Altezza veicolo <b>(double)</b>
      * @param weight Peso veicolo <b>(double)</b>
      */
-    HV4(String model,
-        String brand,
+    public HV4(String brand,
+        String model,
         String VLI,
         int cc,
         double height,
         double weight)
 
     {
-        super(model,brand,VLI,cc,height,weight);
+        super(brand,model,VLI,cc,height,weight);
 
 
     }
