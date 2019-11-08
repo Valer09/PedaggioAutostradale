@@ -1,7 +1,12 @@
 package Testing;
-
 import Model.*;
 
+/**
+ * @author Vale09
+ * @author Jacic
+ * @author Mattu
+ * @author Bob
+ */
 public class Test {
     public static void main(String []args){
         LV camioncino = new LV("Ford","Fiesta","CR984RT", 100, 1.10,800);
