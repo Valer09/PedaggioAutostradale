@@ -14,7 +14,7 @@ public class HV3 extends HVB {
     //protected static final String type = "HEAVY";
     //protected double weight=3100;
     //protected int cc=2000,year=1900;
-    //protected String model,brand,VLI;;
+    //protected String model,brand,VLI;
 
 
     @Override
