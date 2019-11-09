@@ -9,7 +9,7 @@ public class SurGetter {
 
     public double getSurcharge(char c) {
 
-        String DBCLASS = "SUR" + c;
+        String DBCLASS = "SUR"+c;
         double res = 0;
         Connection con = DBManager.getConnection();
         Statement stm = null;
@@ -20,7 +20,7 @@ public class SurGetter {
         }
         ResultSet rs = null;
         try {
-            rs = stm.executeQuery("SELECT Val FROM costants WHERE Name='SUR5'");
+            rs = stm.executeQuery("SELECT Val FROM costants WHERE Name="+"'"+DBCLASS+"'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
