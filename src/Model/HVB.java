@@ -47,7 +47,7 @@ public class HVB extends HV {
      * @param brand Marca veicolo  <b>(String)</b>
      * @param VLI Targa Veicolo <b>(string)</b>
      */
-    public HVB(      String brand,
+    public HVB(  String brand,
                  String model,
                  String VLI
                 )

@@ -1,6 +1,11 @@
 package Model;
 
-public class HV5 extends HV4 {
+/**
+ * Class for Heavy Vehicles class 5
+ *
+ **/
+
+public class HV5 extends HVB {
 
     private static final int axes = 5;
     private static final char vclass = '5';
