@@ -31,10 +31,10 @@ public class Toll {
      * @return <b>double</>: unitary tool
      */
     public double calculateToll(){
-        SurGetter tg = new SurGetter();
+        VarGetter vg = new VarGetter();
 
 
-        return TU+tg.getSurcharge(vclass);
+        return TU+vg.getSurcharge(vclass);
 
 
     }

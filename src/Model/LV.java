@@ -13,7 +13,7 @@ public class LV implements IVehicle {
     private static final char vclass = 'A';
     private static final String type = "LIGHT";
     private double height,weight=0;
-    private int cc=50,year=1900;
+    private int cc=150,year=1900;
     private String model,brand,VLI;
 
 

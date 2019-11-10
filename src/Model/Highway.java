@@ -1,7 +1,15 @@
 package Model;
 
+import Controller.VarGetter;
+
 public class Highway {
-    private double TU=2;
+    protected double TU;
+
+    public Highway(String A){
+
+        TU= VarGetter.getTU(A);
+
+    }
 
     public double getTU(){
         return TU;
