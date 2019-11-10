@@ -7,7 +7,7 @@ public class Highway {
 
     public Highway(String A){
 
-        TU= VarGetter.getTU(A);
+        TU = VarGetter.getTU(A);
 
     }
 
