@@ -26,7 +26,7 @@ public class Toll {
     }
 
     /**
-     *  calculateTool calculates unitary toll from TU and surcharge applied to vehicle class.
+     *  calculateTool calculates unitary toll from both TU and surcharge applied to vehicle class.
      *  So it get surgcharge through TaxtGetter controller, which interacts to DB
      * @return <b>double</>: unitary tool
      */

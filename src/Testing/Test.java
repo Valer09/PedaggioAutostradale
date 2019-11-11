@@ -1,10 +1,8 @@
 package Testing;
-import Controller.DBManager;
+import Controller.Constant;
 import Controller.Tools;
 import Controller.VarGetter;
 import Model.*;
-
-import java.sql.*;
 
 /**
  *
@@ -16,10 +14,12 @@ import java.sql.*;
  */
 public class Test {
     public static void main(String []args){
+
+        //OBBLIGATORIO PER INIZIALIZZARE DB E COSTANTI
         Constant.setParams();
 
 
-//TESTING CONSTANTS INITIALIZATION
+//TESTING CONSTANTS AND INITIALIZATION
         System.out.println(Constant.getVar("IVA"));
         System.out.println(Constant.getVar("SURA"));
         System.out.println(Constant.getVar("SURB"));
@@ -35,16 +35,15 @@ public class Test {
 
 //TESTING VARGETTER CLASS AND METHODS
         System.out.println(VarGetter.getSurcharge('3')); //TEST GESURCHARGE METHOD
-        System.out.println(VarGetter.getIVA()); //TEST GETIVA METHOD
-        System.out.println(VarGetter.getTU("A24")); //TEST GETTU METHOD
-        System.out.println(VarGetter.getTU("A1")); //TEST GETTU METHOD
+        System.out.println(VarGetter.getIVA());                //TEST GETIVA METHOD
+        System.out.println(VarGetter.getTU("A24"));    //TEST GETTU METHOD
+        System.out.println(VarGetter.getTU("A1"));     //TEST GETTU METHOD
 
 //TESTING VEHICLES AND HIGHWAY AND TOLL
         Highway a24= new Highway("A24");
         HV4 camion= new HV4("IVECO","HHH77", "CR8776TT");
         Toll a24toll= new Toll(a24,camion);
         System.out.println(a24toll.calculateToll());
-
         HVB ibiza= new HVB("SEAT","IBIZA", "CR984RT");
         a24toll=new Toll(a24,ibiza);
         System.out.println(a24toll.calculateToll());
@@ -52,6 +51,11 @@ public class Test {
 //TESTING TOOLS
         System.out.println(Tools.LPCheck("CR8776TT")); //FALSE
         System.out.println(Tools.LPCheck("CR984RT"));  //TRUE. DA COMPLETARE
+
+//TESTING tollbooths in HIGHWAYS
+        System.out.println(a24.getTollbooths());
+
+
 
 
 

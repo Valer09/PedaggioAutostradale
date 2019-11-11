@@ -1,4 +1,4 @@
-package Model;
+package Controller;
 
 import Controller.DBManager;
 import java.sql.*;
@@ -8,7 +8,6 @@ import java.sql.*;
  */
 public class Constant {
     public static double IVA,SURA,SURB,SUR3,SUR4,SUR5,EUR1,EUR2,EUR3,EUR4,EUR5,EUR6;
-
 
     /**
      * Return constant
@@ -48,10 +47,6 @@ public class Constant {
         return 1;
     }
 
-
-
-
-
     /**
      * Set params, sets constants getting values from DB;
      */
@@ -65,7 +60,7 @@ public class Constant {
         Statement stm = null;
         try {
             stm = con.createStatement();
-        } catch (SQLException e) {
+        }    catch (SQLException e) {
             e.printStackTrace();
         }
         ResultSet rs = null;
@@ -93,14 +88,6 @@ public class Constant {
             }
         }
 
-
-
-
-
-
-
-
-
         /**SETTING SUR PARAMS**/
 
         for (int i=1; i<6; i++){
@@ -115,10 +102,7 @@ public class Constant {
                     break;
                 case 5:c='5';
                     break;
-
-
             }
-
 
             String DBCLASS = "SUR" + c;
             stm = null;
@@ -134,7 +118,6 @@ public class Constant {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
 
             while (true)
                 {
@@ -156,7 +139,6 @@ public class Constant {
 
                             case 5:SUR5=rs.getDouble("Val");
 
-
                         }
                         }
                     catch (SQLException e) {
@@ -164,7 +146,6 @@ public class Constant {
                         }
                 }
         }
-
 
         /** SETTING EUR PARAMS **/
         for (int i=1; i<7; i++){
@@ -184,7 +165,6 @@ public class Constant {
 
 
             }
-
 
             String EUR = "EUR" + c;
             stm = null;
@@ -231,8 +211,6 @@ public class Constant {
                 }
             }
         }
-
-
 
     }
 }

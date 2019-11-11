@@ -4,9 +4,16 @@
  * @author Valerio Marchitelli
  */
 package Controller;
+import org.jetbrains.annotations.Contract;
+
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DBManager {
+
+    private Statement st = null;
+    private ResultSet rs = null;
     private static String path="localhost:3306/highwaydb";
     private static Connection connection = initializeConnection();
 
@@ -32,9 +39,30 @@ public class DBManager {
         return connection;
     }
 
+    @Contract(pure = true)
     public static Connection getConnection(){
 
         return connection;
+
+    }
+
+    public HashMap <String, Double> getHighwayTollbooths(String highway){
+        HashMap<String, Double> tb = new HashMap<String, Double>();
+
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada=" + "'" + highway + "'");
+
+            while(true){
+                if (! (rs.next())) break;
+                tb.put(rs.getString("Name"),rs.getDouble("KM"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tb;
 
     }
 

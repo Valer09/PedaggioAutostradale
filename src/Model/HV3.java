@@ -9,13 +9,6 @@ public class HV3 extends HVB {
 
     private static final int axes = 3;
     private static final char vclass = '3';
-    //private static final double limit = 1.31;
-    //protected double height
-    //protected static final String type = "HEAVY";
-    //protected double weight=3100;
-    //protected int cc=2000,year=1900;
-    //protected String model,brand,VLI;
-
 
     @Override
     public char getVclass() {
