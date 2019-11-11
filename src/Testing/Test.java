@@ -1,5 +1,6 @@
 package Testing;
 import Controller.Constant;
+import Controller.TollCalculator;
 import Controller.Tools;
 import Controller.VarGetter;
 import Model.*;
@@ -41,12 +42,16 @@ public class Test {
 
 //TESTING VEHICLES AND HIGHWAY AND TOLL
         Highway a24= new Highway("A24");
-        HV4 camion= new HV4("IVECO","HHH77", "CR8776TT");
-        Toll a24toll= new Toll(a24,camion);
-        System.out.println(a24toll.calculateToll());
-        HVB ibiza= new HVB("SEAT","IBIZA", "CR984RT");
+        HV4 camion= new HV4("IVECO","HHH77", "CR8776TT",2);
+/*      Toll a24toll= new Toll(a24,camion);
+        System.out.println(a24toll.calculateToll());*/
+        HVB ibiza= new HVB("SEAT","IBIZA", "CR984RT",4);
+/*
         a24toll=new Toll(a24,ibiza);
         System.out.println(a24toll.calculateToll());
+
+
+*/
 
 //TESTING TOOLS
         System.out.println(Tools.LPCheck("CR8776TT")); //FALSE
@@ -54,6 +59,22 @@ public class Test {
 
 //TESTING tollbooths in HIGHWAYS
         System.out.println(a24.getTollbooths());
+        System.out.println(Tools.fileReader("ticket.txt"));
+
+//TESTING TOLL CALCULATOR
+        TollCalculator tl= new TollCalculator(camion,a24,"RM150","ticket.txt");
+        System.out.println(tl.getAmount());
+
+        tl= new TollCalculator(ibiza,a24,"RM150","ticket.txt");
+        System.out.println(tl.getAmount());
+
+        tl= new TollCalculator(ibiza,a24,"TE0","ticket.txt");
+        System.out.println(tl.getAmount());
+
+        tl= new TollCalculator(ibiza,a24,"TE0","ticket.txt");
+        System.out.println(tl.getAmount());
+
+
 
 
 

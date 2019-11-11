@@ -1,6 +1,5 @@
-
-
 package Model;
+import Model.Interfaces.*;
 
 /**
  * Class for manage light Vehicle. It belongs to Class A Vehicle only
@@ -13,7 +12,7 @@ public class LV implements IVehicle {
     private static final char vclass = 'A';
     private static final String type = "LIGHT";
     private double height,weight=0;
-    private int cc=150,year=1900;
+    private int cc=150,year=1900,EURO;
     private String model,brand,VLI;
 
 
@@ -48,6 +47,10 @@ public class LV implements IVehicle {
 
     public double getHeight(){
         return this.height;
+    }
+
+    public int getEURO(){
+        return this.EURO;
     }
 
     @Override
@@ -103,17 +106,19 @@ public class LV implements IVehicle {
      * @param model Modello veicolo <b>(String)</b>
      * @param brand Marca veicolo  <b>(String)</b>
      * @param VLI Targa Veicolo <b>(string)</b>
+     * @param EURO Classe di inquinamento <b>int</>
      */
     public LV(String brand,
        String model,
-       String VLI
-               )
+       String VLI,
+       int EURO)
     {
         this.model=model;
         this.brand=brand;
         this.VLI=VLI;
         this.height=limit;
         this.weight=0;
+        this.EURO=EURO;
 
 
     }
@@ -127,13 +132,15 @@ public class LV implements IVehicle {
      * @param VLI Targa Veicolo <b>(string)</b>
      * @param cc Cilindrata veicolo <b>(int)</b>
      * @param height Altezza veicolo <b>(double)</b>
+     * @param EURO Classe di inquinamento <b>int</>
      */
     public LV(
             String brand,
             String model,
             String VLI,
             int cc,
-            double height
+            double height,
+            int EURO
             )
 
     {
@@ -147,6 +154,7 @@ public class LV implements IVehicle {
             this.VLI = VLI;
             this.height = height;
             this.weight = 0;
+            this.EURO=EURO;
         }
 
     }
@@ -161,13 +169,15 @@ public class LV implements IVehicle {
      * @param cc Cilindrata veicolo <b>(int)</b>
      * @param height Altezza veicolo <b>(double)</b>
      * @param weight Peso veicolo <b>(double)</b>
+     * @param EURO Classe di inquinamento <b>int</>
      */
     public LV(String brand,
        String model,
        String VLI,
        int cc,
        double height,
-       double weight)
+       double weight,
+       int EURO)
 
     {
         if (height > limit)
@@ -180,6 +190,7 @@ public class LV implements IVehicle {
             this.VLI=VLI;
             this.height=height;
             this.weight=weight;
+            this.EURO=EURO;
         }
 
 

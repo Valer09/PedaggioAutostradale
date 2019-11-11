@@ -1,20 +1,32 @@
 package Controller;
 
 import Controller.DBManager;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.sql.*;
 
 /**
  * This class defines all useful constants getting her values from DB.
  */
 public class Constant {
-    public static double IVA,SURA,SURB,SUR3,SUR4,SUR5,EUR1,EUR2,EUR3,EUR4,EUR5,EUR6;
+    private static double IVA,SURA,SURB,SUR3,SUR4,SUR5,EUR1,EUR2,EUR3,EUR4,EUR5,EUR6;
+    private static String inputPath=System.getProperty("user.dir")+"/IO";
+
+    @Contract(pure = true)
+    public static String getInputRoot(){
+
+        return inputPath;
+    }
+
 
     /**
      * Return constant
      * @param var
      * @return double
      */
-    public static double getVar(String var) {
+    @Contract(pure = true)
+    public static double getVar(@NotNull String var) {
 
         switch (var) {
             case "IVA":

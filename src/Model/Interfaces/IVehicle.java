@@ -1,4 +1,4 @@
-package Model;
+package Model.Interfaces;
 
 /**
  * The interface IVehicla defines a pattern for vehicles modeling even for different  vehicle classes types
@@ -60,6 +60,12 @@ public interface IVehicle {
      */
     double getHeight();
     //meters
+
+    /**
+     * Get EURO class of vehicle
+     * @return int
+     */
+    int getEURO();
 
     /**
      * Set Vehicle Height

@@ -27,14 +27,16 @@ public class HV4 extends HVB {
      * @param model Modello veicolo <b>(String)</b>
      * @param brand Marca veicolo  <b>(String)</b>
      * @param VLI Targa Veicolo <b>(string)</b>
+     * @param EURO Classe di inquinamento <b>int</>
      */
     public HV4(      String brand,
               String model,
-              String VLI
+              String VLI,
+              int EURO
     )
 
     {
-        super(brand,model,VLI);
+        super(brand,model,VLI,EURO);
 
     }
 
@@ -47,16 +49,18 @@ public class HV4 extends HVB {
      * @param VLI Targa Veicolo <b>(string)</b>
      * @param cc Cilindrata veicolo <b>(int)</b>
      * @param height Altezza veicolo <b>(double)</b>
+     * @param EURO Classe di inquinamento <b>int</>
      */
     public HV4(String brand,
         String model,
         String VLI,
         int cc,
-        double height
+        double height,
+        int EURO
     )
 
     {
-        super(brand,model,VLI,cc,height);
+        super(brand,model,VLI,cc,height,EURO);
 
     }
 
@@ -71,16 +75,19 @@ public class HV4 extends HVB {
      * @param cc Cilindrata veicolo <b>(int)</b>
      * @param height Altezza veicolo <b>(double)</b>
      * @param weight Peso veicolo <b>(double)</b>
+     * @param EURO Classe di inquinamento <b>int</>
      */
     public HV4(String brand,
         String model,
         String VLI,
         int cc,
         double height,
-        double weight)
+        double weight,
+        int EURO
+    )
 
     {
-        super(brand,model,VLI,cc,height,weight);
+        super(brand,model,VLI,cc,height,weight,EURO);
 
 
     }

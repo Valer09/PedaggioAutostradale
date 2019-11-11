@@ -5,6 +5,11 @@ package Controller;
  */
 
 import org.jetbrains.annotations.NotNull;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,6 +57,31 @@ public class Tools {
         */
 
         return false;
+
+    }
+
+    public static String fileReader(String filename){
+        String content="";
+        BufferedReader reader=null;
+
+
+        try {
+            reader = new BufferedReader(new FileReader(Constant.getInputRoot()+"/"+filename));
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            content = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return content;
+
+
 
     }
 

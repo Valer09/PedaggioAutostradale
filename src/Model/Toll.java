@@ -1,10 +1,11 @@
 package Model;
+import Model.Interfaces.*;
 import Controller.*;
 
 import java.awt.desktop.SystemEventListener;
 
 /**
- * This class calculates unitary toll, based on Highway TU and  vehicle class
+ * This class rapresents unitary toll, calculated basing on Highway TU and  vehicle class
  */
 public class Toll {
 

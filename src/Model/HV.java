@@ -1,4 +1,5 @@
 package Model;
+import Model.Interfaces.*;
 
 /**
  * This abstract class HV, represents all kind of heavy vehicles (class 3to5)
@@ -11,11 +12,12 @@ public abstract class HV implements IVehicle {
     //private static final int axes = 2;
     //private static final char vclass = 'A';
     protected static final double limit = 1.30;
-    protected double height=1.31;
     protected static final String type = "HEAVY";
+    protected double height=1.31;
     protected double weight=3100;
-    protected int cc=2000,year=1900;
+    protected int cc=2000,year=1900,EURO;
     protected String model,brand,VLI;
+
 
     @Override
     abstract public char getVclass();
@@ -25,6 +27,11 @@ public abstract class HV implements IVehicle {
 
     @Override
     abstract public double getHeight();
+
+    @Override
+    public int getEURO(){
+        return this.EURO;
+    }
 
     @Override
     public void setHeight(double height) {
@@ -85,16 +92,20 @@ public abstract class HV implements IVehicle {
      * @param model Modello veicolo <b>(String)</b>
      * @param brand Marca veicolo  <b>(String)</b>
      * @param VLI Targa Veicolo <b>(string)</b>
+     * @param EURO Classe di inquinamento <b>int</>
      */
     HV(      String brand,
-              String model,
-              String VLI
+             String model,
+             String VLI,
+             int EURO
+
     )
 
     {
         this.model=model;
         this.brand=brand;
         this.VLI=VLI;
+        this.EURO=EURO;
 
     }
 
@@ -107,12 +118,14 @@ public abstract class HV implements IVehicle {
      * @param VLI Targa Veicolo <b>(string)</b>
      * @param cc Cilindrata veicolo <b>(int)</b>
      * @param height Altezza veicolo <b>(double)</b>
+     * @param EURO Classe di inquinamento <b>int</>
      */
     HV(String brand,
         String model,
         String VLI,
         int cc,
-        double height
+        double height,
+        int EURO
     )
     {
 
@@ -124,6 +137,7 @@ public abstract class HV implements IVehicle {
             this.brand=brand;
             this.VLI=VLI;
             this.height=height;
+            this.EURO=EURO;
         }
 
     }
@@ -139,13 +153,15 @@ public abstract class HV implements IVehicle {
      * @param cc Cilindrata veicolo <b>(int)</b>
      * @param height Altezza veicolo <b>(double)</b>
      * @param weight Peso veicolo <b>(double)</b>
+     * @param EURO Classe di inquinamento <b>int</>
      */
     HV(String brand,
         String model,
         String VLI,
         int cc,
         double height,
-        double weight)
+        double weight,
+        int EURO)
 
     {
         if (height < limit)
@@ -158,6 +174,7 @@ public abstract class HV implements IVehicle {
             this.VLI=VLI;
             this.height=height;
             this.weight=weight;
+            this.EURO=EURO;
         }
 
 

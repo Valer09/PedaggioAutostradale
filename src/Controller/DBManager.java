@@ -46,6 +46,26 @@ public class DBManager {
 
     }
 
+    public double getKM(String tollbooths){
+        double km=0;
+
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooths + "'");
+
+            while(true){
+                if (! (rs.next())) break;
+                km = rs.getDouble("KM");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return km;
+
+    }
+
     public HashMap <String, Double> getHighwayTollbooths(String highway){
         HashMap<String, Double> tb = new HashMap<String, Double>();
 
@@ -65,5 +85,7 @@ public class DBManager {
         return tb;
 
     }
+
+
 
 }
