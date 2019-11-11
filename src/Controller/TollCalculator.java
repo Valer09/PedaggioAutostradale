@@ -35,7 +35,7 @@ public class TollCalculator {
 
         amount=toll*route;
         amount+=(amount*eurSur);
-        amount+=Constant.getVar("IVA"); 
+        amount+=Constant.getVar("IVA");
         amount=Math.round(amount * 10) / 10.0;
         amount=Math.round(amount * 100.0) / 100.0;
 
