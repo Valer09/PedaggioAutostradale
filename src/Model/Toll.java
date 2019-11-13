@@ -1,8 +1,9 @@
 package Model;
 import Model.Interfaces.*;
 import Controller.*;
+import org.jetbrains.annotations.*;
 
-import java.awt.desktop.SystemEventListener;
+
 
 /**
  * This class rapresents unitary toll, calculated basing on Highway TU and  vehicle class
@@ -19,7 +20,7 @@ public class Toll {
      * @param highway
      * @param vehicle
      */
-    public Toll(Highway highway, IVehicle vehicle){
+    public Toll(@NotNull Highway highway, @NotNull IVehicle vehicle){
 
         vclass=vehicle.getVclass();
         TU=highway.getTU();
