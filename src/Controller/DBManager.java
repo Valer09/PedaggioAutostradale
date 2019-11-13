@@ -14,14 +14,14 @@ public class DBManager {
 
     private Statement st = null;
     private ResultSet rs = null;
-    private static String path="localhost:3306/highwaydb";
+    private static String path="eu-cdbr-west-02.cleardb.net/heroku_3838b0b01f11d0f";
     private static Connection connection = initializeConnection();
 
 
     public static Connection initializeConnection() {
 
         try {
-              Class.forName("org.mariadb.jdbc.Driver");
+              Class.forName("com.mysql.jdbc.Driver");
             }
         catch (ClassNotFoundException e)
         {
@@ -29,7 +29,7 @@ public class DBManager {
         }
 
         try {
-            return DriverManager.getConnection("jdbc:mariadb://"+path, "root","");
+            return DriverManager.getConnection("jdbc:mysql://"+path, "b5d4014795a1c2","ea612ec6");
         }
          catch (SQLException e) {
             e.printStackTrace();
