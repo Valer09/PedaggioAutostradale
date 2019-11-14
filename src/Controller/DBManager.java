@@ -70,8 +70,7 @@ public class DBManager {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooths + "'");
 
-            while(true){
-                if (! (rs.next())) break;
+            while(! (rs.next()) ){
                 km = rs.getDouble("KM");
             }
 
@@ -90,8 +89,8 @@ public class DBManager {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada=" + "'" + highway + "'");
 
-            while(true){
-                if (! (rs.next())) break;
+            while(! (rs.next()) ){
+
                 tb.put(rs.getString("Name"),rs.getDouble("KM"));
             }
 
