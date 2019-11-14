@@ -50,7 +50,7 @@ public class VarGetter {
         }
         ResultSet rs = null;
         try {
-            rs = stm.executeQuery("SELECT TU FROM tus WHERE Autostrada=" + "'" + highway + "'");
+            rs = stm.executeQuery("SELECT TU FROM autostrade WHERE Name=" + "'" + highway + "'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
