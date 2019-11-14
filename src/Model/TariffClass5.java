@@ -3,17 +3,24 @@ package Model;
 import Model.Interfaces.ITariffClass;
 
 public class TariffClass5 implements ITariffClass {
-    String name;
-    double tariff;
+    private String name;
+    private double tariff;
 
-    @Override
-    public double getTariff() {
-        return 0;
+    public TariffClass5(String name, double tariff){
+
+        this.name=name;
+        this.tariff=tariff;
+
     }
 
     @Override
-    public double getValueFormDB() {
-        return 0;
+    public double getTariff() {
+        return this.tariff;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
     }
 
 }
