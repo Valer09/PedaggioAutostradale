@@ -1,5 +1,10 @@
 package Model;
 
+import Controller.DBManager;
+import Controller.VarGetter;
+
+import java.sql.ResultSet;
+
 public class Veichle {
 
     private String vlp;
@@ -13,10 +18,12 @@ public class Veichle {
     private String tariff_class;
     private String ambiental_class;
 
-    public Veichle (String vlp){
+    public Veichle(String vlp){
         this.vlp = vlp;
-        this.getValueFromDB();
-    }
+        DBManager db=new DBManager();
+        ResultSet result = db.getVeichleInfo();       
+
+}
 
     public Float getHeight() {
         return height;
@@ -58,9 +65,6 @@ public class Veichle {
         return vlp;
     }
 
-    private void getValueFromDB(){
-
-    }
 
     public void setAmbiental_class(String ambiental_class) {
         this.ambiental_class = ambiental_class;
