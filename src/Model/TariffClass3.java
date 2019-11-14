@@ -1,6 +1,8 @@
-package Model.Interfaces;
+package Model;
 
-public class TariffClass5 implements  ITariffClass{
+import Model.Interfaces.ITariffClass;
+
+public class TariffClass3 implements ITariffClass {
     String name;
     double tariff;
 
@@ -13,5 +15,4 @@ public class TariffClass5 implements  ITariffClass{
     public double getValueFormDB() {
         return 0;
     }
-
 }

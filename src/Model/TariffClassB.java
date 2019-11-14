@@ -1,4 +1,6 @@
-package Model.Interfaces;
+package Model;
+
+import Model.Interfaces.ITariffClass;
 
 public class TariffClassB  implements ITariffClass {
         String name;

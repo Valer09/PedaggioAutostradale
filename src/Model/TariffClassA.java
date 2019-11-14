@@ -1,6 +1,8 @@
-package Model.Interfaces;
+package Model;
 
-public class TariffClass3 implements ITariffClass{
+import Model.Interfaces.ITariffClass;
+
+public class TariffClassA implements ITariffClass {
     String name;
     double tariff;
 
