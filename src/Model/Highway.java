@@ -23,4 +23,12 @@ public class Highway {
     public HashMap <String, Double> getTollbooths(){
         return tollbooths;
     }
+
+    public void setTollbooths(HashMap<String, Double> tollbooths) {
+        this.tollbooths = tollbooths;
+    }
+
+    public void setTU(double TU) {
+        this.TU = TU;
+    }
 }

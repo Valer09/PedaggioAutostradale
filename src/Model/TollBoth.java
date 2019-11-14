@@ -11,4 +11,12 @@ public class TollBoth {
     public String getName() {
         return name;
     }
+
+    public void setKm(int km) {
+        Km = km;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
