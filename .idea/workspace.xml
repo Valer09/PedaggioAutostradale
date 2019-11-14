@@ -10,8 +10,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PedaggioAutostradale.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PedaggioAutostradale.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/HV.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/HV3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/HV4.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/HV5.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/HVB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/LV.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/TollBoth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TollBoth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Veichle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Veichle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Testing/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Testing/Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -332,7 +337,28 @@
       <option name="project" value="LOCAL" />
       <updated>1573750702603</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Fix">
+      <created>1573751283711</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1573751283711</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fix">
+      <created>1573751297243</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1573751297243</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix">
+      <created>1573751671948</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1573751671948</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -362,11 +388,12 @@
     <MESSAGE value="Classi Veicoli" />
     <MESSAGE value="Vehicles Classes/Interfaces" />
     <MESSAGE value="DBManager,Surgetter,Toll,Higway, Tesing" />
-    <MESSAGE value="fix" />
     <MESSAGE value="VarGetter, Constant, Highway" />
     <MESSAGE value="Test" />
     <MESSAGE value="Classe Veicolo" />
     <MESSAGE value="Costruttore veicolo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Costruttore veicolo" />
+    <MESSAGE value="Fix" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
 </project>

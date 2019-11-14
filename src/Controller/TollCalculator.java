@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Highway;
-import Model.Interfaces.IVehicle;
 import Model.Toll;
 
 
