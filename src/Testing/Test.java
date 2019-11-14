@@ -1,8 +1,5 @@
 package Testing;
-import Controller.Constant;
-import Controller.TollCalculator;
-import Controller.Tools;
-import Controller.VarGetter;
+import Controller.*;
 import Model.*;
 
 /**
@@ -17,7 +14,7 @@ public class Test {
     public static void main(String []args){
 
         //OBBLIGATORIO PER INIZIALIZZARE DB E COSTANTI
-        Constant.setParams();
+        DBManager.initializeConnection();
 
 
 //TESTING CONSTANTS AND INITIALIZATION
