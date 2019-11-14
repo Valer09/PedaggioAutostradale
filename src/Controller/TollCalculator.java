@@ -2,12 +2,13 @@ package Controller;
 
 import Model.Highway;
 import Model.Toll;
+import Model.Vehicle;
 
 
 public class TollCalculator {
     private double amount=0;
 
-    public TollCalculator(IVehicle vehicle, Highway highway, String startingTB, String ticket){
+    public TollCalculator(Vehicle vehicle, Highway highway, String startingTB, String ticket){
         double toll =0;
         double startingKM;
         double arrivalKM;
@@ -17,7 +18,7 @@ public class TollCalculator {
         String tlb="";
 
 
-        Toll tl= new Toll(highway, vehicle);
+        //Toll tl= new Toll(highway, vehicle);
         toll= tl.calculateToll();
         tlb=Tools.fileReader(ticket);
 
@@ -30,7 +31,7 @@ public class TollCalculator {
         if (route <0 )
             route=route + ((-2)*route);
 
-        eurSur=Constant.getVar("EUR"+vehicle.getEURO());
+        eurSur=Constant.getVar("EUR"+vehicle.getAmbiental_class());
 
         amount=toll*route;
         amount+=(amount*eurSur);

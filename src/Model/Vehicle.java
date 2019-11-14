@@ -4,7 +4,7 @@ import Controller.DBManager;
 
 import java.sql.ResultSet;
 
-public class Veichle {
+public class Vehicle {
 
     private String vlp;
     private String model;
@@ -17,7 +17,7 @@ public class Veichle {
     private String tariff_class;
     private String ambiental_class;
 
-    public Veichle(String vlp){
+    public Vehicle(String vlp){
         this.vlp = vlp;
         DBManager db=new DBManager();
         ResultSet result = db.getVeichleInfo(vlp);
