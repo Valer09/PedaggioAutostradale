@@ -1,8 +1,16 @@
 package Model;
 
+import Controller.DBManager;
+
 public class TollBoth {
     String name;
     int Km;
+
+    public TollBoth(String name) {
+        this.name = name;
+        DBManager db=new DBManager();
+
+    }
 
     public int getKm() {
         return Km;
@@ -19,4 +27,6 @@ public class TollBoth {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

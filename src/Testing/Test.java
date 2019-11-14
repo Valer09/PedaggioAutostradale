@@ -32,7 +32,7 @@ public class Test {
         System.out.println(Constant.getVar("EUR6"));
 
 //TESTING VARGETTER CLASS AND METHODS
-        System.out.println(VarGetter.getSurcharge('3')); //TEST GESURCHARGE METHOD
+        System.out.println(VarGetter.getSurcharge('3')); //TEST GETSURCHARGE METHOD
         System.out.println(VarGetter.getIVA());                //TEST GETIVA METHOD
         System.out.println(VarGetter.getTU("A24"));    //TEST GETTU METHOD
         System.out.println(VarGetter.getTU("A1"));     //TEST GETTU METHOD
