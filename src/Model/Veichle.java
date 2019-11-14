@@ -20,7 +20,7 @@ public class Veichle {
     public Veichle(String vlp){
         this.vlp = vlp;
         DBManager db=new DBManager();
-        //ResultSet result = db.getVeichleInfo();
+        ResultSet result = db.getVeichleInfo(vlp);
 
 }
 

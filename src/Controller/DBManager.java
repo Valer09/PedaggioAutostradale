@@ -46,6 +46,23 @@ public class DBManager {
 
     }
 
+    public ResultSet getVeichleInfo(String vlp){
+
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT KM FROM veicolo WHERE targa=" + "'" + vlp + "'");
+            return rs;
+            } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+
+
+
+
+
     public double getKM(String tollbooths){
         double km=0;
 
