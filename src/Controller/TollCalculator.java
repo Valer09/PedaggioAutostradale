@@ -16,6 +16,7 @@ public class TollCalculator {
 
         double route;
         double eurSur;
+        double tariffSur;
 
 
         Toll tl= new Toll(highway, vehicle);
@@ -30,6 +31,7 @@ public class TollCalculator {
 
         startingKM=startingTlb.getKm();
         arrivalKM=arrivalTB.getKm();
+
         if (arrivalKM > startingKM) {
             route = arrivalKM - startingKM;
         }
@@ -41,8 +43,12 @@ public class TollCalculator {
         eurSur=Constant.getVar(vehicle.getAmbiental_class());
         System.out.println("Modificatore classe ambientale: "+eurSur);
 
+        tariffSur=Constant.getVar(vehicle.getTariff_class());
+        System.out.println("Modificatore classe tariffaria: "+tariffSur);
+
         amount=toll*route;
         amount+=(amount*eurSur);
+        amount+=(amount*tariffSur);
         amount+=Constant.getVar("IVA");
         amount=Math.round(amount * 10) / 10.0;
         amount=Math.round(amount * 100.0) / 100.0;

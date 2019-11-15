@@ -6,17 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e84f4f8-106b-49e5-b506-796467b5e354" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/TariffClassCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DBManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/TollCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TollCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Tools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/VarGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VarGetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Highway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Highway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Toll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Toll.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TollBoth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TollBoth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Vehicle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Testing/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Testing/Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -371,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573752322552</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Fix Query, TariffClassCalculator, fix metodi vari">
+      <created>1573836862065</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1573836862065</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -408,6 +407,7 @@
     <MESSAGE value="Fix" />
     <MESSAGE value="fix" />
     <MESSAGE value="delete old interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete old interface" />
+    <MESSAGE value="Fix Query, TariffClassCalculator, fix metodi vari" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Query, TariffClassCalculator, fix metodi vari" />
   </component>
 </project>

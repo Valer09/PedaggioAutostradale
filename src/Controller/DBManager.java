@@ -77,14 +77,14 @@ public class DBManager {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooth + "'");
 
-            while(! (rs.next()) ){
+            while(rs.next()){
                 km = rs.getDouble("KM");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        System.out.println("Casello: "+tollbooth+" KM: "+km);
         return km;
 
     }
