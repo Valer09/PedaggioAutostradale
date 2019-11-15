@@ -4,6 +4,7 @@
  * @author Valerio Marchitelli
  */
 package Controller;
+import Model.Vehicle;
 import org.jetbrains.annotations.Contract;
 
 import java.sql.*;
@@ -50,7 +51,7 @@ public class DBManager {
 
         try {
             st = connection.createStatement();
-            rs = st.executeQuery("SELECT KM FROM veicolo WHERE targa=" + "'" + vlp + "'");
+            rs = st.executeQuery("SELECT * FROM veicolo WHERE targa=" + "'" + vlp + "'");
             return rs;
             } catch (SQLException e) {
             e.printStackTrace();
@@ -58,17 +59,23 @@ public class DBManager {
         return rs;
     }
 
+    public boolean updateTariffClass(Vehicle veicolo, String tariff_class){
+        try {
+            st = connection.createStatement();
+            int count = st.executeUpdate("UPDATE veicolo SET c_tariffaria = '"+tariff_class+"' WHERE targa=" + "'" + veicolo.getVlp() + "'");
+            if (count > 0) return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
-
-
-
-
-    public double getKM(String tollbooths){
+    public double getTollBothKm(String tollbooth){
         double km=0;
 
         try {
             st = connection.createStatement();
-            rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooths + "'");
+            rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooth + "'");
 
             while(! (rs.next()) ){
                 km = rs.getDouble("KM");
@@ -89,8 +96,7 @@ public class DBManager {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada=" + "'" + highway + "'");
 
-            while(! (rs.next()) ){
-
+            while(rs.next()){
                 tb.put(rs.getString("Name"),rs.getDouble("KM"));
             }
 
@@ -102,6 +108,49 @@ public class DBManager {
 
     }
 
+    /**
+     * getHighwayTU recover TU of a specific highway from DB
+     *
+     * @return double
+     */
+    public static double getHighwayTU(String highway){
+
+        Connection con = DBManager.getConnection();
+
+        Statement stm = null;
+        try {
+            stm = con.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ResultSet rs = null;
+        try {
+            rs = stm.executeQuery("SELECT tu FROM autostrada WHERE nome=" + "'" + highway + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        while (true)
+        {
+            try {
+                if (!rs.next()) break;
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+
+                return rs.getDouble("tu");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return 1;
+
+    }
 
 
 }

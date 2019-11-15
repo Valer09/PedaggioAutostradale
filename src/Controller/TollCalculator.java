@@ -2,43 +2,50 @@ package Controller;
 
 import Model.Highway;
 import Model.Toll;
+import Model.TollBoth;
 import Model.Vehicle;
 
 
 public class TollCalculator {
     private double amount=0;
 
-    public TollCalculator(Vehicle vehicle, Highway highway, String startingTB, String ticket){
-        double toll =0;
+    public TollCalculator(Vehicle vehicle, Highway highway, String endingTB, String ticket){
+        double toll = 0;
         double startingKM;
         double arrivalKM;
+
         double route;
         double eurSur;
 
-        String tlb="";
 
-
-        //Toll tl= new Toll(highway, vehicle);
+        Toll tl= new Toll(highway, vehicle);
         toll= tl.calculateToll();
-        tlb=Tools.fileReader(ticket);
+        System.out.println("Pedaggio Unitario: "+toll);
+        System.out.println("Entrato da: "+Tools.fileReader(ticket));
+        TollBoth startingTlb=  new TollBoth(Tools.fileReader(ticket));
+        TollBoth arrivalTB = new TollBoth(endingTB);
+        System.out.println("Uscito a: "+endingTB);
 
-        DBManager dbist = new DBManager();
+        DBManager db= new DBManager();
 
-        startingKM=dbist.getKM(startingTB);
-        arrivalKM=dbist.getKM(tlb);
+        startingKM=startingTlb.getKm();
+        arrivalKM=arrivalTB.getKm();
+        if (arrivalKM > startingKM) {
+            route = arrivalKM - startingKM;
+        }
+        else {
+            route = startingKM - arrivalKM;
+        }
+        System.out.println("Km Percorsi: "+route);
 
-        route=(arrivalKM-startingKM);
-        if (route <0 )
-            route=route + ((-2)*route);
-
-        eurSur=Constant.getVar("EUR"+vehicle.getAmbiental_class());
+        eurSur=Constant.getVar(vehicle.getAmbiental_class());
+        System.out.println("Modificatore classe ambientale: "+eurSur);
 
         amount=toll*route;
         amount+=(amount*eurSur);
         amount+=Constant.getVar("IVA");
         amount=Math.round(amount * 10) / 10.0;
         amount=Math.round(amount * 100.0) / 100.0;
-
 
     }
     public double getAmount(){

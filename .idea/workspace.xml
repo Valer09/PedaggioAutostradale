@@ -5,18 +5,17 @@
     <option name="CUSTOM_SCOPE_NAME" value="Project Files" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e84f4f8-106b-49e5-b506-796467b5e354" name="Default Changelist" comment="VarGetter, Constant, Highway">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mariadb_java_client_2_5_1_sources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mariadb_java_client_2_5_1_sources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8e84f4f8-106b-49e5-b506-796467b5e354" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/TariffClassCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PedaggioAutostradale.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PedaggioAutostradale.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/HV.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/HV3.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/HV4.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/HV5.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/HVB.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/LV.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TollCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TollCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Tools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/VarGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VarGetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Highway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Highway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Toll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Toll.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/TollBoth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TollBoth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Vehicle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Testing/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Testing/Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -358,7 +357,21 @@
       <option name="project" value="LOCAL" />
       <updated>1573751671948</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fix">
+      <created>1573752182598</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1573752182598</updated>
+    </task>
+    <task id="LOCAL-00023" summary="delete old interface">
+      <created>1573752322552</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1573752322552</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -394,6 +407,7 @@
     <MESSAGE value="Costruttore veicolo" />
     <MESSAGE value="Fix" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="delete old interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete old interface" />
   </component>
 </project>

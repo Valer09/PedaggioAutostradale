@@ -3,16 +3,16 @@ package Model;
 import Controller.DBManager;
 
 public class TollBoth {
-    String name;
-    int Km;
+    private String name;
+    private double Km;
 
     public TollBoth(String name) {
         this.name = name;
         DBManager db=new DBManager();
-
+        this.Km = db.getTollBothKm(name);
     }
 
-    public int getKm() {
+    public double getKm() {
         return Km;
     }
 

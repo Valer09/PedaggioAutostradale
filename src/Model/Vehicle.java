@@ -3,6 +3,7 @@ package Model;
 import Controller.DBManager;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Vehicle {
 
@@ -21,6 +22,22 @@ public class Vehicle {
         this.vlp = vlp;
         DBManager db=new DBManager();
         ResultSet result = db.getVeichleInfo(vlp);
+
+        try {
+            if (result.next()){
+                this.model = result.getString("modello");
+                this.brand = result.getString("marca");
+                this.tariff_class = result.getString("c_tariffaria");
+                this.ambiental_class = result.getString("c_ambientale");
+                this.year = result.getInt("anno");
+                this.axes = result.getInt("assi");
+                this.cylinder_capacity = result.getInt("cilindrata");
+                this.weight = result.getFloat("peso");
+                this.height = result.getFloat("altezza");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 }
 
@@ -91,6 +108,9 @@ public class Vehicle {
 
     public void setTariff_class(String tariff_class) {
         this.tariff_class = tariff_class;
+        DBManager db=new DBManager();
+        boolean result = db.updateTariffClass(this, tariff_class);
+        if (result) System.out.println("Calsse Tariffaria aggiornata con Successo!");
     }
 
     public void setVlp(String vlp) {

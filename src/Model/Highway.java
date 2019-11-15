@@ -5,13 +5,12 @@ import Controller.VarGetter;
 import java.util.HashMap;
 
 public class Highway {
-    protected double TU;
-    protected HashMap <String, Double> tollbooths = null;
+    private double TU;
+    private HashMap <String, Double> tollbooths = null;
 
     public Highway(String highway){
-
-        TU = VarGetter.getTU(highway);
         DBManager db=new DBManager();
+        TU = db.getHighwayTU(highway);
         tollbooths = db.getHighwayTollbooths(highway);
 
     }

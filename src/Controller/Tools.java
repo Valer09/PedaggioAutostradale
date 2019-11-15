@@ -64,7 +64,6 @@ public class Tools {
         String content="";
         BufferedReader reader=null;
 
-
         try {
             reader = new BufferedReader(new FileReader(Constant.getInputRoot()+"/"+filename));
 
@@ -80,9 +79,6 @@ public class Tools {
         }
 
         return content;
-
-
-
     }
 
 }
