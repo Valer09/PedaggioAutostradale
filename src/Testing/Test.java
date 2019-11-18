@@ -63,6 +63,7 @@ public class Test {
             System.out.println("Classe Tariffaria: "+macchina.getTariff_class());
         }
 
+
         TollCalculator tl= new TollCalculator(macchina,a24,"TE0","ticket.txt");
         System.out.println("Pedaggio: "+tl.getAmount());
 

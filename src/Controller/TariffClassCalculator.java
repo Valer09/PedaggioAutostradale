@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Interfaces.ITariffClass;
+import Model.TariffClass3;
 import Model.Vehicle;
 
 public class TariffClassCalculator {

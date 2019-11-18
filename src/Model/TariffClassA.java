@@ -3,7 +3,7 @@ package Model;
 import Model.Interfaces.ITariffClass;
 
 public class TariffClassA implements ITariffClass {
-    private String name;
+    private String name = "SURA";
     private double tariff;
 
     public TariffClassA(String name, double tariff){
