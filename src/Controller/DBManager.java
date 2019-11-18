@@ -19,6 +19,46 @@ public class DBManager {
     private static Connection connection = initializeConnection();
 
 
+    public static double getClass(String classe){
+
+
+        Statement stm = null;
+        double res=0;
+
+        stm = null;
+        try {
+            stm = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ResultSet rs = null;
+
+        try {
+            rs = stm.executeQuery("SELECT Val FROM costants WHERE Name=" + "'" + classe + "'");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        while (true) {
+            try {
+                if (!rs.next()) break;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+
+                res = rs.getDouble("Val");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return res;
+
+
+
+    }
+
     public static Connection initializeConnection() {
 
         try {
