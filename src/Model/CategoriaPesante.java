@@ -15,7 +15,7 @@ public class CategoriaPesante  implements ICategoria {
         else
             classe= "CLASSE_"+assi;
 
-        valore = DBManager.getClass(classe); // QUERY AL DB per la classe clacolata
+        valore = DBManager.getClassValue(classe); // QUERY AL DB per la classe clacolata
 
     }
 

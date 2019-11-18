@@ -17,7 +17,6 @@ public class Vehicle {
     private Float weight;
     private Float height;
     private int cylinder_capacity;
-    private String tariff_class;
     private ICategoria cat;
     private String ambiental_class;
 
@@ -85,7 +84,7 @@ public class Vehicle {
     }
 
     public String getTariff_class() {
-        return tariff_class;
+        return cat.getNomeClasse();
     }
 
     public String getVlp() {
@@ -102,7 +101,6 @@ public class Vehicle {
    }
 
    public double getIncrementoCA(){
-        
-        return 2.0;
+        return DBManager.getAmbientalClassValue(this.ambiental_class);
    }
 }

@@ -9,7 +9,7 @@ public class CategoriaLeggera implements ICategoria{
     public CategoriaLeggera(){
 
         classe="CLASSE_A"; // OPPURE QUERY AL DB
-        valore = DBManager.getClass(classe); // QUERY AL DB per la classe clacolata
+        valore = DBManager.getClassValue(classe); // QUERY AL DB per la classe clacolata
 
     }
 
