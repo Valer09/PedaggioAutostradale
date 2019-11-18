@@ -14,7 +14,7 @@ public class VarGetter {
      * @return double
      */
     @Contract(pure = true)
-    public static double getSurcharge(char vclass){
+    public static double getSurcharge(String vclass){
         String var="SUR"+vclass;
         return Constant.getVar(var);
 
@@ -33,47 +33,5 @@ public class VarGetter {
     }
 
 
-    /**
-     * getTU recover TU of a specific highway from DB
-     *
-     * @return double
-     */
-    public static double getTU(String highway){
 
-        Connection con = DBManager.getConnection();
-
-        Statement stm = null;
-        try {
-            stm = con.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ResultSet rs = null;
-        try {
-            rs = stm.executeQuery("SELECT TU FROM autostrade WHERE Name=" + "'" + highway + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        while (true)
-        {
-            try {
-                if (!rs.next()) break;
-            }
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-
-                return rs.getDouble("TU");
-            }
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return 1;
-
-    }
 }

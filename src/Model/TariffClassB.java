@@ -3,18 +3,25 @@ package Model;
 import Model.Interfaces.ITariffClass;
 
 public class TariffClassB  implements ITariffClass {
-        String name;
-        double tariff;
+    private String name;
+    private double tariff;
 
-        @Override
-        public double getTariff() {
-            return 0;
-        }
+    public TariffClassB(String name, double tariff){
 
-        @Override
-        public double getValueFormDB() {
-            return 0;
-        }
+        this.name=name;
+        this.tariff=tariff;
+
+    }
+
+    @Override
+    public double getTariff() {
+        return this.tariff;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
 }
 
 

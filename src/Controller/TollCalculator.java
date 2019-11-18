@@ -1,44 +1,57 @@
 package Controller;
 
 import Model.Highway;
-import Model.Interfaces.IVehicle;
 import Model.Toll;
+import Model.TollBoth;
+import Model.Vehicle;
 
 
 public class TollCalculator {
     private double amount=0;
 
-    public TollCalculator(IVehicle vehicle, Highway highway, String startingTB, String ticket){
-        double toll =0;
+    public TollCalculator(Vehicle vehicle, Highway highway, String endingTB, String ticket){
+        double toll = 0;
         double startingKM;
         double arrivalKM;
+
         double route;
         double eurSur;
-
-        String tlb="";
+        double tariffSur;
 
 
         Toll tl= new Toll(highway, vehicle);
         toll= tl.calculateToll();
-        tlb=Tools.fileReader(ticket);
+        System.out.println("Pedaggio Unitario: "+toll);
+        System.out.println("Entrato da: "+Tools.fileReader(ticket));
+        TollBoth startingTlb=  new TollBoth(Tools.fileReader(ticket));
+        TollBoth arrivalTB = new TollBoth(endingTB);
+        System.out.println("Uscito a: "+endingTB);
 
-        DBManager dbist = new DBManager();
+        DBManager db= new DBManager();
 
-        startingKM=dbist.getKM(startingTB);
-        arrivalKM=dbist.getKM(tlb);
+        startingKM=startingTlb.getKm();
+        arrivalKM=arrivalTB.getKm();
 
-        route=(arrivalKM-startingKM);
-        if (route <0 )
-            route=route + ((-2)*route);
+        if (arrivalKM > startingKM) {
+            route = arrivalKM - startingKM;
+        }
+        else {
+            route = startingKM - arrivalKM;
+        }
+        System.out.println("Km Percorsi: "+route);
 
-        eurSur=Constant.getVar("EUR"+vehicle.getEURO());
+        eurSur=Constant.getVar(vehicle.getAmbiental_class());
+        System.out.println("Modificatore classe ambientale: "+eurSur);
+
+        tariffSur=Constant.getVar(vehicle.getTariff_class());
+        System.out.println("Modificatore classe tariffaria: "+tariffSur);
 
         amount=toll*route;
         amount+=(amount*eurSur);
-        amount+=Constant.getVar("IVA");
+        amount+=(amount*tariffSur);
+        amount+=(amount*Constant.getVar("IVA"));
         amount=Math.round(amount * 10) / 10.0;
         amount=Math.round(amount * 100.0) / 100.0;
-
 
     }
     public double getAmount(){

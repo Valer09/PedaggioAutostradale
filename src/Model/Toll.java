@@ -12,7 +12,7 @@ public class Toll {
 
     private double unit_toll=0;
     private double TU;
-    private char vclass;
+    private String vclass;
 
 
     /**
@@ -20,9 +20,9 @@ public class Toll {
      * @param highway
      * @param vehicle
      */
-    public Toll(@NotNull Highway highway, @NotNull IVehicle vehicle){
+    public Toll(@NotNull Highway highway, @NotNull Vehicle vehicle){
 
-        vclass=vehicle.getVclass();
+        vclass=vehicle.getTariff_class();
         TU=highway.getTU();
 
     }
@@ -33,9 +33,7 @@ public class Toll {
      * @return <b>double</>: unitary tool
      */
     public double calculateToll(){
-
         return TU+(TU*VarGetter.getSurcharge(vclass));
-
-
     }
+
 }

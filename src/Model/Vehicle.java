@@ -1,6 +1,11 @@
 package Model;
 
-public class Veichle {
+import Controller.DBManager;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Vehicle {
 
     private String vlp;
     private String model;
@@ -13,10 +18,28 @@ public class Veichle {
     private String tariff_class;
     private String ambiental_class;
 
-    public Veichle (String vlp){
+    public Vehicle(String vlp){
         this.vlp = vlp;
-        this.getValueFromDB();
-    }
+        DBManager db=new DBManager();
+        ResultSet result = db.getVeichleInfo(vlp);
+
+        try {
+            if (result.next()){
+                this.model = result.getString("modello");
+                this.brand = result.getString("marca");
+                this.tariff_class = result.getString("c_tariffaria");
+                this.ambiental_class = result.getString("c_ambientale");
+                this.year = result.getInt("anno");
+                this.axes = result.getInt("assi");
+                this.cylinder_capacity = result.getInt("cilindrata");
+                this.weight = result.getFloat("peso");
+                this.height = result.getFloat("altezza");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+}
 
     public Float getHeight() {
         return height;
@@ -58,9 +81,6 @@ public class Veichle {
         return vlp;
     }
 
-    private void getValueFromDB(){
-
-    }
 
     public void setAmbiental_class(String ambiental_class) {
         this.ambiental_class = ambiental_class;
@@ -88,6 +108,9 @@ public class Veichle {
 
     public void setTariff_class(String tariff_class) {
         this.tariff_class = tariff_class;
+        DBManager db=new DBManager();
+        boolean result = db.updateTariffClass(this, tariff_class);
+        if (result) System.out.println("Calsse Tariffaria aggiornata con Successo!");
     }
 
     public void setVlp(String vlp) {

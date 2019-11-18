@@ -5,20 +5,19 @@
     <option name="CUSTOM_SCOPE_NAME" value="Project Files" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e84f4f8-106b-49e5-b506-796467b5e354" name="Default Changelist" comment="Initialization Dirs">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mariadb_java_client_2_5_1_sources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mariadb_java_client_2_5_1_sources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8e84f4f8-106b-49e5-b506-796467b5e354" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TariffClassCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TariffClassCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TollCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TollCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/TariffClassA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TariffClassA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Testing/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Testing/Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CodeInsightWorkspaceSettings">
-    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -67,18 +66,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>Veichle</find>
-      <find>getConn</find>
-      <find>get</find>
-      <find>getVcl</find>
-    </findStrings>
-    <replaceStrings>
-      <replace />
-      <replace>Vehicle</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -133,9 +120,12 @@
       </branch-storage>
     </excluded-from-favorite>
   </component>
-  <component name="ProjectId" id="1TYn23jsND5mMPs78ltzYALNBsP" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1TYmJzXRAVrS2vvp9JsZ0NMEwPp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mariadb" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -146,14 +136,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="findjar.last.used.dir" value="$PROJECT_DIR$/.idea/libraries" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea/libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Librerie/mysql-connector-java-5.1.48.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -321,7 +310,77 @@
       <option name="project" value="LOCAL" />
       <updated>1573410076457</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Test">
+      <created>1573648709238</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1573648709238</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Classe Veicolo">
+      <created>1573747991781</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1573747991781</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Costruttore veicolo">
+      <created>1573750702603</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1573750702603</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Fix">
+      <created>1573751283711</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1573751283711</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fix">
+      <created>1573751297243</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1573751297243</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix">
+      <created>1573751671948</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1573751671948</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fix">
+      <created>1573752182598</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1573752182598</updated>
+    </task>
+    <task id="LOCAL-00023" summary="delete old interface">
+      <created>1573752322552</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1573752322552</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Fix Query, TariffClassCalculator, fix metodi vari">
+      <created>1573836862065</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1573836862065</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Pedaggio">
+      <created>1573837506181</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1573837506181</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -344,14 +403,22 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First Commit" />
     <MESSAGE value="Vehicle classes/interfaces" />
     <MESSAGE value="Initialization Dirs" />
     <MESSAGE value="Classi Veicoli" />
     <MESSAGE value="Vehicles Classes/Interfaces" />
     <MESSAGE value="DBManager,Surgetter,Toll,Higway, Tesing" />
-    <MESSAGE value="fix" />
     <MESSAGE value="VarGetter, Constant, Highway" />
-    <option name="LAST_COMMIT_MESSAGE" value="VarGetter, Constant, Highway" />
+    <MESSAGE value="Test" />
+    <MESSAGE value="Classe Veicolo" />
+    <MESSAGE value="Costruttore veicolo" />
+    <MESSAGE value="Fix" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="delete old interface" />
+    <MESSAGE value="Fix Query, TariffClassCalculator, fix metodi vari" />
+    <MESSAGE value="Pedaggio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pedaggio" />
   </component>
 </project>

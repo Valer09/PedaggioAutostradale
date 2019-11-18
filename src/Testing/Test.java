@@ -2,6 +2,8 @@ package Testing;
 import Controller.*;
 import Model.*;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Vale09
@@ -16,8 +18,8 @@ public class Test {
         //OBBLIGATORIO PER INIZIALIZZARE DB E COSTANTI
         DBManager.initializeConnection();
 
-
-//TESTING CONSTANTS AND INITIALIZATION
+        /*
+        //TESTING CONSTANTS AND INITIALIZATION
         System.out.println(Constant.getVar("IVA"));
         System.out.println(Constant.getVar("SURA"));
         System.out.println(Constant.getVar("SURB"));
@@ -31,34 +33,62 @@ public class Test {
         System.out.println(Constant.getVar("EUR5"));
         System.out.println(Constant.getVar("EUR6"));
 
-//TESTING VARGETTER CLASS AND METHODS
-        System.out.println(VarGetter.getSurcharge('3')); //TEST GESURCHARGE METHOD
+        //TESTING VARGETTER CLASS AND METHODS
+        System.out.println(VarGetter.getSurcharge('3')); //TEST GETSURCHARGE METHOD
         System.out.println(VarGetter.getIVA());                //TEST GETIVA METHOD
         System.out.println(VarGetter.getTU("A24"));    //TEST GETTU METHOD
         System.out.println(VarGetter.getTU("A1"));     //TEST GETTU METHOD
-
-//TESTING VEHICLES AND HIGHWAY AND TOLL
+        */
+        //TESTING VEHICLES AND HIGHWAY AND TOLL
+        System.out.println("Autostrada A24");
         Highway a24= new Highway("A24");
-        HV4 camion= new HV4("IVECO","HHH77", "CR8776TT",2);
+        System.out.println("Tariffa Unitaria: "+a24.getTU());
+        HashMap caselli = a24.getTollbooths();
+        System.out.println("Caselli: "+caselli);
+        System.out.println("Nuovo Veicolo");
+        Vehicle macchina = new Vehicle("EV467YT");
+        System.out.println("Modello: "+macchina.getModel());
+        System.out.println("Marca: "+macchina.getBrand());
+        System.out.println("Anno: "+macchina.getYear());
+        System.out.println("Assi: "+macchina.getAxes());
+        System.out.println("Cilindrata: "+macchina.getCylinder_capacity());
+        System.out.println("Peso: "+macchina.getWeight());
+        System.out.println("Altezza: "+macchina.getHeight());
+        System.out.println("Classe Tariffaria: "+macchina.getTariff_class());
+        System.out.println("Classe Ambientale: "+macchina.getAmbiental_class());
+        if (macchina.getTariff_class() == null || macchina.getTariff_class().equals("")){
+            TariffClassCalculator tcc = new TariffClassCalculator(macchina);
+            String tariff_class = tcc.getTariff_class();
+            macchina.setTariff_class(tariff_class);
+            System.out.println("Classe Tariffaria: "+macchina.getTariff_class());
+        }
+
+
+        TollCalculator tl= new TollCalculator(macchina,a24,"TE0","ticket.txt");
+        System.out.println("Pedaggio: "+tl.getAmount());
+
+
+
+        //HV4 camion= new HV4("IVECO","HHH77", "CR8776TT",2);
 /*      Toll a24toll= new Toll(a24,camion);
         System.out.println(a24toll.calculateToll());*/
-        HVB ibiza= new HVB("SEAT","IBIZA", "CR984RT",4);
+        //HVB ibiza= new HVB("SEAT","IBIZA", "CR984RT",4);
 /*
         a24toll=new Toll(a24,ibiza);
         System.out.println(a24toll.calculateToll());
 
 
 */
-
-//TESTING TOOLS
+        /*
+        //TESTING TOOLS
         System.out.println(Tools.LPCheck("CR8776TT")); //FALSE
         System.out.println(Tools.LPCheck("CR984RT"));  //TRUE. DA COMPLETARE
 
-//TESTING tollbooths in HIGHWAYS
+        //TESTING tollbooths in HIGHWAYS
         System.out.println(a24.getTollbooths());
         System.out.println(Tools.fileReader("ticket.txt"));
 
-//TESTING TOLL CALCULATOR
+        //TESTING TOLL CALCULATOR
         TollCalculator tl= new TollCalculator(camion,a24,"RM150","ticket.txt");
         System.out.println(tl.getAmount());
 
@@ -70,7 +100,7 @@ public class Test {
 
         tl= new TollCalculator(ibiza,a24,"TE0","ticket.txt");
         System.out.println(tl.getAmount());
-
+        */
 
 
 
