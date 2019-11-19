@@ -94,6 +94,11 @@ public class Test {
         System.out.println(tl.getAmount());
         */
 
+        //Highway.addTollboth("A24","CACCA",600);
+        //Highway.addHighway("A1000",0.33);
+        //Highway.setTU("A24",0.93);
+        Highway.setName("A24","A244");
+
 
 
 

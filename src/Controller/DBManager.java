@@ -17,7 +17,32 @@ public class DBManager {
     private static String path="eu-cdbr-west-02.cleardb.net/heroku_3838b0b01f11d0f";
     private static Connection connection = initializeConnection();
 
+    public static Connection initializeConnection() {
 
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch (ClassNotFoundException e)
+        {
+            System.out.println("ciao");
+        }
+
+        try {
+            return DriverManager.getConnection("jdbc:mysql://"+path, "b5d4014795a1c2","ea612ec6");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return connection;
+    }
+    @Contract(pure = true)
+    public static Connection getConnection(){
+
+        return connection;
+
+    }
     public static double getClassValue(String classe){
 
         Statement stm = null;
@@ -51,7 +76,6 @@ public class DBManager {
 
 
     }
-
     public static double getIVA(){
         double res = 0;
         try{
@@ -67,28 +91,6 @@ public class DBManager {
         }
         return res;
     }
-
-    public static Connection initializeConnection() {
-
-        try {
-              Class.forName("com.mysql.jdbc.Driver");
-            }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println("ciao");
-        }
-
-        try {
-            return DriverManager.getConnection("jdbc:mysql://"+path, "b5d4014795a1c2","ea612ec6");
-        }
-         catch (SQLException e) {
-            e.printStackTrace();
-
-        }
-
-        return connection;
-    }
-
     public static double getAmbientalClassValue(String nomeClasse){
         double res = 0;
         try{
@@ -104,14 +106,6 @@ public class DBManager {
         }
         return res;
     }
-
-    @Contract(pure = true)
-    public static Connection getConnection(){
-
-        return connection;
-
-    }
-
     public ResultSet getVeichleInfo(String vlp){
 
         try {
@@ -123,7 +117,6 @@ public class DBManager {
         }
         return rs;
     }
-
     public double getTollBothKm(String tollbooth){
         double km=0;
 
@@ -142,7 +135,6 @@ public class DBManager {
         return km;
 
     }
-
     public HashMap <String, Double> getHighwayTollbooths(String highway){
         HashMap<String, Double> tb = new HashMap<String, Double>();
 
@@ -205,6 +197,47 @@ public class DBManager {
         return 1;
 
     }
+    public static void setTU(String highway, double TU){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("UPDATE autostrada SET tu="+TU+" WHERE nome='"+highway+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public static void setHighwayName(String highway, String newName){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("UPDATE autostrada SET nome='"+newName+"' WHERE nome='"+highway+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public static void addTollboth(String highway, String name, double KM){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("INSERT INTO tollbooths (Autostrada,Name,KM)  VALUES ("+"'"+highway+"',"+"'"+name+"',"+"'"+KM+"')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public static void addHighway(String name, double TU){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("INSERT INTO autostrada (nome,tu)  VALUES ("+"'"+name+"',"+"'"+TU+"')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 
 }
