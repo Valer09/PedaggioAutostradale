@@ -13,7 +13,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.util.HashMap;
 import Controller.*;
 import Model.*;
 
@@ -99,6 +98,7 @@ public class Test extends Application {
         //TollBoth.setName("TE00","TE0");
         //TollBoth.setKM("TE0",0);
         //TollBoth.delTollBooth("TE0");
+        //Bubu
         launch(args);
     }
 }
