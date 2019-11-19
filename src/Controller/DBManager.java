@@ -4,11 +4,11 @@
  * @author Valerio Marchitelli
  */
 package Controller;
+import Model.Vehicle;
 import org.jetbrains.annotations.Contract;
 
 import java.sql.*;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DBManager {
 
@@ -112,22 +112,33 @@ public class DBManager {
 
     }
 
-    public double getKM(String tollbooths){
+    public ResultSet getVeichleInfo(String vlp){
+
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT * FROM veicolo WHERE targa=" + "'" + vlp + "'");
+            return rs;
+            } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public double getTollBothKm(String tollbooth){
         double km=0;
 
         try {
             st = connection.createStatement();
-            rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooths + "'");
+            rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooth + "'");
 
-            while(true){
-                if (! (rs.next())) break;
+            while(rs.next()){
                 km = rs.getDouble("KM");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        System.out.println("Casello: "+tollbooth+" KM: "+km);
         return km;
 
     }
@@ -139,8 +150,7 @@ public class DBManager {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada=" + "'" + highway + "'");
 
-            while(true){
-                if (! (rs.next())) break;
+            while(rs.next()){
                 tb.put(rs.getString("Name"),rs.getDouble("KM"));
             }
 
@@ -152,6 +162,49 @@ public class DBManager {
 
     }
 
+    /**
+     * getHighwayTU recover TU of a specific highway from DB
+     *
+     * @return double
+     */
+    public static double getHighwayTU(String highway){
+
+        Connection con = DBManager.getConnection();
+
+        Statement stm = null;
+        try {
+            stm = con.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ResultSet rs = null;
+        try {
+            rs = stm.executeQuery("SELECT tu FROM autostrada WHERE nome=" + "'" + highway + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        while (true)
+        {
+            try {
+                if (!rs.next()) break;
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+
+                return rs.getDouble("tu");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return 1;
+
+    }
 
 
 }
