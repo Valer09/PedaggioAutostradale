@@ -15,9 +15,6 @@ import java.util.regex.Pattern;
 
 public class Tools {
 
-    public boolean LPExists(){return true;}
-
-
     /**
      * DA COMPLETARE; CONTROLLA IL FORMATO TARGA.
      * @param lp
@@ -28,36 +25,11 @@ public class Tools {
 
         if (! ( lp.length()==7 ) )
             return false;
-
         Matcher m = Pattern.compile("[a-zA-Z0-9. ]*").matcher(lp);
         if (m.find())
             return true;
 
-
-        /*for(int i=0; i<2; i++){
-
-            if(! ((int)lp.codePointAt(i) > 64 && (int)lp.codePointAt(i) < 123))
-                return false;
-
-        }
-
-        for(int i=5; i<8; i++){
-
-            if(! ((int)lp.codePointAt(i) > 47 && (int)lp.codePointAt(i) < 58) );
-                return false;
-
-        }
-
-        for(int i=2; i<5; i++){
-
-            if(! ((int)lp.codePointAt(i) > 64 && (int)lp.codePointAt(i) < 123) );
-                return false;
-
-        }
-        */
-
         return false;
-
     }
 
     public static String fileReader(String filename){
@@ -70,7 +42,6 @@ public class Tools {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
 
         try {
             content = reader.readLine();

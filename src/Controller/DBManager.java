@@ -18,6 +18,56 @@ public class DBManager {
     private static Connection connection = initializeConnection();
 
 
+    public static double getClassValue(String classe){
+
+        Statement stm = null;
+        double res=0;
+
+        stm = null;
+        try {
+            stm = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ResultSet rs = null;
+
+        try {
+            rs = stm.executeQuery("SELECT Val FROM costants WHERE Name=" + "'" + classe + "'");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try{
+            while (rs.next()) {
+
+                res = rs.getDouble("Val");
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+
+
+
+    }
+
+    public static double getIVA(){
+        double res = 0;
+        try{
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = 'IVA'");
+            while (rs.next()) {
+
+                res = rs.getDouble("Val");
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
     public static Connection initializeConnection() {
 
         try {
@@ -37,6 +87,22 @@ public class DBManager {
         }
 
         return connection;
+    }
+
+    public static double getAmbientalClassValue(String nomeClasse){
+        double res = 0;
+        try{
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = '"+nomeClasse+"'");
+            while (rs.next()) {
+
+                res = rs.getDouble("Val");
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
     @Contract(pure = true)

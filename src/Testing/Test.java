@@ -56,17 +56,9 @@ public class Test {
         System.out.println("Altezza: "+macchina.getHeight());
         System.out.println("Classe Tariffaria: "+macchina.getTariff_class());
         System.out.println("Classe Ambientale: "+macchina.getAmbiental_class());
-        if (macchina.getTariff_class() == null || macchina.getTariff_class().equals("")){
-            TariffClassCalculator tcc = new TariffClassCalculator(macchina);
-            String tariff_class = tcc.getTariff_class();
-            macchina.setTariff_class(tariff_class);
-            System.out.println("Classe Tariffaria: "+macchina.getTariff_class());
-        }
 
-
-        TollCalculator tl= new TollCalculator(macchina,a24,"TE0","ticket.txt");
-        System.out.println("Pedaggio: "+tl.getAmount());
-
+        double prezzo = TollCalculator.getToll(macchina,a24,"TE0","ticket.txt");
+        System.out.println("Pedaggio: "+prezzo+" Euro");
 
 
         //HV4 camion= new HV4("IVECO","HHH77", "CR8776TT",2);

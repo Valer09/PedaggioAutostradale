@@ -1,9 +1,11 @@
 package Model;
 
 import Controller.DBManager;
+import Model.Interfaces.ICategoria;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 public class Vehicle {
 
@@ -15,7 +17,7 @@ public class Vehicle {
     private Float weight;
     private Float height;
     private int cylinder_capacity;
-    private String tariff_class;
+    private ICategoria cat;
     private String ambiental_class;
 
     public Vehicle(String vlp){
@@ -27,7 +29,6 @@ public class Vehicle {
             if (result.next()){
                 this.model = result.getString("modello");
                 this.brand = result.getString("marca");
-                this.tariff_class = result.getString("c_tariffaria");
                 this.ambiental_class = result.getString("c_ambientale");
                 this.year = result.getInt("anno");
                 this.axes = result.getInt("assi");
@@ -39,6 +40,15 @@ public class Vehicle {
             e.printStackTrace();
         }
 
+        //Decidere la classe tariffaria
+        if(this.height <= 1.30){
+            //Categoria Leggera = Classe Tariffaria A
+            this.cat = new CategoriaLeggera();
+        }
+        else{
+            //Categoria Pesante, Classe Tariffaria decisa dal numero di assi
+            this.cat = new CategoriaPesante(this.axes);
+        }
 }
 
     public Float getHeight() {
@@ -74,7 +84,7 @@ public class Vehicle {
     }
 
     public String getTariff_class() {
-        return tariff_class;
+        return cat.getNomeClasse();
     }
 
     public String getVlp() {
@@ -82,47 +92,15 @@ public class Vehicle {
     }
 
 
-    public void setAmbiental_class(String ambiental_class) {
-        this.ambiental_class = ambiental_class;
-    }
+   public String getCategoriaName(){
+        return cat.getNomeClasse();
+   }
 
-    public void setAxes(int axes) {
-        this.axes = axes;
-    }
+   public double getIncrementoCT(){
+        return cat.getValoreClasse();
+   }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public void setCylinder_capacity(int cylinder_capacity) {
-        this.cylinder_capacity = cylinder_capacity;
-    }
-
-    public void setHeight(Float height) {
-        this.height = height;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public void setTariff_class(String tariff_class) {
-        this.tariff_class = tariff_class;
-        DBManager db=new DBManager();
-        boolean result = db.updateTariffClass(this, tariff_class);
-        if (result) System.out.println("Calsse Tariffaria aggiornata con Successo!");
-    }
-
-    public void setVlp(String vlp) {
-        this.vlp = vlp;
-    }
-
-    public void setWeight(Float weight) {
-        this.weight = weight;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
+   public double getIncrementoCA(){
+        return DBManager.getAmbientalClassValue(this.ambiental_class);
+   }
 }
