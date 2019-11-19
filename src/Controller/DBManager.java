@@ -125,7 +125,7 @@ public class DBManager {
         String highway="";
         try {
             st = connection.createStatement();
-            rs=st.executeQuery("SELECT Autostrada FROM tollbooths WHERE Name=" + "'" + tollbooth + "'");
+            rs=st.executeQuery("SELECT Autostrada FROM tollbooths WHERE Name='" + tollbooth + "'");
             while(rs.next()){
                 highway = rs.getString("Autostrada");
             }

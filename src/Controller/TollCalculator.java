@@ -9,14 +9,13 @@ import java.util.Calendar;
 
 public class TollCalculator {
 
-    public static double getToll(Vehicle vehicle, Highway highway, String endingTB, String ticket){
+    public static double getToll(Vehicle vehicle, Highway highway, TollBoth startingTB, TollBoth endingTB ){
         double TU = highway.getTU();
         double ICTV = vehicle.getIncrementoCT();
         double ICAV = vehicle.getIncrementoCA();
-        TollBoth startingTlb=  new TollBoth(Tools.fileReader(ticket));
-        TollBoth arrivalTB = new TollBoth(endingTB);
-        double startingKM=startingTlb.getKm();
-        double arrivalKM=arrivalTB.getKm();
+
+        double startingKM=startingTB.getKm();
+        double arrivalKM=endingTB.getKm();
         double route = 0;
         String categoria = vehicle.getCategoriaName();
 
@@ -27,8 +26,8 @@ public class TollCalculator {
             route = startingKM - arrivalKM;
         }
         System.out.println("Km Percorsi: "+route);
-        System.out.println("Entrato da: "+Tools.fileReader(ticket));
-        System.out.println("Uscito a: "+endingTB);
+        System.out.println("Entrato da: "+startingTB.getName());
+        System.out.println("Uscito a: "+endingTB.getName());
         System.out.println("TU: "+TU);
         System.out.println("Modificatore classe tariffaria: "+ICTV);
         System.out.println("Categoria: "+categoria);

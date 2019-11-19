@@ -1,8 +1,17 @@
 package Testing;
+
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.HashMap;
 import Controller.*;
@@ -23,7 +32,35 @@ public class Test extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        StackPane layout = new StackPane();
+
+        Label label1 = new Label("Inserire Targa Veicolo:");
+        TextField textField = new TextField ();
+        HBox hb = new HBox();
+        Button b = new Button();
+        b.setText("Calcola Pedaggio");
+        b.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                String targa = textField.getText();
+                System.out.println(targa);
+                Vehicle macchina = new Vehicle(targa);
+                TollBoth startingTB =  new TollBoth(Tools.fileReader("ticket.txt"));
+                TollBoth endingTB = new TollBoth("RM150");
+                Highway autostrada = new Highway(DBManager.getHighwayByTollbooth(startingTB.getName()));
+                double prezzo = TollCalculator.getToll(macchina, autostrada, startingTB, endingTB);
+                System.out.println("Pedaggio: "+prezzo+" Euro");
+            }
+        });
+
+
+        VBox vb = new VBox();
+        hb.getChildren().addAll(label1, textField);
+        hb.setSpacing(10);
+        vb.getChildren().addAll(hb, b);
+        vb.setSpacing(10);
+        layout.getChildren().add(vb);
+
+        primaryStage.setScene(new Scene(layout, 600, 400));
         primaryStage.show();
     }
 
@@ -33,7 +70,7 @@ public class Test extends Application {
         DBManager.initializeConnection();
 
         //TESTING VEHICLES AND HIGHWAY AND TOLL
-        System.out.println("Autostrada A24");
+        /*System.out.println("Autostrada A24");
         Highway a24= new Highway("A24");
         System.out.println("Tariffa Unitaria: "+a24.getTU());
         HashMap caselli = a24.getTollbooths();
@@ -50,8 +87,9 @@ public class Test extends Application {
         System.out.println("Classe Tariffaria: "+macchina.getTariff_class());
         System.out.println("Classe Ambientale: "+macchina.getAmbiental_class());
 
-        double prezzo = TollCalculator.getToll(macchina,a24,"TE0","ticket.txt");
-        System.out.println("Pedaggio: "+prezzo+" Euro");
+
+        String autostrada = DBManager.getHighwayByTollbooth("AQ50");
+        System.out.println(autostrada); */
 
         //Highway.addTollboth("A24","CACCA",600);
         //Highway.addHighway("A1000",0.33);
