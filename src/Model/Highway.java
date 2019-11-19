@@ -38,4 +38,9 @@ public class Highway {
         DBManager.setHighwayName(highway, newName);
 
     }
+
+    public static void delHighway(String highway){
+        DBManager.delHighway(highway);
+
+    }
 }

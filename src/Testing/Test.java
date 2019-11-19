@@ -97,7 +97,11 @@ public class Test {
         //Highway.addTollboth("A24","CACCA",600);
         //Highway.addHighway("A1000",0.33);
         //Highway.setTU("A24",0.93);
-        Highway.setName("A24","A244");
+        //Highway.setName("A244","A24");
+        //Highway.delHighway("A1000");
+        //TollBoth.setName("TE00","TE0");
+        //TollBoth.setKM("TE0",0);
+        TollBoth.delTollBooth("TE0");
 
 
 

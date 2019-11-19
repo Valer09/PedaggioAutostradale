@@ -117,42 +117,7 @@ public class DBManager {
         }
         return rs;
     }
-    public double getTollBothKm(String tollbooth){
-        double km=0;
 
-        try {
-            st = connection.createStatement();
-            rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooth + "'");
-
-            while(rs.next()){
-                km = rs.getDouble("KM");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Casello: "+tollbooth+" KM: "+km);
-        return km;
-
-    }
-    public HashMap <String, Double> getHighwayTollbooths(String highway){
-        HashMap<String, Double> tb = new HashMap<String, Double>();
-
-        try {
-            st = connection.createStatement();
-            rs = st.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada=" + "'" + highway + "'");
-
-            while(rs.next()){
-                tb.put(rs.getString("Name"),rs.getDouble("KM"));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return tb;
-
-    }
 
     /**
      * getHighwayTU recover TU of a specific highway from DB
@@ -209,18 +174,18 @@ public class DBManager {
     }
     public static void setHighwayName(String highway, String newName){
         try{
+            ResultSet rs;
             Statement stm = connection.createStatement();
+            Statement stm2 = connection.createStatement();
+            rs=stm2.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada='"+highway+"'");
+            stm.executeUpdate("DELETE FROM tollbooths WHERE Autostrada='"+highway+"'");
             stm.executeUpdate("UPDATE autostrada SET nome='"+newName+"' WHERE nome='"+highway+"'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            while (rs.next()){
+                stm.executeUpdate(
+                        "INSERT INTO tollbooths (Autostrada, Name, KM) " +
+                                "VALUES ('"+newName+"','"+rs.getString("Name")+"','"+rs.getDouble("KM")+"')");
 
-
-    }
-    public static void addTollboth(String highway, String name, double KM){
-        try{
-            Statement stm = connection.createStatement();
-            stm.executeUpdate("INSERT INTO tollbooths (Autostrada,Name,KM)  VALUES ("+"'"+highway+"',"+"'"+name+"',"+"'"+KM+"')");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -237,6 +202,99 @@ public class DBManager {
 
 
     }
+    public static void delHighway(String highway){
+        try{
+            ResultSet rs;
+            Statement stm = connection.createStatement();
+            Statement stm2 = connection.createStatement();
+            stm2.executeUpdate("DELETE FROM tollbooths  WHERE Autostrada='"+highway+"'");
+            stm.executeUpdate("DELETE FROM autostrada WHERE nome='"+highway+"'");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void addTollboth(String highway, String name, double KM){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("INSERT INTO tollbooths (Autostrada,Name,KM)  VALUES ("+"'"+highway+"',"+"'"+name+"',"+"'"+KM+"')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public static void setTollbothName(String tollbooth, String newName){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("UPDATE tollbooths SET Name='"+newName+"' WHERE Name='"+tollbooth+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public static void setTollbothKM(String tollbooth, double KM){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("UPDATE tollbooths SET KM="+KM+" WHERE Name='"+tollbooth+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public static void delTollboth(String tollbooth){
+        try{
+            ResultSet rs;
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("DELETE FROM tollbooths WHERE Name='"+tollbooth+"'");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public double getTollBothKm(String tollbooth){
+        double km=0;
+
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooth + "'");
+
+            while(rs.next()){
+                km = rs.getDouble("KM");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Casello: "+tollbooth+" KM: "+km);
+        return km;
+
+    }
+    public HashMap <String, Double> getHighwayTollbooths(String highway){
+        HashMap<String, Double> tb = new HashMap<String, Double>();
+
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada=" + "'" + highway + "'");
+
+            while(rs.next()){
+                tb.put(rs.getString("Name"),rs.getDouble("KM"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tb;
+
+    }
+
 
 
 
