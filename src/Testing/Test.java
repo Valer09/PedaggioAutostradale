@@ -1,5 +1,11 @@
 package Testing;
 
+import Controller.DBManager;
+import Controller.TollCalculator;
+import Controller.Tools;
+import Model.Highway;
+import Model.TollBoth;
+import Model.Vehicle;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,9 +19,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.util.HashMap;
-import Controller.*;
-import Model.*;
 
 
 /**
