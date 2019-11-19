@@ -1,7 +1,7 @@
 package Model;
 
 import Controller.DBManager;
-import Controller.VarGetter;
+
 import java.util.HashMap;
 
 public class Highway {
