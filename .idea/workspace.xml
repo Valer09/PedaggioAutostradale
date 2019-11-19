@@ -6,14 +6,108 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e84f4f8-106b-49e5-b506-796467b5e354" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-console-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-datetime-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-debug-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-errorhandling-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-file-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-file-l1-2-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-file-l2-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-handle-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-heap-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-interlocked-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-libraryloader-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-localization-l1-2-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-memory-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-namedpipe-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-processenvironment-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-processthreads-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-processthreads-l1-1-1.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-profile-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-rtlsupport-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-string-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-synch-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-synch-l1-2-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-sysinfo-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-timezone-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-core-util-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-conio-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-convert-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-environment-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-filesystem-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-heap-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-locale-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-math-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-multibyte-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-private-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-process-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-runtime-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-stdio-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-string-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-time-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/api-ms-win-crt-utility-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/concrt140.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/decora_sse.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/fxplugins.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/glass.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/glib-lite.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/gstreamer-lite.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/javafx_font.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/javafx_iio.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/jfxmedia.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/jfxwebkit.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/msvcp140.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/prism_common.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/prism_d3d.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/prism_sw.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/ucrtbase.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/bin/vcruntime140.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.base/ADDITIONAL_LICENSE_INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.base/ASSEMBLY_EXCEPTION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.base/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.controls/ADDITIONAL_LICENSE_INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.controls/ASSEMBLY_EXCEPTION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.controls/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.fxml/ADDITIONAL_LICENSE_INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.fxml/ASSEMBLY_EXCEPTION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.fxml/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.graphics/ADDITIONAL_LICENSE_INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.graphics/ASSEMBLY_EXCEPTION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.graphics/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.graphics/jpeg_fx.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.graphics/mesa3d.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.graphics/opengl_fx.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.media/ADDITIONAL_LICENSE_INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.media/ASSEMBLY_EXCEPTION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.media/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.media/applecoreaudio.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.media/glib.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.media/gstreamer.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.media/libffi.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.swing/ADDITIONAL_LICENSE_INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.swing/ASSEMBLY_EXCEPTION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.swing/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.web/ADDITIONAL_LICENSE_INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.web/ASSEMBLY_EXCEPTION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.web/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.web/icu_web.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.web/libxml2.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.web/libxslt.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/legal/javafx.web/webkit.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib/javafx-swt.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib/javafx.base.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib/javafx.controls.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib/javafx.fxml.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib/javafx.graphics.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib/javafx.media.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib/javafx.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib/javafx.swing.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib/javafx.web.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib/src.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mariadb_java_client_2_5_1_sources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mariadb_java_client_2_5_1_sources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TariffClassCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TariffClass3.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TariffClass4.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TariffClass5.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TariffClassA.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TariffClassB.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TollCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TollCalculator.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +232,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Librerie/mysql-connector-java-5.1.48.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Librerie/javafx-sdk-13.0.1/lib" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -389,7 +483,21 @@
       <option name="project" value="LOCAL" />
       <updated>1573840954493</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Fix Veicolo">
+      <created>1574097807467</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1574097807468</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Aggiornamento Calcolo Pedaggio">
+      <created>1574101274718</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1574101274718</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -429,6 +537,8 @@
     <MESSAGE value="Fix Query, TariffClassCalculator, fix metodi vari" />
     <MESSAGE value="Pedaggio" />
     <MESSAGE value="Piccoli fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Piccoli fix" />
+    <MESSAGE value="Fix Veicolo" />
+    <MESSAGE value="Aggiornamento Calcolo Pedaggio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiornamento Calcolo Pedaggio" />
   </component>
 </project>

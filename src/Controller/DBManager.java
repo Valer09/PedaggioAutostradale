@@ -124,17 +124,6 @@ public class DBManager {
         return rs;
     }
 
-    public boolean updateTariffClass(Vehicle veicolo, String tariff_class){
-        try {
-            st = connection.createStatement();
-            int count = st.executeUpdate("UPDATE veicolo SET c_tariffaria = '"+tariff_class+"' WHERE targa=" + "'" + veicolo.getVlp() + "'");
-            if (count > 0) return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     public double getTollBothKm(String tollbooth){
         double km=0;
 
