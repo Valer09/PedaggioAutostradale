@@ -20,13 +20,18 @@ public class TollBoth {
         return name;
     }
 
-    public void setKm(int km) {
-        Km = km;
+    public static void setKM(String tollbooth, double KM) {
+        DBManager.setTollbothKM(tollbooth,KM);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public static void delTollBooth(String tollbooth){
+        DBManager.delTollboth(tollbooth);
     }
+
+    public static void setName(String toolbooth, String newName) {
+        DBManager.setTollbothName(toolbooth, newName);
+    }
+
 
 
 }

@@ -37,7 +37,7 @@ public class Tools {
         BufferedReader reader=null;
 
         try {
-            reader = new BufferedReader(new FileReader(Constant.getInputRoot()+"/"+filename));
+            reader = new BufferedReader(new FileReader(System.getProperty("user.dir")+"/IO"+"/"+filename));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

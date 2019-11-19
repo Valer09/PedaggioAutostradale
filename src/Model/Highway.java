@@ -23,11 +23,24 @@ public class Highway {
         return tollbooths;
     }
 
-    public void setTollbooths(HashMap<String, Double> tollbooths) {
-        this.tollbooths = tollbooths;
+    public static void addTollboth(String highway, String name, double KM){
+        DBManager.addTollboth(highway,name,KM);
+    }
+    public static void addHighway(String name, double TU){
+        DBManager.addHighway(name,TU);
     }
 
-    public void setTU(double TU) {
-        this.TU = TU;
+    public static void setTU(String highway,double TU) {
+        DBManager.setTU(highway,TU);
+    }
+
+    public static void setName(String highway, String newName){
+        DBManager.setHighwayName(highway, newName);
+
+    }
+
+    public static void delHighway(String highway){
+        DBManager.delHighway(highway);
+
     }
 }
