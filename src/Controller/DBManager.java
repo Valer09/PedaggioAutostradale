@@ -118,6 +118,25 @@ public class DBManager {
         return rs;
     }
 
+    public static String getHighwayByTollbooth(String tollbooth){
+
+        Statement st;
+        ResultSet rs;
+        String highway="";
+        try {
+            st = connection.createStatement();
+            rs=st.executeQuery("SELECT Autostrada FROM tollbooths WHERE Name=" + "'" + tollbooth + "'");
+            while(rs.next()){
+                highway = rs.getString("Autostrada");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return highway;
+
+
+    }
 
     /**
      * getHighwayTU recover TU of a specific highway from DB
