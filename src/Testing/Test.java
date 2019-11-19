@@ -1,11 +1,5 @@
 package Testing;
 
-import Controller.DBManager;
-import Controller.TollCalculator;
-import Controller.Tools;
-import Model.Highway;
-import Model.TollBoth;
-import Model.Vehicle;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +13,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import Controller.*;
+import Model.*;
 
 
 /**
@@ -102,7 +98,7 @@ public class Test extends Application {
         //TollBoth.setName("TE00","TE0");
         //TollBoth.setKM("TE0",0);
         //TollBoth.delTollBooth("TE0");
-        //test
+        //Test5
         launch(args);
     }
 }
