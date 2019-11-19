@@ -99,6 +99,7 @@ public class Test extends Application {
         //TollBoth.setName("TE00","TE0");
         //TollBoth.setKM("TE0",0);
         //TollBoth.delTollBooth("TE0");
+        //test
         launch(args);
     }
 }
