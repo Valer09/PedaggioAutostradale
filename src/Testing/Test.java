@@ -73,11 +73,11 @@ public class Test extends Application {
         //TollBoth.setKM("TE0",0);
         //TollBoth.delTollBooth("TE0");
         //test13
-        //launch(args);
 
         //USER TESTED
+        //Tools.login();
 
-        
+        launch(args);
 
 
 
