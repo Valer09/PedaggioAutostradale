@@ -6,6 +6,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -13,9 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.util.HashMap;
 import Controller.*;
 import Model.*;
+
 
 
 /**
@@ -31,36 +33,8 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        StackPane layout = new StackPane();
-
-        Label label1 = new Label("Inserire Targa Veicolo:");
-        TextField textField = new TextField ();
-        HBox hb = new HBox();
-        Button b = new Button();
-        b.setText("Calcola Pedaggio");
-        b.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                String targa = textField.getText();
-                System.out.println(targa);
-                Vehicle macchina = new Vehicle(targa);
-                TollBoth startingTB =  new TollBoth(Tools.fileReader("ticket.txt"));
-                TollBoth endingTB = new TollBoth("RM150");
-                Highway autostrada = new Highway(DBManager.getHighwayByTollbooth(startingTB.getName()));
-                double prezzo = TollCalculator.getToll(macchina, autostrada, startingTB, endingTB);
-                System.out.println("Pedaggio: "+prezzo+" Euro");
-            }
-        });
-
-
-        VBox vb = new VBox();
-        hb.getChildren().addAll(label1, textField);
-        hb.setSpacing(10);
-        vb.getChildren().addAll(hb, b);
-        vb.setSpacing(10);
-        layout.getChildren().add(vb);
-
-        primaryStage.setScene(new Scene(layout, 600, 400));
+        primaryStage.setTitle("Pedaggio Autostradale");
+        primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
 
