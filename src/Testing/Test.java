@@ -31,10 +31,17 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Pedaggio Autostradale");
-        primaryStage.setScene(new Scene(root, 600, 400));
-        primaryStage.show();
+        boolean gestionale = false;
+        if(gestionale){
+            Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            primaryStage.setTitle("Pedaggio Autostradale");
+            primaryStage.setScene(new Scene(root, 600, 400));
+            primaryStage.show();
+        }
+        else {
+
+        }
+
     }
 
     public static void main(String []args){
