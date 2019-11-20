@@ -4,12 +4,14 @@ package Controller;
  * Utility controller
  */
 
+import Model.User;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +24,7 @@ public class Tools {
             return false;
         }
         boolean pswcorrect= DBManager.checkUserPsw(user, password);
+        System.out.println(pswcorrect);
         if (pswcorrect==false){
             System.out.println("Password errata");
             return false;
@@ -29,6 +32,34 @@ public class Tools {
 
         return true;
 
+    }
+
+    public static boolean login(){
+        boolean logged=false;
+        int limitaccess=0;
+        User user=null;
+
+        while(!logged && limitaccess <=10){
+            limitaccess++;
+            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+            System.out.println("Enter username");
+            String username = myObj.nextLine();  // Read user input
+
+            myObj = new Scanner(System.in);
+            System.out.println("Enter password");
+            String password = myObj.nextLine();  // Read user input
+
+            user= new User(username, password);
+            if(user.getstatus())
+                logged=true;
+
+        }
+        if(!user.getstatus())
+            user=null;
+        if (limitaccess>10){
+            System.out.println("Numero di tentativi esaurito");
+        }
+        return logged;
     }
 
     public static boolean checkUserExists(String username){

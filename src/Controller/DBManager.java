@@ -415,7 +415,7 @@ public class DBManager {
             rs=st.executeQuery("SELECT password FROM user WHERE username='" + user + "'");
             while(rs.next()) {
                 psw = rs.getString("password");
-                if (psw==password)
+                if (psw.equals(password))
                     return true;
             }
 

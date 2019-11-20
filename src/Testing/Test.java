@@ -1,6 +1,7 @@
 package Testing;
 
 import javafx.application.Application;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Controller.*;
 import Model.*;
-
-
 
 /**
  *
@@ -74,6 +73,17 @@ public class Test extends Application {
         //TollBoth.setKM("TE0",0);
         //TollBoth.delTollBooth("TE0");
         //test13
-        launch(args);
+        //launch(args);
+
+        //USER TESTED
+
+        
+
+
+
+
+
+
+
     }
 }

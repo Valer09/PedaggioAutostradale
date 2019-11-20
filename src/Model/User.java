@@ -8,19 +8,17 @@ public class User {
     private boolean accessOK=false;
 
     public User(String user, String password){
-        int limitaccess=0;
-        while (! (Tools.checkLogIn(user,password) ) && limitaccess <=10){
-            limitaccess++;
-            System.out.println("Reinserire i dati corretti");
 
-        }
-        if (limitaccess<=10){
+        if ((Tools.checkLogIn(user,password) )){
             accessOK=true;
             username=DBManager.getUser(user);
             password=DBManager.getPassword(user);
-        }
-        else System.out.println("ACCESSO FALLITO");
 
+        }
+        else
+        {
+            System.out.println("Reinserire i dati corretti");
+        }
 
     }
     public String getUsername() {
@@ -33,18 +31,28 @@ public class User {
         return "";
     }
 
-    public void setUsername(String user, String username) {
+    public void setOtherUsername(String user, String username) {
         if (accessOK) {
             if (Tools.checkUserExists(username) == false)
                 System.out.println("Utente non esistente");
             else {
                 DBManager.setUsername(user, username);
-                this.username = username;
                 System.out.println("Fatto");
             }
         }
+        else
+            System.out.println("Utente non loggato correttamente");
     }
-    private void editMyPsw(String oldpsw, String newpsw){
+    public void setMyUsername(String username) {
+        if (accessOK) {
+                DBManager.setUsername(this.username, username);
+                this.username=username;
+                System.out.println("Fatto");
+        }
+        else
+            System.out.println("Utente non loggato correttamente");
+    }
+    public void editMyPsw(String oldpsw, String newpsw){
         if (accessOK){
             int limitaccess=0;
             while (! (DBManager.checkUserPsw(this.username, oldpsw) ) && limitaccess <=10){
@@ -65,7 +73,7 @@ public class User {
 
 
     }
-    private void editUserPsw(String user, String newpsw) {
+    public void editUserPsw(String user, String newpsw) {
         if (accessOK) {
 
             if (Tools.checkUserExists(user)) {
@@ -77,7 +85,7 @@ public class User {
             System.out.println("Utente non loggato correttamente");
 
     }
-    private void createUser(String user, String password){
+    public void createUser(String user, String password){
         if (accessOK) {
             DBManager.addUser(user, password);
             System.out.println("Utente creato");
@@ -85,6 +93,9 @@ public class User {
         else
             System.out.println("Utente non loggato correttamente");
 
+    }
+    public boolean getstatus(){
+        return this.accessOK;
     }
 
 
