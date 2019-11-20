@@ -118,6 +118,7 @@ public class DBManager {
         return rs;
     }
 
+
     public static String getHighwayByTollbooth(String tollbooth){
 
         Statement st;
@@ -234,7 +235,6 @@ public class DBManager {
         }
 
     }
-
     public static void addTollboth(String highway, String name, double KM){
         try{
             Statement stm = connection.createStatement();
@@ -311,6 +311,37 @@ public class DBManager {
         }
 
         return tb;
+
+    }
+    public static void addUser(String name, String password, boolean type){
+        int b=0;
+        if (type==true)
+            b=1;
+
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("INSERT INTO user (username,password,tipo)  VALUES ("+"'"+name+"',"+"'"+password+"',"+"'"+b+"')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public static int getUserType(String username){
+
+        Statement st;
+        ResultSet rs;
+        int b=0;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT tipo FROM user WHERE username=" + "'" + username + "'");
+            while(rs.next())
+                b=rs.getInt("tipo");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return b;
+
+
 
     }
 

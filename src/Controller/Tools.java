@@ -15,6 +15,17 @@ import java.util.regex.Pattern;
 
 public class Tools {
 
+    public static boolean checkIsAdmin(String user){
+        int b=0;
+        boolean isadmin=false;
+
+        b= DBManager.getUserType(user);
+
+        if (b==1)
+            return true;
+        return false;
+    }
+
     /**
      * DA COMPLETARE; CONTROLLA IL FORMATO TARGA.
      * @param lp
