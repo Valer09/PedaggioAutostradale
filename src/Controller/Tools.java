@@ -15,15 +15,24 @@ import java.util.regex.Pattern;
 
 public class Tools {
 
-    public static boolean checkIsAdmin(String user){
-        int b=0;
-        boolean isadmin=false;
+    public static boolean checkLogIn(String user, String password){
+        boolean exists=checkUserExists(user);
+        if (exists==false){
+            System.out.println("Username errato!");
+            return false;
+        }
+        boolean pswcorrect= DBManager.checkUserPsw(user, password);
+        if (pswcorrect==false){
+            System.out.println("Password errata");
+            return false;
+        }
 
-        b= DBManager.getUserType(user);
+        return true;
 
-        if (b==1)
-            return true;
-        return false;
+    }
+
+    public static boolean checkUserExists(String username){
+        return DBManager.checkUser(username);
     }
 
     /**

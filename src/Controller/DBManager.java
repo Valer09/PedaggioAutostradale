@@ -17,6 +17,7 @@ public class DBManager {
     private static String path="eu-cdbr-west-02.cleardb.net/heroku_3838b0b01f11d0f";
     private static Connection connection = initializeConnection();
 
+    //DB METHODS
     public static Connection initializeConnection() {
 
         try {
@@ -42,6 +43,40 @@ public class DBManager {
 
         return connection;
 
+    }
+
+    //IVA
+    public static double getIVA(){
+        double res = 0;
+        try{
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = 'IVA'");
+            while (rs.next()) {
+
+                res = rs.getDouble("Val");
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    //VEHICLE METHODS
+    public static double getAmbientalClassValue(String nomeClasse){
+        double res = 0;
+        try{
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = '"+nomeClasse+"'");
+            while (rs.next()) {
+
+                res = rs.getDouble("Val");
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
     public static double getClassValue(String classe){
 
@@ -76,36 +111,6 @@ public class DBManager {
 
 
     }
-    public static double getIVA(){
-        double res = 0;
-        try{
-            Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = 'IVA'");
-            while (rs.next()) {
-
-                res = rs.getDouble("Val");
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
-    public static double getAmbientalClassValue(String nomeClasse){
-        double res = 0;
-        try{
-            Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = '"+nomeClasse+"'");
-            while (rs.next()) {
-
-                res = rs.getDouble("Val");
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
     public ResultSet getVeichleInfo(String vlp){
 
         try {
@@ -118,7 +123,7 @@ public class DBManager {
         return rs;
     }
 
-
+    //HIGHWAYS METHODS
     public static String getHighwayByTollbooth(String tollbooth){
 
         Statement st;
@@ -138,7 +143,6 @@ public class DBManager {
 
 
     }
-
     /**
      * getHighwayTU recover TU of a specific highway from DB
      *
@@ -235,6 +239,26 @@ public class DBManager {
         }
 
     }
+    public HashMap <String, Double> getHighwayTollbooths(String highway){
+        HashMap<String, Double> tb = new HashMap<String, Double>();
+
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada=" + "'" + highway + "'");
+
+            while(rs.next()){
+                tb.put(rs.getString("Name"),rs.getDouble("KM"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tb;
+
+    }
+
+    //TOLLBOOTH METHODS
     public static void addTollboth(String highway, String name, double KM){
         try{
             Statement stm = connection.createStatement();
@@ -295,55 +319,114 @@ public class DBManager {
         return km;
 
     }
-    public HashMap <String, Double> getHighwayTollbooths(String highway){
-        HashMap<String, Double> tb = new HashMap<String, Double>();
+
+    //USER METHODS
+    public static void addUser(String name, String password){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("INSERT INTO user (username,password)  VALUES ("+"'"+name+"',"+"'"+password+"')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public static void setUsername(String user, String username){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("UPDATE user SET username='"+username+"' WHERE username='"+user+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public static void setUserPsw (String user, String newpsw){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("UPDATE user SET password='"+newpsw+"' WHERE username='"+user+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public static boolean checkUser(String user){
+
+        Statement st;
+        ResultSet rs;
 
         try {
             st = connection.createStatement();
-            rs = st.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada=" + "'" + highway + "'");
+            rs=st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
+            if(!rs.next())
+                return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
 
-            while(rs.next()){
-                tb.put(rs.getString("Name"),rs.getDouble("KM"));
+
+
+    }
+    public static String getUser(String user){
+
+        Statement st;
+        ResultSet rs;
+        String usr="";
+
+        try {
+            st = connection.createStatement();
+            rs=st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
+            while(rs.next())
+                usr=rs.getString("username");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usr;
+
+
+
+    }
+    public static String getPassword(String user){
+
+        Statement st;
+        ResultSet rs;
+        String psw="";
+
+        try {
+            st = connection.createStatement();
+            rs=st.executeQuery("SELECT password FROM user WHERE username='" + user + "'");
+            while(rs.next())
+                psw=rs.getString("password");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return psw;
+
+
+
+    }
+    public static boolean checkUserPsw(String user, String password){
+
+        Statement st;
+        ResultSet rs;
+        String psw="";
+
+        try {
+            st = connection.createStatement();
+            rs=st.executeQuery("SELECT password FROM user WHERE username='" + user + "'");
+            while(rs.next()) {
+                psw = rs.getString("password");
+                if (psw==password)
+                    return true;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return tb;
-
-    }
-    public static void addUser(String name, String password, boolean type){
-        int b=0;
-        if (type==true)
-            b=1;
-
-        try{
-            Statement stm = connection.createStatement();
-            stm.executeUpdate("INSERT INTO user (username,password,tipo)  VALUES ("+"'"+name+"',"+"'"+password+"',"+"'"+b+"')");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        return false;
 
     }
-    public static int getUserType(String username){
-
-        Statement st;
-        ResultSet rs;
-        int b=0;
-        try {
-            st = connection.createStatement();
-            rs = st.executeQuery("SELECT tipo FROM user WHERE username=" + "'" + username + "'");
-            while(rs.next())
-                b=rs.getInt("tipo");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return b;
 
 
-
-    }
 
 
 
