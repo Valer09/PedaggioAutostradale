@@ -1,23 +1,11 @@
 package Testing;
 
 import javafx.application.Application;
-import java.util.Scanner;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Controller.*;
-import Model.*;
 
 /**
  *
@@ -31,9 +19,9 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        boolean gestionale = false;
+        boolean gestionale = true;
         if(gestionale){
-            Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../View/home.fxml"));
             primaryStage.setTitle("Pedaggio Autostradale");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
