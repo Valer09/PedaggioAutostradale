@@ -26,6 +26,7 @@
                         </Label>
                      </children>
                   </HBox>
+                  <Separator prefWidth="200.0" />
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="602.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="96.0" text="Targa del veicolo" />
@@ -36,7 +37,7 @@
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin></Button>
-                  <Separator prefWidth="200.0" />
+                  <Separator layoutX="10.0" layoutY="72.0" prefWidth="200.0" />
                   <HBox alignment="CENTER" prefHeight="70.0" prefWidth="602.0">
                      <children>
                         <Label alignment="CENTER" text="Importo Pedaggio: ">
@@ -50,20 +51,208 @@
                            </font>
                         </Label>
                      </children></HBox>
-                  <Separator prefWidth="200.0" />
                   <Accordion>
                     <panes>
-                      <TitledPane animated="false" text="Dettagli">
+                      <TitledPane fx:id="details" animated="false" prefHeight="146.0" prefWidth="602.0" text="Dettagli" visible="false">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <BorderPane prefHeight="165.0" prefWidth="600.0">
-                                       <center>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                    <GridPane prefHeight="119.0" prefWidth="602.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="206.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.00001525878906" minWidth="10.0" prefWidth="208.80000000000004" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.00001525878906" minWidth="10.0" prefWidth="192.39999999999998" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <VBox prefHeight="175.0" prefWidth="205.0">
                                              <children>
+                                                <Label text="Veicolo" textFill="#1976af">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="200.0">
                                                    <children>
-                                                      <Label text="Targa Veicolo:" />
+                                                      <Label text="Targa:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="targaValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="32.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Modello:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="modelloValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="50.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Marca:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="marcaValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="68.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Anno:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="annoValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="85.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Cilindrata:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="cilindrataValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children></VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="175.0" prefWidth="205.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <Label textFill="#1976af">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Peso:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="pesoValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="32.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Altezza:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="altezzaValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="50.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="N. Assi:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="assiValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="68.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Classe Tariffaria: ">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="ctValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="85.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Classe Ambientale:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="caValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
                                                    </children>
                                                    <padding>
                                                       <Insets left="20.0" right="20.0" />
@@ -71,7 +260,88 @@
                                                 </HBox>
                                              </children>
                                           </VBox>
-                                       </center></BorderPane>
+                                          <VBox layoutX="215.0" layoutY="10.0" prefHeight="175.0" prefWidth="205.0" GridPane.columnIndex="2">
+                                             <children>
+                                                <Label text="Percorso" textFill="#cf8020">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Autostrada:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="autostradaValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="32.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Casello Entrata:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="startingTBValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="50.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Casello Uscita:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="endingTBValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="68.0" prefHeight="0.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Km Percorsi:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="routeValue" layoutX="30.0" layoutY="10.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="20.0" right="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </GridPane>
                                  </children>
                               </AnchorPane>
                         </content>

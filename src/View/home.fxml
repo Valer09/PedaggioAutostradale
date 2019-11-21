@@ -8,7 +8,6 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeFxController">
    <center>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="300.0">
@@ -17,13 +16,6 @@
                <cursor>
                   <Cursor fx:constant="MOVE" />
                </cursor>
-               <effect>
-                  <DropShadow radius="11.9775" width="28.91">
-                     <color>
-                        <Color red="0.06578947603702545" green="0.029036711901426315" blue="0.029036711901426315" />
-                     </color>
-                  </DropShadow>
-               </effect>
                <children>
                   <Button fx:id="Gbtn" mnemonicParsing="false" text="Gestionale">
                      <padding>
@@ -62,6 +54,13 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.3529411554336548" />
+               </color>
+            </DropShadow>
+         </effect>
       </Pane>
    </center>
 </BorderPane>
