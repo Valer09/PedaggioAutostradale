@@ -64,6 +64,6 @@ public class JavaFXController implements Initializable {
         endingTBValue.setText(endingTB.getName());
         double route = TollCalculator.getRoute(startingTB.getKm(), endingTB.getKm());
         String tmp = Double.toString(route);
-        routeValue.setText(tmp);
+        routeValue.setText(tmp+" km");
     }
 }
