@@ -8,55 +8,60 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="312.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeFxController">
-   <children>
-      <VBox alignment="CENTER" layoutX="103.0" layoutY="67.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid; -fx-border-color: green; -fx-border-width: 4;">
+
+<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeFxController">
+   <center>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="300.0">
+         <children>
+            <VBox alignment="CENTER" layoutX="100.0" layoutY="75.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid; -fx-border-color: green; -fx-border-width: 4;">
+               <cursor>
+                  <Cursor fx:constant="MOVE" />
+               </cursor>
+               <effect>
+                  <DropShadow radius="11.9775" width="28.91">
+                     <color>
+                        <Color red="0.06578947603702545" green="0.029036711901426315" blue="0.029036711901426315" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <Button mnemonicParsing="false" text="Gestionale">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="op" mnemonicParsing="false" text="Operatore">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </VBox>
+            <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="44.0" prefWidth="288.0">
+               <children>
+                  <Label layoutX="85.0" layoutY="4.0" prefHeight="35.0" prefWidth="118.0" text="Seleziona Vista">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
          <cursor>
-            <Cursor fx:constant="MOVE" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
-         <effect>
-            <DropShadow radius="11.9775" width="28.91">
-               <color>
-                  <Color red="0.06578947603702545" green="0.029036711901426315" blue="0.029036711901426315" />
-               </color>
-            </DropShadow>
-         </effect>
-         <children>
-            <Button mnemonicParsing="false" text="Gestionale">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-               <font>
-                  <Font name="Berlin Sans FB" size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="30.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="op" mnemonicParsing="false" text="Operatore">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-               <font>
-                  <Font name="Berlin Sans FB" size="14.0" />
-               </font>
-            </Button>
-         </children>
-         <padding>
-            <Insets top="5.0" />
-         </padding>
-      </VBox>
-      <AnchorPane layoutX="29.0" layoutY="14.0" prefHeight="44.0" prefWidth="288.0">
-         <children>
-            <Label layoutX="47.0" layoutY="13.0" prefHeight="35.0" prefWidth="278.0" text="Pasquale from figa">
-               <font>
-                  <Font name="Berlin Sans FB" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </children>
-   <cursor>
-      <Cursor fx:constant="DEFAULT" />
-   </cursor>
-</Pane>
+      </Pane>
+   </center>
+</BorderPane>

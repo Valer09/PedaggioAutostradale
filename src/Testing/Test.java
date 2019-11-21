@@ -23,7 +23,7 @@ public class Test extends Application {
         if(gestionale){
             Parent root = FXMLLoader.load(getClass().getResource("../View/home.fxml"));
             primaryStage.setTitle("Pedaggio Autostradale");
-            primaryStage.setScene(new Scene(root, 600, 400));
+            primaryStage.setScene(new Scene(root, 300, 350));
             primaryStage.show();
         }
         else {
