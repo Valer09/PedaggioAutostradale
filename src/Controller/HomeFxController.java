@@ -12,5 +12,5 @@ public class HomeFxController implements Initializable {
 
     }
 
-    
+
 }

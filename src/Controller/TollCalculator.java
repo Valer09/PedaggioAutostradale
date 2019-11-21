@@ -16,15 +16,11 @@ public class TollCalculator {
 
         double startingKM=startingTB.getKm();
         double arrivalKM=endingTB.getKm();
-        double route = 0;
+        double route = getRoute(startingKM, arrivalKM);
+
         String categoria = vehicle.getCategoriaName();
 
-        if (arrivalKM > startingKM) {
-            route = arrivalKM - startingKM;
-        }
-        else {
-            route = startingKM - arrivalKM;
-        }
+
         System.out.println("Km Percorsi: "+route);
         System.out.println("Entrato da: "+startingTB.getName());
         System.out.println("Uscito a: "+endingTB.getName());
@@ -36,17 +32,17 @@ public class TollCalculator {
 
         if(year >= 2026){
             System.out.println("Modificatore classe ambientale: "+ICAV);
-            return calculateToll(startingKM, arrivalKM, route, ICTV, ICAV,TU);
+            return calculateToll(route, ICTV, ICAV,TU);
         }
         else if(year >= 2021 && categoria != "CLASSE_A"){
             System.out.println("Modificatore classe ambientale: "+ICAV);
-            return calculateToll(startingKM, arrivalKM, route, ICTV, ICAV,TU);
+            return calculateToll(route, ICTV, ICAV,TU);
         }
 
-        return calculateToll(startingKM, arrivalKM, route, ICTV, TU);
+        return calculateToll(route, ICTV, TU);
     }
 
-    private static double calculateToll(double startingKM, double arrivalKM, double route, double ICTV, double TU){
+    private static double calculateToll(double route, double ICTV, double TU){
         double amount = 0;
         amount=TU*route;
         amount+= ICTV*amount;
@@ -57,7 +53,7 @@ public class TollCalculator {
         return amount;
     }
 
-    private static double calculateToll(double startingKM, double arrivalKM, double route, double ICTV, double ICAV,double TU){
+    private static double calculateToll(double route, double ICTV, double ICAV, double TU){
         double amount = 0;
         amount=TU*route;
         amount+= ICTV*amount;
@@ -69,4 +65,14 @@ public class TollCalculator {
         return amount;
     }
 
+    public static double getRoute(double startingKM, double arrivalKM){
+        double route = 0;
+        if (arrivalKM > startingKM) {
+            route = arrivalKM - startingKM;
+        }
+        else {
+            route = startingKM - arrivalKM;
+        }
+        return route;
+    }
 }

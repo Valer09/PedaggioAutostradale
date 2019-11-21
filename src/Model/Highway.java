@@ -6,11 +6,13 @@ import java.util.HashMap;
 
 public class Highway {
     private double TU;
+    private String name;
     private HashMap <String, Double> tollbooths = null;
 
     public Highway(String highway){
         DBManager db=new DBManager();
         TU = db.getHighwayTU(highway);
+        this.name = highway;
         tollbooths = db.getHighwayTollbooths(highway);
 
     }
@@ -41,6 +43,9 @@ public class Highway {
 
     public static void delHighway(String highway){
         DBManager.delHighway(highway);
+    }
 
+    public String getName() {
+        return name;
     }
 }
