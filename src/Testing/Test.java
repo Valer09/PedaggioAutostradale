@@ -21,7 +21,7 @@ public class Test extends Application {
     public void start(Stage primaryStage) throws Exception{
         boolean gestionale = true;
         if(gestionale){
-            Parent root = FXMLLoader.load(getClass().getResource("../View/sample.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../View/home.fxml"));
             primaryStage.setTitle("Pedaggio Autostradale");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
