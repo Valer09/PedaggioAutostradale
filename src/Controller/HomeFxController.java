@@ -4,21 +4,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HomeFxController implements Initializable {
-
     @FXML
-    Button btn;
+    Button op;
 
     private void switchScene(javafx.event.ActionEvent event) {
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/sample.fxml"));
-        Stage stage = (Stage) btn.getScene().getWindow();
+        Stage stage = (Stage) op.getScene().getWindow();
         Scene scene = null;
         try {
             scene = new Scene(loader.load());
@@ -28,14 +26,12 @@ public class HomeFxController implements Initializable {
         stage.setScene(scene);
 
     }
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btn.setOnAction(this::switchScene);
+        op.setOnAction(this::switchScene);
+
 
     }
 
-
+    
 }
