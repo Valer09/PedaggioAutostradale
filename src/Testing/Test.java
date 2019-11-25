@@ -19,17 +19,10 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        boolean gestionale = true;
-        if(gestionale){
             Parent root = FXMLLoader.load(getClass().getResource("../View/home.fxml"));
             primaryStage.setTitle("Pedaggio Autostradale");
             primaryStage.setScene(new Scene(root, 300, 350));
             primaryStage.show();
-        }
-        else {
-
-        }
-
     }
 
     public static void main(String []args){

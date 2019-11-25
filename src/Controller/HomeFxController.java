@@ -18,7 +18,7 @@ public class HomeFxController implements Initializable {
     Button Gbtn;
 
     private void switchToOperatorScene(javafx.event.ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/sample.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/operatore.fxml"));
         Stage stage = (Stage) op.getScene().getWindow();
         Scene scene = null;
         try {

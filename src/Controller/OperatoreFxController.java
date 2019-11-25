@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class JavaFXController implements Initializable {
+public class OperatoreFxController implements Initializable {
     private File ticket;
     @FXML
     TextField inputText, filePathValue;
