@@ -14,7 +14,10 @@ public class HomeFxController implements Initializable {
     @FXML
     Button op;
 
-    private void switchScene(javafx.event.ActionEvent event) {
+    @FXML
+    Button Gbtn;
+
+    private void switchToOperatorScene(javafx.event.ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/sample.fxml"));
         Stage stage = (Stage) op.getScene().getWindow();
         Scene scene = null;
@@ -24,12 +27,23 @@ public class HomeFxController implements Initializable {
             e.printStackTrace();
         }
         stage.setScene(scene);
+    }
 
+    private void switchToGestionalScene(javafx.event.ActionEvent event){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gestionale.fxml"));
+        Stage stage = (Stage) Gbtn.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        op.setOnAction(this::switchScene);
-
+        op.setOnAction(this::switchToOperatorScene);
+        Gbtn.setOnAction(this::switchToGestionalScene);
 
     }
 
