@@ -4,11 +4,15 @@
  * @author Valerio Marchitelli
  */
 package Controller;
+import Model.Highway;
 import Model.Vehicle;
 import org.jetbrains.annotations.Contract;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class DBManager {
 
@@ -124,6 +128,26 @@ public class DBManager {
     }
 
     //HIGHWAYS METHODS
+
+    public static ArrayList <Highway> getHighways(){
+        Statement st;
+        ResultSet rs;
+
+        ArrayList <Highway> highways= new ArrayList <Highway> () ;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT nome FROM autostrada");
+            while (rs.next()) {
+                highways.add(new Highway(rs.getString("nome")));
+
+                }
+             }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+         return highways;
+        }
+
     public static String getHighwayByTollbooth(String tollbooth){
 
         Statement st;
