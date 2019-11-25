@@ -20,22 +20,22 @@ public class TollCalculator {
 
         String categoria = vehicle.getCategoriaName();
 
-
+        /*
         System.out.println("Km Percorsi: "+route);
         System.out.println("Entrato da: "+startingTB.getName());
         System.out.println("Uscito a: "+endingTB.getName());
         System.out.println("TU: "+TU);
         System.out.println("Modificatore classe tariffaria: "+ICTV);
-        System.out.println("Categoria: "+categoria);
+        System.out.println("Categoria: "+categoria); */
         int year = Calendar.getInstance().get(Calendar.YEAR);
 
 
         if(year >= 2026){
-            System.out.println("Modificatore classe ambientale: "+ICAV);
+            //System.out.println("Modificatore classe ambientale: "+ICAV);
             return calculateToll(route, ICTV, ICAV,TU);
         }
         else if(year >= 2021 && categoria != "CLASSE_A"){
-            System.out.println("Modificatore classe ambientale: "+ICAV);
+            //System.out.println("Modificatore classe ambientale: "+ICAV);
             return calculateToll(route, ICTV, ICAV,TU);
         }
 

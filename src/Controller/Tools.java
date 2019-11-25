@@ -83,24 +83,24 @@ public class Tools {
         return false;
     }
 
-    public static String fileReader(String filename){
-        String content="";
-        BufferedReader reader=null;
+    public static String fileReader(String filePath){
+        StringBuilder content = new StringBuilder();
+        Scanner reader=null;
 
         try {
-            reader = new BufferedReader(new FileReader(System.getProperty("user.dir")+"/IO"+"/"+filename));
+            reader = new Scanner (new FileReader(filePath));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        String st;
 
-        try {
-            content = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
+        while(reader.hasNext()){
+            st = reader.next();
+            content.append(st);
         }
-
-        return content;
+        reader.close();
+        return content.toString();
     }
 
 }

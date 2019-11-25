@@ -27,10 +27,28 @@
                      </children>
                   </HBox>
                   <Separator prefWidth="200.0" />
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="602.0">
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="76.0" prefHeight="70.0" prefWidth="602.0">
                      <children>
-                        <Label prefHeight="18.0" prefWidth="96.0" text="Targa del veicolo" />
-                        <TextField fx:id="inputText" alignment="TOP_LEFT" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="82.0" text="Inserisci Ticket" textAlignment="RIGHT">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin></Label>
+                        <TextField fx:id="filePathValue" alignment="TOP_LEFT" disable="true" />
+                        <Button fx:id="sfoglia" mnemonicParsing="false" text="Sfoglia">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label text="Seleziona Casello di Uscita">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="tbSelect" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <Button fx:id="submit" mnemonicParsing="false" prefWidth="108.0" text="Calcola Pedaggio" textAlignment="CENTER">
