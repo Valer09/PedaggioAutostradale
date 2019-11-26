@@ -24,14 +24,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GestionaleFXController implements Initializable {
+    
     User user;
     @FXML
-    ListView caselliList;
+    ListView caselliList, autostradeList;
     @FXML
     Button addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello;
-
-    @FXML
-    ListView autostradeList;
 
 
     @Override
