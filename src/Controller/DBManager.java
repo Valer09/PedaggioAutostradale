@@ -134,7 +134,7 @@ public class DBManager {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT nome FROM autostrada");
             while (rs.next()) {
-                highways.add(new Highway(rs.getString("nome")));
+                highways.add((Highway) new Highway(rs.getString("nome")));
 
                 }
              }

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="Controller.GestionaleFXController" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GestionaleFXController">
    <children>
       <Label layoutX="249.0" layoutY="14.0" prefHeight="28.0" prefWidth="99.0" text="Gestionale" textFill="#5171d2">
          <font>
@@ -20,7 +20,11 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="285.0" prefWidth="590.0">
                            <children>
-                              <ListView fx:id="lista" layoutX="2.0" layoutY="7.0" prefHeight="300.0" prefWidth="582.0" />
+                              <VBox layoutX="2.0" layoutY="7.0">
+                                 <children>
+                                    <ListView fx:id="lista" prefHeight="300.0" prefWidth="582.0" />
+                                 </children>
+                              </VBox>
                            </children></AnchorPane>
                   </content>
                 </Tab>
