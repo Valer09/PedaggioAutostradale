@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Highway;
 import Model.TollBoth;
+import Model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GestionaleFXController implements Initializable {
+    User user;
     @FXML
     ListView caselliList;
     @FXML
@@ -39,6 +41,11 @@ public class GestionaleFXController implements Initializable {
             list.add(casello.getName());
         });
         caselliList.setItems(list);
+    }
+
+    public void setUser(User user){
+        this.user=user;
+        System.out.println(user.getUsername());
     }
 
     private void aggiungiCasello(ActionEvent e){
