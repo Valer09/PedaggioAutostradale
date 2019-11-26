@@ -1,6 +1,9 @@
+
 package Controller;
 
-import javafx.event.ActionEvent;
+import Model.User;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,24 +12,89 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class LoginxFXController implements Initializable {
+    private boolean logged=false;
+    private boolean isfirst=true;
+    private User user=null;
+    int limitaccess=0;
 
     @FXML
     Label Error;
     @FXML
     Button annulla;
+    @FXML
     Button accedi;
+    @FXML
+    TextField username;
+    @FXML
+    TextField password;
 
-    public void setText(ActionEvent event, String s){
 
+    EventHandler limit = new EventHandler() {
+        @Override
+        public void handle(Event event) {
+            Error.setText("Numero di tentativi esaurito. Riprovare più tardi");
+        }
+    };
+
+    EventHandler click = new EventHandler() {
+        @Override
+        public void handle(Event event) {
+
+            String un = username.getText();
+            String pw = password.getText();
+            String usern = un;
+            String passw = pw;
+            user = new User(usern, passw);
+            if (user.getstatus().getValue()) {
+                logged = true;
+            }
+            else {
+                logged=false;
+            }
+            if (isfirst){
+                isfirst=false;
+                login();
+            }
+            else {
+                username.setText("");
+                password.setText("");
+                login();
+            }
+
+        }
+    };
+
+    private void login() {
+
+        if (!logged && limitaccess <= 10) {
+            try {
+                Error.setText(user.getstatus().getKey());
+                limitaccess++;
+                click.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (logged) {
+            switchToGestionalScene(user);
+        }
+
+        if (limitaccess > 10) {
+            Error.setText("Numero di tentativi esaurito");
+            accedi.setOnAction(limit);
+            user=null;
+
+        }
     }
+    private void switchToGestionalScene(User usr){
 
-       private void switchToGestionalScene(javafx.event.ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gestionale.fxml"));
         Stage stage = (Stage) accedi.getScene().getWindow();
         Scene scene = null;
@@ -35,6 +103,10 @@ public class LoginxFXController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        GestionaleFXController controller =
+        loader.<GestionaleFXController>getController();
+        controller.setUser(usr);
         stage.setScene(scene);
     }
 
@@ -62,9 +134,15 @@ public class LoginxFXController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Error.setText("ciao");
-        accedi.setOnAction(this::switchToGestionalScene);
+        limitaccess=0;
+        isfirst=true;
+        accedi.setOnAction(click);
         annulla.setOnAction(this::switchToHomeScene);
+
+
+
+
+
 
     }
 

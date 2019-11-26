@@ -36,7 +36,7 @@
             </HBox>
             <HBox layoutX="23.0" layoutY="66.0" prefHeight="100.0" prefWidth="556.0">
                <children>
-                  <TextField prefHeight="49.0" prefWidth="278.0" promptText="Username">
+                  <TextField prefHeight="49.0" prefWidth="278.0" promptText="Username" fx:id="username">
                      <HBox.margin>
                         <Insets right="10.0" top="30.0" />
                      </HBox.margin>
@@ -44,7 +44,7 @@
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <PasswordField prefHeight="49.0" prefWidth="278.0" promptText="Password">
+                  <PasswordField prefHeight="49.0" prefWidth="278.0" promptText="Password" fx:id="password">
                      <HBox.margin>
                         <Insets left="10.0" top="30.0" />
                      </HBox.margin>
