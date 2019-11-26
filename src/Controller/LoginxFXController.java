@@ -22,6 +22,7 @@ public class LoginxFXController implements Initializable {
     private boolean isfirst=true;
     private User user=null;
     int limitaccess=0;
+    public final static Object obj = new Object();
 
     @FXML
     Label Error;
@@ -76,7 +77,10 @@ public class LoginxFXController implements Initializable {
             try {
                 Error.setText(user.getstatus().getKey());
                 limitaccess++;
-                click.wait();
+                synchronized (obj){
+                    click.wait();
+                }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

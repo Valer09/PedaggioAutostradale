@@ -17,6 +17,7 @@ public class Highway {
 
     }
 
+
     public double getTU(){
         return TU;
     }
