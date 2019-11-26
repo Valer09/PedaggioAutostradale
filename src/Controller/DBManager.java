@@ -5,6 +5,7 @@
  */
 package Controller;
 import Model.Highway;
+import Model.TollBoth;
 import Model.Vehicle;
 import org.jetbrains.annotations.Contract;
 
@@ -48,6 +49,7 @@ public class DBManager {
         return connection;
 
     }
+
     //IVA
     public static double getIVA(){
         double res = 0;
@@ -64,6 +66,7 @@ public class DBManager {
         }
         return res;
     }
+
     //VEHICLE METHODS
     public static double getAmbientalClassValue(String nomeClasse){
         double res = 0;
@@ -124,7 +127,9 @@ public class DBManager {
         }
         return rs;
     }
+
     //HIGHWAYS METHODS
+
     public static ArrayList <Highway> getHighways(){
         Statement st;
         ResultSet rs;
@@ -134,7 +139,7 @@ public class DBManager {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT nome FROM autostrada");
             while (rs.next()) {
-                highways.add((Highway) new Highway(rs.getString("nome")));
+                highways.add(new Highway(rs.getString("nome")));
 
                 }
              }
@@ -143,6 +148,7 @@ public class DBManager {
             }
          return highways;
         }
+
     public static String getHighwayByTollbooth(String tollbooth){
 
         Statement st;
@@ -276,8 +282,10 @@ public class DBManager {
         return tb;
 
     }
+
     //TOLLBOOTH METHODS
     public static void addTollboth(String highway, String name, double KM){
+        System.out.println("Aggiunto Casello: "+name+" KM: "+KM+" Autostrada: "+highway);
         try{
             Statement stm = connection.createStatement();
             stm.executeUpdate("INSERT INTO tollbooths (Autostrada,Name,KM)  VALUES ("+"'"+highway+"',"+"'"+name+"',"+"'"+KM+"')");
@@ -336,6 +344,23 @@ public class DBManager {
         return km;
 
     }
+
+    public static ArrayList<TollBoth> getTollBoths(){
+        ArrayList<TollBoth> caselli = new ArrayList<TollBoth>();
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM tollbooths ");
+
+            while(rs.next()){
+                caselli.add(new TollBoth(rs.getString("Name")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return caselli;
+    }
+
     //USER METHODS
     public static void addUser(String name, String password){
         try{
