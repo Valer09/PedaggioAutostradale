@@ -28,24 +28,28 @@ public class GestionaleFXController implements Initializable {
     @FXML
     ListView caselliList;
     @FXML
-    Button addBtn,deleteBtn, modifyBtn,addButton, modifyButton, deleteButton;
+    Button addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello;
 
     @FXML
-    ListView lista;
+    ListView autostradeList;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addButton.setOnAction(this::aggiungiCasello);
-        addBtn.setOnAction(this::aggiungiAutostrada);
+        //Caselli
+        addCasello.setOnAction(this::aggiungiCasello);
+        deleteCasello.setOnAction(this::rimuoviCasello);
+        modifyCasello.setOnAction(this::modificaCasello);
+        //Autostrade
+        addAutostrada.setOnAction(this::aggiungiAutostrada);
+
         ObservableList data = FXCollections.observableArrayList();
-        deleteButton.setOnAction(this::rimuoviCasello);
-        modifyButton.setOnAction(this::modificaCasello);
         ArrayList <Highway> highways = DBManager.getHighways();
         highways.forEach(autostrada -> {
             data.add(autostrada.getName());
         });
-        lista.setItems(data);
+        autostradeList.setItems(data);
+
         System.out.println(highways);
         ArrayList<TollBoth> caselli = DBManager.getTollBoths();
         ObservableList<String> list = FXCollections.observableArrayList();
@@ -85,7 +89,7 @@ public class GestionaleFXController implements Initializable {
         Parent root = null;
         try {
             root = FXMLLoader.load(
-                    AddCaselloModalController.class.getResource("../View/addCasello.fxml"));
+                    getClass().getResource("../View/addCasello.fxml"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
