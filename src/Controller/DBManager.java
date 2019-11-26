@@ -48,7 +48,6 @@ public class DBManager {
         return connection;
 
     }
-
     //IVA
     public static double getIVA(){
         double res = 0;
@@ -65,7 +64,6 @@ public class DBManager {
         }
         return res;
     }
-
     //VEHICLE METHODS
     public static double getAmbientalClassValue(String nomeClasse){
         double res = 0;
@@ -126,9 +124,7 @@ public class DBManager {
         }
         return rs;
     }
-
     //HIGHWAYS METHODS
-
     public static ArrayList <Highway> getHighways(){
         Statement st;
         ResultSet rs;
@@ -147,7 +143,6 @@ public class DBManager {
             }
          return highways;
         }
-
     public static String getHighwayByTollbooth(String tollbooth){
 
         Statement st;
@@ -281,7 +276,6 @@ public class DBManager {
         return tb;
 
     }
-
     //TOLLBOOTH METHODS
     public static void addTollboth(String highway, String name, double KM){
         try{
@@ -343,7 +337,6 @@ public class DBManager {
         return km;
 
     }
-
     //USER METHODS
     public static void addUser(String name, String password){
         try{
