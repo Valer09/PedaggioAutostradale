@@ -13,13 +13,11 @@ public class User {
             accessOK=true;
             username=DBManager.getUser(user);
             password=DBManager.getPassword(user);
-
         }
         else
         {
             System.out.println("Reinserire i dati corretti");
         }
-
     }
     public String getUsername() {
         return this.username;

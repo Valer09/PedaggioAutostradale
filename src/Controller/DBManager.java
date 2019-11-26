@@ -5,6 +5,7 @@
  */
 package Controller;
 import Model.Highway;
+import Model.TollBoth;
 import Model.Vehicle;
 import org.jetbrains.annotations.Contract;
 
@@ -284,6 +285,7 @@ public class DBManager {
 
     //TOLLBOOTH METHODS
     public static void addTollboth(String highway, String name, double KM){
+        System.out.println("Aggiunto Casello: "+name+" KM: "+KM+" Autostrada: "+highway);
         try{
             Statement stm = connection.createStatement();
             stm.executeUpdate("INSERT INTO tollbooths (Autostrada,Name,KM)  VALUES ("+"'"+highway+"',"+"'"+name+"',"+"'"+KM+"')");
@@ -341,6 +343,22 @@ public class DBManager {
         }
         return km;
 
+    }
+
+    public static ArrayList<TollBoth> getTollBoths(){
+        ArrayList<TollBoth> caselli = new ArrayList<TollBoth>();
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM tollbooths ");
+
+            while(rs.next()){
+                caselli.add(new TollBoth(rs.getString("Name")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return caselli;
     }
 
     //USER METHODS
