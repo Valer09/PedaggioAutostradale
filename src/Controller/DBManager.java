@@ -361,6 +361,14 @@ public class DBManager {
         return caselli;
     }
 
+    public static void setTollbothHigway(String tollboth, String Higway){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("UPDATE tollbooths SET Autostrada='"+Higway+"' WHERE Name='"+tollboth+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     //USER METHODS
     public static void addUser(String name, String password){
         try{

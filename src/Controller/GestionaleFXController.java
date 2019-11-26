@@ -25,20 +25,23 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GestionaleFXController implements Initializable {
+
     User user;
     @FXML
-    ListView caselliList;
+    ListView caselliList, autostradeList;
     @FXML
-    Button addBtn,deleteBtn, modifyBtn,addButton, modifyButton, deleteButton, addUt;
-
-    @FXML
-    ListView lista;
-    @FXML
-    ListView listUser;
+    Button addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Caselli
+        addCasello.setOnAction(this::aggiungiCasello);
+        deleteCasello.setOnAction(this::rimuoviCasello);
+        modifyCasello.setOnAction(this::modificaCasello);
+        //Autostrade
+        addAutostrada.setOnAction(this::aggiungiAutostrada);
+
         addButton.setOnAction(this::aggiungiCasello);
         addBtn.setOnAction(this::aggiungiAutostrada);
         addUt.setOnAction(this::aggiungiUtente);
@@ -47,7 +50,8 @@ public class GestionaleFXController implements Initializable {
         highways.forEach(autostrada -> {
             data.add(autostrada.getName());
         });
-        lista.setItems(data);
+        autostradeList.setItems(data);
+
         System.out.println(highways);
         ArrayList<TollBoth> caselli = DBManager.getTollBoths();
         ObservableList<String> list = FXCollections.observableArrayList();
@@ -94,7 +98,7 @@ public class GestionaleFXController implements Initializable {
         Parent root = null;
         try {
             root = FXMLLoader.load(
-                    AddCaselliModalController.class.getResource("../View/modaleCaselli.fxml"));
+                    getClass().getResource("../View/addCasello.fxml"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -104,8 +108,9 @@ public class GestionaleFXController implements Initializable {
         stage.initOwner(
                 ((Node) e.getSource()).getScene().getWindow() );
         stage.show();
-        stage.setOnCloseRequest((WindowEvent event1) -> {
-            System.out.println("Chiuso");
+        //Evento chiusura del modale
+        stage.setOnHiding((WindowEvent event1) -> {
+            this.refreshCaselli();
         });
     }
     private void aggiungiUtente(ActionEvent e){
@@ -135,5 +140,42 @@ public class GestionaleFXController implements Initializable {
             list.add(casello.getName());
         });
         caselliList.setItems(list);
+    }
+
+    private void rimuoviCasello(ActionEvent e){
+        String casello = (String) caselliList.getSelectionModel().getSelectedItem();
+        DBManager.delTollboth(casello);
+        System.out.println("Eliminato il casello: "+casello);
+        this.refreshCaselli();
+    }
+
+    private void modificaCasello(ActionEvent e){
+        //ottengo il nome del casello dalla selezione
+        String casello = (String) caselliList.getSelectionModel().getSelectedItem();
+        System.out.println(casello);
+        //Creo il modale per la modifica del casello
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyCasello.fxml"));
+        try {
+            if (loader == null) System.out.println("Vuoto");
+            root = loader.load();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        stage.setTitle("Modifica Casello "+casello);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node) e.getSource()).getScene().getWindow() );
+        //Passo il nome del casello al modale
+        ModifyCaselloController controller = loader.getController();
+        controller.setTbName(casello);
+        stage.setScene(new Scene(root));
+        //mostro il modale
+        stage.show();
+        //Evento chiusura del modale
+        stage.setOnHiding((WindowEvent event1) -> {
+            this.refreshCaselli();
+        });
     }
 }
