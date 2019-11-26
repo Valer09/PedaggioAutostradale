@@ -2,15 +2,18 @@ package Model;
 
 import Controller.DBManager;
 import Controller.Tools;
+import javafx.util.Pair;
 
 public class User {
     private String username,password;
     private boolean accessOK=false;
+    Pair<String,Boolean> status=null;
 
-    public User(String user, String password){
+    public User(String user, String passw){
+        status=Tools.checkLogIn(user,passw);
 
-        if ((Tools.checkLogIn(user,password) )){
-            accessOK=true;
+        if ( (getLogStatus() )){
+
             username=DBManager.getUser(user);
             password=DBManager.getPassword(user);
 
@@ -30,7 +33,6 @@ public class User {
         System.out.println("Utente non loggato correttamente");
         return "";
     }
-
     public void setOtherUsername(String user, String username) {
         if (accessOK) {
             if (Tools.checkUserExists(username) == false)
@@ -94,8 +96,11 @@ public class User {
             System.out.println("Utente non loggato correttamente");
 
     }
-    public boolean getstatus(){
-        return this.accessOK;
+    public Pair<String,Boolean> getstatus(){
+        return this.status;
+    }
+    public boolean getLogStatus(){
+        return this.status.getValue();
     }
 
 
