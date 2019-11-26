@@ -84,15 +84,7 @@ public class User {
             System.out.println("Utente non loggato correttamente");
 
     }
-    public void createUser(String user, String password){
-        if ( (getLogStatus() )) {
-            DBManager.addUser(user, password);
-            System.out.println("Utente creato");
-        }
-        else
-            System.out.println("Utente non loggato correttamente");
 
-    }
     public Pair<String,Boolean> getstatus(){
         return this.status;
     }

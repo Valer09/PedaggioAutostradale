@@ -466,6 +466,24 @@ public class DBManager {
         return false;
 
     }
+    public static ArrayList <String> userList(){
+        Statement st;
+        ResultSet rs;
+
+        ArrayList <String> userList= new ArrayList <String> () ;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT username FROM user");
+            while (rs.next()) {
+                userList.add(rs.getString("username"));
+
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
 
 
 

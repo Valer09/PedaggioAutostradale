@@ -28,5 +28,6 @@
     </orderEntry>
     <orderEntry type="library" name="Librerie" level="project" />
     <orderEntry type="library" name="annotations-17.0.0" level="project" />
+    <orderEntry type="library" name="json-20190722" level="application" />
   </component>
 </module>
