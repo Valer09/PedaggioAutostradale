@@ -1,3 +1,4 @@
+
 package Controller;
 
 import Model.User;
@@ -61,9 +62,9 @@ public class LoginxFXController implements Initializable {
                 login();
             }
             else {
-            username.setText("");
-            password.setText("");
-            login();
+                username.setText("");
+                password.setText("");
+                login();
             }
 
         }
@@ -71,28 +72,28 @@ public class LoginxFXController implements Initializable {
 
     private void login() {
 
-            if (!logged && limitaccess <= 10) {
-                try {
-                    Error.setText(user.getstatus().getKey());
-                    limitaccess++;
-                    click.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (logged) {
-                switchToGestionalScene(user);
-            }
-
-            if (limitaccess > 10) {
-                Error.setText("Numero di tentativi esaurito");
-                accedi.setOnAction(limit);
-                user=null;
-
+        if (!logged && limitaccess <= 10) {
+            try {
+                Error.setText(user.getstatus().getKey());
+                limitaccess++;
+                click.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
-       private void switchToGestionalScene(User usr){
+
+        if (logged) {
+            switchToGestionalScene(user);
+        }
+
+        if (limitaccess > 10) {
+            Error.setText("Numero di tentativi esaurito");
+            accedi.setOnAction(limit);
+            user=null;
+
+        }
+    }
+    private void switchToGestionalScene(User usr){
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gestionale.fxml"));
         Stage stage = (Stage) accedi.getScene().getWindow();
@@ -102,6 +103,10 @@ public class LoginxFXController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        GestionaleFXController controller =
+        loader.<GestionaleFXController>getController();
+        controller.setUser(usr);
         stage.setScene(scene);
     }
 
