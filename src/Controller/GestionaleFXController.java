@@ -28,9 +28,10 @@ public class GestionaleFXController implements Initializable {
 
     User user;
     @FXML
-    ListView caselliList, autostradeList;
+    ListView caselliList, autostradeList, listUser;
     @FXML
-    Button addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello;
+    Button addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt;
+
 
 
     @Override
@@ -42,8 +43,6 @@ public class GestionaleFXController implements Initializable {
         //Autostrade
         addAutostrada.setOnAction(this::aggiungiAutostrada);
 
-        addButton.setOnAction(this::aggiungiCasello);
-        addBtn.setOnAction(this::aggiungiAutostrada);
         addUt.setOnAction(this::aggiungiUtente);
         ObservableList data = FXCollections.observableArrayList();
         ArrayList <Highway> highways = DBManager.getHighways();
