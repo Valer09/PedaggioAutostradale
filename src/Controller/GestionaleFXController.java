@@ -28,18 +28,22 @@ public class GestionaleFXController implements Initializable {
     @FXML
     ListView caselliList;
     @FXML
-    Button addButton, modifyButton, deleteButton;
+    Button addBtn,deleteBtn, modifyBtn,addButton, modifyButton, deleteButton;
 
     @FXML
     ListView lista;
-
-    public static final ObservableList data = FXCollections.observableArrayList();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addButton.setOnAction(this::aggiungiCasello);
+        addBtn.setOnAction(this::aggiungiAutostrada);
+        ObservableList data = FXCollections.observableArrayList();
         ArrayList <Highway> highways = DBManager.getHighways();
+        highways.forEach(autostrada -> {
+            data.add(autostrada.getName());
+        });
+        lista.setItems(data);
         System.out.println(highways);
         ArrayList<TollBoth> caselli = DBManager.getTollBoths();
         ObservableList<String> list = FXCollections.observableArrayList();
@@ -52,6 +56,26 @@ public class GestionaleFXController implements Initializable {
     public void setUser(User user){
         this.user=user;
         System.out.println(user.getUsername());
+    }
+
+    private void aggiungiAutostrada(ActionEvent e){
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(
+                    AddAutostradeModalController.class.getResource("../View/modaleAutostrade.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        stage.setScene(new Scene(root));
+        stage.setTitle("Aggiungi Autostrada");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node) e.getSource()).getScene().getWindow() );
+        stage.show();
+        stage.setOnCloseRequest((WindowEvent event1) -> {
+            System.out.println("Chiuso");
+        });
     }
 
     private void aggiungiCasello(ActionEvent e){
