@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONObject;
@@ -33,6 +34,8 @@ public class OperatoreFxController implements Initializable {
     TitledPane details;
     @FXML
     ChoiceBox tbSelect;
+    @FXML
+    HBox caselloSelect;
 
         @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,17 +51,23 @@ public class OperatoreFxController implements Initializable {
                 Vehicle macchina = new Vehicle(targa);
                 String startingTBName = obj.getString("startingTB");
                 TollBoth startingTB = new TollBoth(startingTBName);
-                TollBoth endingTB = new TollBoth((String) tbSelect.getValue());
-                Highway autostrada = new Highway(DBManager.getHighwayByTollbooth(startingTB.getName()));
-
-                double prezzo = TollCalculator.getToll(macchina, autostrada, startingTB, endingTB);
-                setVehicleValues(macchina);
-                setRouteValues(autostrada, startingTB, endingTB);
-                details.setVisible(true);
-                pedaggio.setText(prezzo+"€");
+                if (tbSelect.getValue() == null){
+                    System.out.println("Nessun casello di uscita selezionato");
+                    return;
+                }
+                else{
+                    TollBoth endingTB = new TollBoth((String) tbSelect.getValue());
+                    Highway autostrada = new Highway(DBManager.getHighwayByTollbooth(startingTB.getName()));
+                    double prezzo = TollCalculator.getToll(macchina, autostrada, startingTB, endingTB);
+                    setVehicleValues(macchina);
+                    setRouteValues(autostrada, startingTB, endingTB);
+                    details.setVisible(true);
+                    pedaggio.setText(prezzo+"€");
+                }
             }
             else{
                 System.out.println("Nessun file selezionato");
+                return;
             }
 
     }
@@ -109,9 +118,7 @@ public class OperatoreFxController implements Initializable {
                 list.add(k);
             }
         });
-        list.forEach(item ->{
-            System.out.println(item);
-        });
         tbSelect.setItems(list);
+        caselloSelect.setVisible(true);
     }
 }

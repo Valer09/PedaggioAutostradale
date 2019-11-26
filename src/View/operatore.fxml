@@ -41,7 +41,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER">
+                  <HBox fx:id="caselloSelect" alignment="CENTER" visible="false">
                      <children>
                         <Label text="Seleziona Casello di Uscita">
                            <HBox.margin>

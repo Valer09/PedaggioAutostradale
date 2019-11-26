@@ -5,62 +5,39 @@ package Controller;
  */
 
 import Model.User;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import javafx.util.Pair;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Tools {
 
-    public static boolean checkLogIn(String user, String password){
+    public static Pair<String,Boolean> checkLogIn(String user, String password){
+        Pair <String,Boolean>status;
         boolean exists=checkUserExists(user);
         if (exists==false){
-            System.out.println("Username errato!");
-            return false;
+            status= new Pair<String, Boolean>("Utente errato",false);
+            return status;
         }
         boolean pswcorrect= DBManager.checkUserPsw(user, password);
         System.out.println(pswcorrect);
         if (pswcorrect==false){
-            System.out.println("Password errata");
-            return false;
+            status= new Pair<String, Boolean>("Password errata",false);
+            return status;
         }
-
-        return true;
+        status= new Pair<String, Boolean>("OK",true);
+        return status;
 
     }
 
-    public static boolean login(){
-        boolean logged=false;
-        int limitaccess=0;
-        User user=null;
-
-        while(!logged && limitaccess <=10){
-            limitaccess++;
-            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-            System.out.println("Enter username");
-            String username = myObj.nextLine();  // Read user input
-
-            myObj = new Scanner(System.in);
-            System.out.println("Enter password");
-            String password = myObj.nextLine();  // Read user input
-
-            user= new User(username, password);
-            if(user.getstatus())
-                logged=true;
-
-        }
-        if(!user.getstatus())
-            user=null;
-        if (limitaccess>10){
-            System.out.println("Numero di tentativi esaurito");
-        }
-        return logged;
-    }
 
     public static boolean checkUserExists(String username){
         return DBManager.checkUser(username);

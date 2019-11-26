@@ -333,7 +333,6 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Casello: "+tollbooth+" KM: "+km);
         return km;
 
     }
