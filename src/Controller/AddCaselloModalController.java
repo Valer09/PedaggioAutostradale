@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AddCaselliModalController implements Initializable {
+public class AddCaselloModalController implements Initializable {
     @FXML
     ChoiceBox autostradaList;
     @FXML

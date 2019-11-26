@@ -4,16 +4,11 @@ package Controller;
  * Utility controller
  */
 
-import Model.User;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.util.Pair;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
