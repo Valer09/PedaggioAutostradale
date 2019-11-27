@@ -49,7 +49,6 @@ public class ModifyCaselloController implements Initializable {
         TextFormatter formatter = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
             return pattern.matcher(change.getControlNewText()).matches() ? change : null;
         });
-
         kmInput.setTextFormatter(formatter);
 
 

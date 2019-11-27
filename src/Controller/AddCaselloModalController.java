@@ -11,12 +11,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 public class AddCaselloModalController implements Initializable {
     @FXML
@@ -36,16 +39,12 @@ public class AddCaselloModalController implements Initializable {
         });
         autostradaList.setItems(list);
         addButton.setOnAction(this::aggiungi);
-        // force the field to be numeric only
-        kmInput.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    kmInput.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
+        // Impongo al textField per i KM di accettare solo numeri in input
+        Pattern pattern = Pattern.compile("\\d*|\\d+\\.\\d*");
+        TextFormatter formatter = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
+            return pattern.matcher(change.getControlNewText()).matches() ? change : null;
         });
+        kmInput.setTextFormatter(formatter);
 
     }
 

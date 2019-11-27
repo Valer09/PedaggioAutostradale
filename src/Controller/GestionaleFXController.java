@@ -30,30 +30,16 @@ public class GestionaleFXController implements Initializable {
     @FXML
     ListView caselliList, autostradeList, listUser;
     @FXML
-    Button addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt;
-
+    Button backButton ,addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        backButton.setOnAction(this::goBack);
         //Caselli
         addCasello.setOnAction(this::aggiungiCasello);
         deleteCasello.setOnAction(this::rimuoviCasello);
         modifyCasello.setOnAction(this::modificaCasello);
-        //Autostrade
-        addAutostrada.setOnAction(this::aggiungiAutostrada);
-        deleteAutostrada.setOnAction(this::rimuoviAutostrada);
-        modifyAutostrada.setOnAction(this::modificaAutostrada);
-
-        addUt.setOnAction(this::aggiungiUtente);
-        ArrayList<Highway> highways = DBManager.getHighways();
-        ObservableList<String> data = FXCollections.observableArrayList();
-        highways.forEach(autostrada -> {
-            data.add(autostrada.getName());
-        });
-        autostradeList.setItems(data);
-
-        System.out.println(highways);
         ArrayList<TollBoth> caselli = DBManager.getTollBoths();
         ObservableList<String> list = FXCollections.observableArrayList();
         caselli.forEach(casello -> {
@@ -61,12 +47,26 @@ public class GestionaleFXController implements Initializable {
         });
         caselliList.setItems(list);
 
+        //Autostrade
+        addAutostrada.setOnAction(this::aggiungiAutostrada);
+        deleteAutostrada.setOnAction(this::rimuoviAutostrada);
+        modifyAutostrada.setOnAction(this::modificaAutostrada);
+        ArrayList<Highway> highways = DBManager.getHighways();
+        ObservableList<String> data = FXCollections.observableArrayList();
+        highways.forEach(autostrada -> {
+            data.add(autostrada.getName());
+        });
+        autostradeList.setItems(data);
+
+        //Utenti
+        addUt.setOnAction(this::aggiungiUtente);
         ArrayList <String> utenti = DBManager.userList();
         ObservableList<String> item = FXCollections.observableArrayList();
         utenti.forEach(utente ->{
             item.add(utente);
         });
        listUser.setItems(item);
+
     }
 
     public void setUser(User user){
@@ -216,5 +216,17 @@ public class GestionaleFXController implements Initializable {
         stage.setOnHiding((WindowEvent event1) -> {
             this.refreshCaselli();
         });
+    }
+
+    private void goBack(ActionEvent event){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/home.fxml"));
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
     }
 }
