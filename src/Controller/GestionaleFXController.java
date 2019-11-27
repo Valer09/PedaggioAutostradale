@@ -42,10 +42,12 @@ public class GestionaleFXController implements Initializable {
         modifyCasello.setOnAction(this::modificaCasello);
         //Autostrade
         addAutostrada.setOnAction(this::aggiungiAutostrada);
+        deleteAutostrada.setOnAction(this::rimuoviAutostrada);
+        modifyAutostrada.setOnAction(this::modificaAutostrada);
 
         addUt.setOnAction(this::aggiungiUtente);
-        ObservableList data = FXCollections.observableArrayList();
-        ArrayList <Highway> highways = DBManager.getHighways();
+        ArrayList<Highway> highways = DBManager.getHighways();
+        ObservableList<String> data = FXCollections.observableArrayList();
         highways.forEach(autostrada -> {
             data.add(autostrada.getName());
         });
@@ -87,8 +89,46 @@ public class GestionaleFXController implements Initializable {
         stage.initOwner(
                 ((Node) e.getSource()).getScene().getWindow() );
         stage.show();
-        stage.setOnCloseRequest((WindowEvent event1) -> {
+        stage.setOnHiding((WindowEvent event1) -> {
             System.out.println("Chiuso");
+            this.refreshAutostrade();
+        });
+    }
+    private void refreshAutostrade(){
+        ArrayList<Highway> highways = DBManager.getHighways();
+        ObservableList<String> data = FXCollections.observableArrayList();
+        highways.forEach(autostrada -> {
+            data.add(autostrada.getName());
+        });
+        autostradeList.setItems(data);
+    }
+    private void rimuoviAutostrada(ActionEvent e){
+        String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
+        DBManager.delHighway(autostrada);
+        this.refreshAutostrade();
+    }
+    private void modificaAutostrada(ActionEvent e){
+        String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyAutostrada.fxml"));
+        try {
+            if (loader == null) System.out.println("Vuoto");
+            root = loader.load();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        stage.setScene(new Scene(root));
+        stage.setTitle("Modifica Autostrada");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node) e.getSource()).getScene().getWindow() );
+        ModifyAutostradaController controller = loader.getController();
+        controller.setHWname(autostrada);
+        stage.show();
+        stage.setOnHiding((WindowEvent event1) -> {
+            System.out.println("Chiuso");
+            this.refreshAutostrade();
         });
     }
 

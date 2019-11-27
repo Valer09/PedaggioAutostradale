@@ -25,7 +25,7 @@
                                  <children>
                                      <Button fx:id="addAutostrada" mnemonicParsing="false" text="Aggiungi" />
                                      <Button fx:id="modifyAutostrada" mnemonicParsing="false" text="Modifica" />
-                                     <Button fx:id="deleteBtn" mnemonicParsing="false" text="Elimina" />
+                                     <Button fx:id="deleteAutostrada" mnemonicParsing="false" text="Elimina" />
                                  </children>
                              </HBox>
                            </children></AnchorPane>
