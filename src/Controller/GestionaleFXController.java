@@ -3,6 +3,7 @@ package Controller;
 import Model.Highway;
 import Model.TollBoth;
 import Model.User;
+import Model.Imposte;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,16 +13,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class GestionaleFXController implements Initializable {
     User user;
@@ -29,29 +29,55 @@ public class GestionaleFXController implements Initializable {
     ListView caselliList;
     @FXML
     Button addBtn,deleteBtn, modifyBtn,addButton, modifyButton, deleteButton;
-
     @FXML
     ListView lista;
+    @FXML
+    TableColumn <Imposte, String>key;
+    @FXML
+    TableColumn <Imposte, Double>value;
+    @FXML
+    TableView <Imposte> classesTable;
+    ObservableList <Imposte> imposte;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addButton.setOnAction(this::aggiungiCasello);
         addBtn.setOnAction(this::aggiungiAutostrada);
+
+        //Classi e imposte
+        imposte  = FXCollections.observableArrayList();
+        HashMap<String, Double> classes = DBManager.getClasses();
+        classes.forEach((K,V) -> {
+            imposte.add(new Imposte(K,V));
+        });
+        key.setCellValueFactory(cellData ->  cellData.getValue().getNomeImpostaProperty());
+        value.setCellValueFactory(cellData ->  cellData.getValue().getvaloreImpostaProperty().asObject());
+        classesTable.setItems(imposte);
+        classesTable.getSortOrder().add(key);
+
+        //Autostrade
         ObservableList data = FXCollections.observableArrayList();
         ArrayList <Highway> highways = DBManager.getHighways();
         highways.forEach(autostrada -> {
             data.add(autostrada.getName());
         });
         lista.setItems(data);
-        System.out.println(highways);
+
+        //Caselli
         ArrayList<TollBoth> caselli = DBManager.getTollBoths();
         ObservableList<String> list = FXCollections.observableArrayList();
         caselli.forEach(casello -> {
             list.add(casello.getName());
         });
         caselliList.setItems(list);
+
     }
+
+    public ObservableList<Imposte> getDatiImposte() {
+        return imposte;
+    }
+
 
     public void setUser(User user){
         this.user=user;

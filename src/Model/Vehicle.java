@@ -84,7 +84,7 @@ public class Vehicle {
     }
 
     public String getTariff_class() {
-        return cat.getNomeClasse();
+        return cat.getNomeCategoria();
     }
 
     public String getVlp() {
@@ -93,11 +93,11 @@ public class Vehicle {
 
 
    public String getCategoriaName(){
-        return cat.getNomeClasse();
+        return cat.getNomeCategoria();
    }
 
    public double getIncrementoCT(){
-        return cat.getValoreClasse();
+        return cat.getValoreCategoria();
    }
 
    public double getIncrementoCA(){
