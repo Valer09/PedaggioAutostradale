@@ -1,6 +1,5 @@
 
 package Controller;
-
 import Model.User;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -16,13 +15,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 public class LoginxFXController implements Initializable {
     private boolean logged=false;
     private boolean isfirst=true;
     private User user=null;
     int limitaccess=0;
-    public final static Object obj = new Object();
 
     @FXML
     Label Error;
@@ -54,36 +51,27 @@ public class LoginxFXController implements Initializable {
             user = new User(usern, passw);
             if (user.getstatus().getValue()) {
                 logged = true;
+            } else {
+                logged = false;
             }
-            else {
-                logged=false;
-            }
-            if (isfirst){
-                isfirst=false;
+            if (isfirst) {
+                isfirst = false;
                 login();
-            }
-            else {
+            } else {
                 username.setText("");
                 password.setText("");
                 login();
+
             }
 
         }
     };
 
-    private void login() {
+    private void login()  {
 
         if (!logged && limitaccess <= 10) {
-            try {
                 Error.setText(user.getstatus().getKey());
                 limitaccess++;
-                synchronized (obj){
-                    click.wait();
-                }
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
 
         if (logged) {

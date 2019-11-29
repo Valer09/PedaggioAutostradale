@@ -13,10 +13,10 @@ public class CategoriaLeggera implements ICategoria{
 
     }
 
-    public String getNomeClasse(){
+    public String getNomeCategoria(){
         return this.classe;
     };
-    public double getValoreClasse(){
+    public double getValoreCategoria(){
         return this.valore;
     };
 

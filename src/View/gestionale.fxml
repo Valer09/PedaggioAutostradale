@@ -74,6 +74,27 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
+              <Tab text="Classi e imposte">
+                  <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <children>
+                              
+                              <HBox alignment="CENTER" layoutX="2.0" layoutY="258.0" prefHeight="54.0" prefWidth="582.0" spacing="50.0">
+                                  <children>
+                                      <Button fx:id="addAmbientalClass" mnemonicParsing="false" text="Nuova Classe Ambientale" />
+                                      <Button fx:id="editButton" mnemonicParsing="false" text="Modifica importi" />
+                                      <Button fx:id="eraseButton" mnemonicParsing="false" text="Elimina" />
+                                  </children>
+                              </HBox>
+                              <TableView fx:id="classesTable" layoutX="14.0" layoutY="14.0" prefHeight="251.0" prefWidth="323.0">
+                                <columns>
+                                  <TableColumn fx:id="key" editable="false" prefWidth="157.3333282470703" sortType="DESCENDING" text="Nome Imposta" />
+                                  <TableColumn fx:id="value" prefWidth="165.33334350585938" text="Percentuale Imposta" />
+                                </columns>
+                              </TableView>
+                          </children></AnchorPane>
+                  </content>
+              </Tab>
               </tabs>
             </TabPane>
          </children></VBox>

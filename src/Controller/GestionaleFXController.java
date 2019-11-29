@@ -1,8 +1,8 @@
 package Controller;
-
 import Model.Highway;
 import Model.TollBoth;
 import Model.User;
+import Model.Imposte;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,16 +13,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class GestionaleFXController implements Initializable {
 
@@ -31,7 +30,13 @@ public class GestionaleFXController implements Initializable {
     ListView caselliList, autostradeList, listUser;
     @FXML
     Button backButton ,addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt;
-
+    @FXML
+    TableColumn <Imposte, String>key;
+    @FXML
+    TableColumn <Imposte, Double>value;
+    @FXML
+    TableView <Imposte> classesTable;
+    ObservableList <Imposte> imposte;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,6 +51,17 @@ public class GestionaleFXController implements Initializable {
             list.add(casello.getName());
         });
         caselliList.setItems(list);
+
+        //Classi e imposte
+        imposte  = FXCollections.observableArrayList();
+        HashMap<String, Double> classes = DBManager.getClasses();
+        classes.forEach((K,V) -> {
+            imposte.add(new Imposte(K,V));
+        });
+        key.setCellValueFactory(cellData ->  cellData.getValue().getNomeImpostaProperty());
+        value.setCellValueFactory(cellData ->  cellData.getValue().getvaloreImpostaProperty().asObject());
+        classesTable.setItems(imposte);
+        classesTable.getSortOrder().add(key);
 
         //Autostrade
         addAutostrada.setOnAction(this::aggiungiAutostrada);
@@ -68,6 +84,11 @@ public class GestionaleFXController implements Initializable {
        listUser.setItems(item);
 
     }
+
+    public ObservableList<Imposte> getDatiImposte() {
+        return imposte;
+    }
+
 
     public void setUser(User user){
         this.user=user;

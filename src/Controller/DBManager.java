@@ -8,7 +8,6 @@ import Model.Highway;
 import Model.TollBoth;
 import Model.Vehicle;
 import org.jetbrains.annotations.Contract;
-
 import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
@@ -344,7 +343,6 @@ public class DBManager {
         return km;
 
     }
-
     public static ArrayList<TollBoth> getTollBoths(){
         ArrayList<TollBoth> caselli = new ArrayList<TollBoth>();
         try {
@@ -492,6 +490,29 @@ public class DBManager {
         }
         return userList;
     }
+
+    //CLASS METHODS
+    public static HashMap <String, Double> getClasses(){
+        HashMap<String, Double> cl = new HashMap<String, Double>();
+        Statement st;
+        ResultSet rs;
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT Name,Val FROM costants ORDER BY Name");
+            while(rs.next()){
+                cl.put(rs.getString("Name"),rs.getDouble("Val"));
+            }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cl;
+
+    }
+
 
 
 
