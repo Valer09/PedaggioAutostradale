@@ -74,16 +74,12 @@ public class GestionaleFXController implements Initializable {
         ArrayList <Highway> highways = DBManager.getHighways();
         deleteAutostrada.setOnAction(this::rimuoviAutostrada);
         modifyAutostrada.setOnAction(this::modificaAutostrada);
-        ArrayList<Highway> highways = DBManager.getHighways();
-        ObservableList<String> data = FXCollections.observableArrayList();
         highways.forEach(autostrada -> {
             data.add(autostrada.getName());
         });
         autostradeList.setItems(data);
 
         System.out.println(highways);
-        ArrayList<TollBoth> caselli = DBManager.getTollBoths();
-        ObservableList<String> list = FXCollections.observableArrayList();
         caselli.forEach(casello -> {
             list.add(casello.getName());
         });
