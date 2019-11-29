@@ -352,7 +352,7 @@ public class DBManager {
             ResultSet rs = st.executeQuery("SELECT * FROM tollbooths ");
 
             while(rs.next()){
-                caselli.add(new TollBoth(rs.getString("Name")));
+                caselli.add(new TollBoth(rs.getString("Name"), rs.getDouble("KM")));
             }
 
         } catch (SQLException e) {

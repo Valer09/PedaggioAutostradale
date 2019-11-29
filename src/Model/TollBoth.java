@@ -6,10 +6,9 @@ public class TollBoth {
     private String name;
     private double Km;
 
-    public TollBoth(String name) {
+    public TollBoth(String name, double km) {
         this.name = name;
-        DBManager db=new DBManager();
-        this.Km = db.getTollBothKm(name);
+        this.Km = km;
     }
 
     public double getKm() {
@@ -31,7 +30,5 @@ public class TollBoth {
     public static void setName(String toolbooth, String newName) {
         DBManager.setTollbothName(toolbooth, newName);
     }
-
-
 
 }
