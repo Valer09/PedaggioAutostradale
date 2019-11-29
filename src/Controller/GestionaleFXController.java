@@ -41,6 +41,7 @@ public class GestionaleFXController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         backButton.setOnAction(this::goBack);
+
         //Caselli
         addCasello.setOnAction(this::aggiungiCasello);
         deleteCasello.setOnAction(this::rimuoviCasello);
@@ -211,8 +212,7 @@ public class GestionaleFXController implements Initializable {
 
     private void modificaCasello(ActionEvent e){
         //ottengo il nome del casello dalla selezione
-        String casello = (String) caselliList.getSelectionModel().getSelectedItem();
-        System.out.println(casello);
+        TollBoth casello = DBManager.getTollBoth((String) caselliList.getSelectionModel().getSelectedItem());
         //Creo il modale per la modifica del casello
         Stage stage = new Stage();
         Parent root = null;
@@ -229,7 +229,7 @@ public class GestionaleFXController implements Initializable {
                 ((Node) e.getSource()).getScene().getWindow() );
         //Passo il nome del casello al modale
         ModifyCaselloController controller = loader.getController();
-        controller.setTbName(casello);
+        controller.setTb(casello);
         stage.setScene(new Scene(root));
         //mostro il modale
         stage.show();

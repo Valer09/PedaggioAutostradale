@@ -54,13 +54,13 @@ public class OperatoreFxController implements Initializable {
                 String targa = obj.getString("vehicle_vlp");
                 Vehicle macchina = new Vehicle(targa);
                 String startingTBName = obj.getString("startingTB");
-                TollBoth startingTB = new TollBoth(startingTBName);
+                TollBoth startingTB = DBManager.getTollBoth(startingTBName);
                 if (tbSelect.getValue() == null){
                     System.out.println("Nessun casello di uscita selezionato");
                     return;
                 }
                 else{
-                    TollBoth endingTB = new TollBoth((String) tbSelect.getValue());
+                    TollBoth endingTB = DBManager.getTollBoth((String) tbSelect.getValue());
                     Highway autostrada = new Highway(DBManager.getHighwayByTollbooth(startingTB.getName()));
                     double prezzo = TollCalculator.getToll(macchina, autostrada, startingTB, endingTB);
                     setVehicleValues(macchina);

@@ -6,13 +6,11 @@
 package Controller;
 import Model.Highway;
 import Model.TollBoth;
-import Model.Vehicle;
 import org.jetbrains.annotations.Contract;
-import javax.swing.plaf.nimbus.State;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class DBManager {
 
@@ -343,6 +341,7 @@ public class DBManager {
         return km;
 
     }
+
     public static ArrayList<TollBoth> getTollBoths(){
         ArrayList<TollBoth> caselli = new ArrayList<TollBoth>();
         try {
@@ -357,6 +356,24 @@ public class DBManager {
             e.printStackTrace();
         }
         return caselli;
+    }
+
+    public static TollBoth getTollBoth(String name){
+        TollBoth casello = new TollBoth("", 0);
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM tollbooths WHERE Name = '"+name+"'");
+
+            if(rs.next()){
+                casello = new TollBoth(rs.getString("Name"), rs.getDouble("KM"));
+                return casello;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return casello;
     }
 
     public static void setTollbothHigway(String tollboth, String Higway){
