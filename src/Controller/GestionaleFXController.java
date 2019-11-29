@@ -1,5 +1,4 @@
 package Controller;
-
 import Model.Highway;
 import Model.TollBoth;
 import Model.User;

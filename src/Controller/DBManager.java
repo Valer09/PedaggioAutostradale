@@ -8,7 +8,6 @@ import Model.Highway;
 import Model.TollBoth;
 import Model.Vehicle;
 import org.jetbrains.annotations.Contract;
-
 import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
