@@ -38,6 +38,7 @@ public class GestionaleFXController implements Initializable {
     @FXML
     TableView <Imposte> classesTable;
     ObservableList <Imposte> imposte;
+    ObservableList <String> autostradeLista, caselliLista, utentiLista;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,11 +49,11 @@ public class GestionaleFXController implements Initializable {
         deleteCasello.setOnAction(this::rimuoviCasello);
         modifyCasello.setOnAction(this::modificaCasello);
         ArrayList<TollBoth> caselli = DBManager.getTollBoths();
-        ObservableList<String> list = FXCollections.observableArrayList();
+        caselliLista = FXCollections.observableArrayList();
         caselli.forEach(casello -> {
-            list.add(casello.getName());
+            caselliLista.add(casello.getName());
         });
-        caselliList.setItems(list);
+        caselliList.setItems(caselliLista);
 
         //Classi e imposte
         imposte  = FXCollections.observableArrayList();
@@ -67,21 +68,20 @@ public class GestionaleFXController implements Initializable {
 
         //Autostrade
         addAutostrada.setOnAction(this::aggiungiAutostrada);
-
-        addUt.setOnAction(this::aggiungiUtente);
-        modifyUt.setOnAction(this::modificaUtente);
-        ObservableList data = FXCollections.observableArrayList();
-        ArrayList <Highway> highways = DBManager.getHighways();
         deleteAutostrada.setOnAction(this::rimuoviAutostrada);
         modifyAutostrada.setOnAction(this::modificaAutostrada);
-
+        autostradeLista = FXCollections.observableArrayList();
+        ArrayList <Highway> highways = DBManager.getHighways();
         highways.forEach(autostrada -> {
-            data.add(autostrada.getName());
+            autostradeLista.add(autostrada.getName());
         });
-        autostradeList.setItems(data);
+        autostradeList.setItems(autostradeLista);
 
-        createUserList();
+        //Utenti
+        addUt.setOnAction(this::aggiungiUtente);
+        modifyUt.setOnAction(this::modificaUtente);
         deleteUt.setOnAction(this::rimuoviUtente);
+        createUserList();
     }
 
     public ObservableList<Imposte> getDatiImposte() {
@@ -227,7 +227,7 @@ public class GestionaleFXController implements Initializable {
                 ((Node) e.getSource()).getScene().getWindow() );
         //Passo il nome del casello al modale
         ModifyCaselloController controller = loader.getController();
-        controller.setTb(casello);
+        controller.setTb(casello, autostradeLista);
         stage.setScene(new Scene(root));
         //mostro il modale
         stage.show();
@@ -239,11 +239,11 @@ public class GestionaleFXController implements Initializable {
     public void createUserList(){
         System.out.println("Refresh");
         ArrayList <String> utenti = DBManager.userList();
-        ObservableList<String> item = FXCollections.observableArrayList();
+        utentiLista = FXCollections.observableArrayList();
         utenti.forEach(utente ->{
-            item.add(utente);
+            utentiLista.add(utente);
         });
-        listUser.setItems(item);
+        listUser.setItems(utentiLista);
     }
 
     public void rimuoviUtente(ActionEvent e){

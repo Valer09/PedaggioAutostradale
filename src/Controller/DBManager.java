@@ -133,9 +133,9 @@ public class DBManager {
         ArrayList<Highway> highways = new ArrayList<Highway>();
         try {
             st = connection.createStatement();
-            rs = st.executeQuery("SELECT nome FROM autostrada");
+            rs = st.executeQuery("SELECT * FROM autostrada");
             while (rs.next()) {
-                highways.add(new Highway(rs.getString("nome"), rs.getDouble("TU")));
+                highways.add(new Highway(rs.getString("nome"), rs.getDouble("tu")));
 
             }
         } catch (SQLException e) {
@@ -150,9 +150,9 @@ public class DBManager {
         Highway autostrada = new Highway(" ", 0);
         try {
             st = connection.createStatement();
-            rs = st.executeQuery("SELECT * FROM autostrada WHERE Name = '"+nome+"'");
+            rs = st.executeQuery("SELECT * FROM autostrada WHERE nome = '"+nome+"'");
             if (rs.next()) {
-                autostrada = new Highway(rs.getString("Name"), rs.getDouble("TU"));
+                autostrada = new Highway(rs.getString("nome"), rs.getDouble("tu"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
