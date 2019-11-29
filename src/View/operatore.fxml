@@ -17,8 +17,16 @@
          <center>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="602.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="602.0">
                      <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="216.0">
+                           <children>
+                              <Button fx:id="backButton" mnemonicParsing="false" text="Indietro" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
                         <Label text="Pedaggio Autostradale" textFill="#5171d2">
                            <font>
                               <Font name="Arial" size="20.0" />

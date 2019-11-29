@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.ModifyAutostradaController"
+            prefHeight="200.0" prefWidth="400.0">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="400.0">
+            <center>
+                <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0">
+                            <children>
+                                <Label layoutX="249.0" layoutY="14.0" prefHeight="28.0" prefWidth="188.0" text="Modifica Autostrada" textFill="#5171d2">
+                                    <font>
+                                        <Font name="Arial" size="20.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="51.0" prefWidth="600.0" spacing="20.0">
+                            <children>
+                                <Label text="Nome Autostrada:" />
+                                <TextField fx:id="nomeInput" />
+                            </children></HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="51.0" prefWidth="600.0" spacing="20.0">
+                            <children>
+                                <Label text="Tariffa Unitaria:" />
+                                <TextField fx:id="TU" />
+                            </children></HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="47.0" prefWidth="600.0">
+                            <children>
+                                <Button fx:id="modButton" mnemonicParsing="false" text="Modifica" />
+                            </children></HBox>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+
+</AnchorPane>
