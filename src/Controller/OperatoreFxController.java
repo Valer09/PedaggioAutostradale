@@ -8,13 +8,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +28,7 @@ public class OperatoreFxController implements Initializable {
     @FXML
     TextField inputText, filePathValue;
     @FXML
-    Button submit, sfoglia;
+    Button submit, sfoglia, backButton;
     @FXML
     Label pedaggio, targaValue, modelloValue, marcaValue, pesoValue, altezzaValue, cilindrataValue, annoValue, assiValue, ctValue, caValue;
     @FXML
@@ -41,6 +44,7 @@ public class OperatoreFxController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
             submit.setOnAction(this::calcolaPedaggio);
             sfoglia.setOnAction(this::scegliFile);
+            backButton.setOnAction(this::goBack);
     }
 
     private void calcolaPedaggio(ActionEvent event){
@@ -50,13 +54,13 @@ public class OperatoreFxController implements Initializable {
                 String targa = obj.getString("vehicle_vlp");
                 Vehicle macchina = new Vehicle(targa);
                 String startingTBName = obj.getString("startingTB");
-                TollBoth startingTB = new TollBoth(startingTBName);
+                TollBoth startingTB = DBManager.getTollBoth(startingTBName);
                 if (tbSelect.getValue() == null){
                     System.out.println("Nessun casello di uscita selezionato");
                     return;
                 }
                 else{
-                    TollBoth endingTB = new TollBoth((String) tbSelect.getValue());
+                    TollBoth endingTB = DBManager.getTollBoth((String) tbSelect.getValue());
                     Highway autostrada = new Highway(DBManager.getHighwayByTollbooth(startingTB.getName()));
                     double prezzo = TollCalculator.getToll(macchina, autostrada, startingTB, endingTB);
                     setVehicleValues(macchina);
@@ -120,5 +124,17 @@ public class OperatoreFxController implements Initializable {
         });
         tbSelect.setItems(list);
         caselloSelect.setVisible(true);
+    }
+
+    private void goBack(ActionEvent event ){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/home.fxml"));
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
     }
 }

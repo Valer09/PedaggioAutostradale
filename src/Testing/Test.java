@@ -9,10 +9,10 @@ import Controller.*;
 
 /**
  *
- * @author Vale09
- * @author Jacic
- * @author Mattu
- * @author Bob
+ * @author Valerio Marchitelli
+ * @author Jacopo Cicoria
+ * @author Antonio Angelini
+ * @author Mattia Lenza
  *
  */
 public class Test extends Application {
@@ -21,7 +21,7 @@ public class Test extends Application {
     public void start(Stage primaryStage) throws Exception{
             Parent root = FXMLLoader.load(getClass().getResource("../View/home.fxml"));
             primaryStage.setTitle("Pedaggio Autostradale");
-            primaryStage.setScene(new Scene(root, 300, 350));
+            primaryStage.setScene(new Scene(root));
             primaryStage.show();
     }
 

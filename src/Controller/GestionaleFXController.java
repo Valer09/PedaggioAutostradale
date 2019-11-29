@@ -3,6 +3,7 @@ package Controller;
 import Model.Highway;
 import Model.TollBoth;
 import Model.User;
+import Model.Imposte;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,16 +14,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class GestionaleFXController implements Initializable {
 
@@ -30,16 +30,41 @@ public class GestionaleFXController implements Initializable {
     @FXML
     ListView caselliList, autostradeList, listUser;
     @FXML
-    Button addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt, deleteUt, modifyUt;
-
-
+    Button backButton ,addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt, deleteUt, modifyUt;
+    @FXML
+    TableColumn <Imposte, String>key;
+    @FXML
+    TableColumn <Imposte, Double>value;
+    @FXML
+    TableView <Imposte> classesTable;
+    ObservableList <Imposte> imposte;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        backButton.setOnAction(this::goBack);
+
         //Caselli
         addCasello.setOnAction(this::aggiungiCasello);
         deleteCasello.setOnAction(this::rimuoviCasello);
         modifyCasello.setOnAction(this::modificaCasello);
+        ArrayList<TollBoth> caselli = DBManager.getTollBoths();
+        ObservableList<String> list = FXCollections.observableArrayList();
+        caselli.forEach(casello -> {
+            list.add(casello.getName());
+        });
+        caselliList.setItems(list);
+
+        //Classi e imposte
+        imposte  = FXCollections.observableArrayList();
+        HashMap<String, Double> classes = DBManager.getClasses();
+        classes.forEach((K,V) -> {
+            imposte.add(new Imposte(K,V));
+        });
+        key.setCellValueFactory(cellData ->  cellData.getValue().getNomeImpostaProperty());
+        value.setCellValueFactory(cellData ->  cellData.getValue().getvaloreImpostaProperty().asObject());
+        classesTable.setItems(imposte);
+        classesTable.getSortOrder().add(key);
+
         //Autostrade
         addAutostrada.setOnAction(this::aggiungiAutostrada);
 
@@ -47,6 +72,10 @@ public class GestionaleFXController implements Initializable {
         modifyUt.setOnAction(this::modificaUtente);
         ObservableList data = FXCollections.observableArrayList();
         ArrayList <Highway> highways = DBManager.getHighways();
+        deleteAutostrada.setOnAction(this::rimuoviAutostrada);
+        modifyAutostrada.setOnAction(this::modificaAutostrada);
+        ArrayList<Highway> highways = DBManager.getHighways();
+        ObservableList<String> data = FXCollections.observableArrayList();
         highways.forEach(autostrada -> {
             data.add(autostrada.getName());
         });
@@ -63,6 +92,11 @@ public class GestionaleFXController implements Initializable {
         createUserList();
         deleteUt.setOnAction(this::rimuoviUtente);
     }
+
+    public ObservableList<Imposte> getDatiImposte() {
+        return imposte;
+    }
+
 
     public void setUser(User user){
         this.user=user;
@@ -84,8 +118,46 @@ public class GestionaleFXController implements Initializable {
         stage.initOwner(
                 ((Node) e.getSource()).getScene().getWindow() );
         stage.show();
-        stage.setOnCloseRequest((WindowEvent event1) -> {
+        stage.setOnHiding((WindowEvent event1) -> {
             System.out.println("Chiuso");
+            this.refreshAutostrade();
+        });
+    }
+    private void refreshAutostrade(){
+        ArrayList<Highway> highways = DBManager.getHighways();
+        ObservableList<String> data = FXCollections.observableArrayList();
+        highways.forEach(autostrada -> {
+            data.add(autostrada.getName());
+        });
+        autostradeList.setItems(data);
+    }
+    private void rimuoviAutostrada(ActionEvent e){
+        String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
+        DBManager.delHighway(autostrada);
+        this.refreshAutostrade();
+    }
+    private void modificaAutostrada(ActionEvent e){
+        String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyAutostrada.fxml"));
+        try {
+            if (loader == null) System.out.println("Vuoto");
+            root = loader.load();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        stage.setScene(new Scene(root));
+        stage.setTitle("Modifica Autostrada");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node) e.getSource()).getScene().getWindow() );
+        ModifyAutostradaController controller = loader.getController();
+        controller.setHWname(autostrada);
+        stage.show();
+        stage.setOnHiding((WindowEvent event1) -> {
+            System.out.println("Chiuso");
+            this.refreshAutostrade();
         });
     }
 
@@ -147,8 +219,7 @@ public class GestionaleFXController implements Initializable {
 
     private void modificaCasello(ActionEvent e){
         //ottengo il nome del casello dalla selezione
-        String casello = (String) caselliList.getSelectionModel().getSelectedItem();
-        System.out.println(casello);
+        TollBoth casello = DBManager.getTollBoth((String) caselliList.getSelectionModel().getSelectedItem());
         //Creo il modale per la modifica del casello
         Stage stage = new Stage();
         Parent root = null;
@@ -165,7 +236,7 @@ public class GestionaleFXController implements Initializable {
                 ((Node) e.getSource()).getScene().getWindow() );
         //Passo il nome del casello al modale
         ModifyCaselloController controller = loader.getController();
-        controller.setTbName(casello);
+        controller.setTb(casello);
         stage.setScene(new Scene(root));
         //mostro il modale
         stage.show();
@@ -213,5 +284,17 @@ public class GestionaleFXController implements Initializable {
             System.out.println("Chiuso");
             createUserList();
         });
+    }
+
+    private void goBack(ActionEvent event){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/home.fxml"));
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
     }
 }

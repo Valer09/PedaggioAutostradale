@@ -30,7 +30,7 @@ public class ModifyCaselloController implements Initializable {
     @FXML
     Button saveButton;
 
-    String tbName;
+    TollBoth casello;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,7 +49,6 @@ public class ModifyCaselloController implements Initializable {
         TextFormatter formatter = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
             return pattern.matcher(change.getControlNewText()).matches() ? change : null;
         });
-
         kmInput.setTextFormatter(formatter);
 
 
@@ -62,20 +61,18 @@ public class ModifyCaselloController implements Initializable {
         String nome = nomeInput.getText();
         double km = Double.parseDouble(kmInput.getText());
         //Aggiungo al database
-        DBManager.setTollbothHigway(tbName, autostrada);
-        DBManager.setTollbothKM(tbName, km);
-        DBManager.setTollbothName(tbName, nome);
+        DBManager.setTollbothHigway(casello.getName(), autostrada);
+        DBManager.setTollbothKM(casello.getName(), km);
+        DBManager.setTollbothName(casello.getName(), nome);
         //Chiudo il modale
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
     }
 
-    public void setTbName(String name){
+    public void setTb(TollBoth casello){
         System.out.println("Pare che sta dentro");
-        this.tbName = name;
-        //instanzio un nuovo oggetto di tipo casello
-        TollBoth casello = new TollBoth(tbName);
-        System.out.println(tbName);
+        this.casello = casello;
+        System.out.println(casello.getName());
         //setto i valori del casello
         autostradaList.setValue(DBManager.getHighwayByTollbooth(casello.getName()));
         nomeInput.setText(casello.getName());
