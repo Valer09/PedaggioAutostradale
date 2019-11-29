@@ -19,7 +19,7 @@ public class DBManager {
 
     private Statement st = null;
     private ResultSet rs = null;
-    private static String path="eu-cdbr-west-02.cleardb.net/heroku_3838b0b01f11d0f";
+    private static String path = "eu-cdbr-west-02.cleardb.net/heroku_3838b0b01f11d0f";
     private static Connection connection = initializeConnection();
 
     //DB METHODS
@@ -27,33 +27,31 @@ public class DBManager {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
+        } catch (ClassNotFoundException e) {
             System.out.println("ciao");
         }
 
         try {
-            return DriverManager.getConnection("jdbc:mysql://"+path, "b5d4014795a1c2","ea612ec6");
-        }
-        catch (SQLException e) {
+            return DriverManager.getConnection("jdbc:mysql://" + path, "b5d4014795a1c2", "ea612ec6");
+        } catch (SQLException e) {
             e.printStackTrace();
 
         }
 
         return connection;
     }
+
     @Contract(pure = true)
-    public static Connection getConnection(){
+    public static Connection getConnection() {
 
         return connection;
 
     }
 
     //IVA
-    public static double getIVA(){
+    public static double getIVA() {
         double res = 0;
-        try{
+        try {
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = 'IVA'");
             while (rs.next()) {
@@ -68,11 +66,11 @@ public class DBManager {
     }
 
     //VEHICLE METHODS
-    public static double getAmbientalClassValue(String nomeClasse){
+    public static double getAmbientalClassValue(String nomeClasse) {
         double res = 0;
-        try{
+        try {
             Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = '"+nomeClasse+"'");
+            ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = '" + nomeClasse + "'");
             while (rs.next()) {
 
                 res = rs.getDouble("Val");
@@ -83,10 +81,11 @@ public class DBManager {
         }
         return res;
     }
-    public static double getClassValue(String classe){
+
+    public static double getClassValue(String classe) {
 
         Statement stm = null;
-        double res=0;
+        double res = 0;
 
         stm = null;
         try {
@@ -102,7 +101,7 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        try{
+        try {
             while (rs.next()) {
 
                 res = rs.getDouble("Val");
@@ -114,15 +113,15 @@ public class DBManager {
         return res;
 
 
-
     }
-    public ResultSet getVeichleInfo(String vlp){
+
+    public ResultSet getVeichleInfo(String vlp) {
 
         try {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT * FROM veicolo WHERE targa=" + "'" + vlp + "'");
             return rs;
-            } catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return rs;
@@ -130,34 +129,33 @@ public class DBManager {
 
     //HIGHWAYS METHODS
 
-    public static ArrayList <Highway> getHighways(){
+    public static ArrayList<Highway> getHighways() {
         Statement st;
         ResultSet rs;
 
-        ArrayList <Highway> highways= new ArrayList <Highway> () ;
+        ArrayList<Highway> highways = new ArrayList<Highway>();
         try {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT nome FROM autostrada");
             while (rs.next()) {
                 highways.add(new Highway(rs.getString("nome")));
 
-                }
-             }
-            catch (SQLException e) {
-                e.printStackTrace();
             }
-         return highways;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return highways;
+    }
 
-    public static String getHighwayByTollbooth(String tollbooth){
+    public static String getHighwayByTollbooth(String tollbooth) {
 
         Statement st;
         ResultSet rs;
-        String highway="";
+        String highway = "";
         try {
             st = connection.createStatement();
-            rs=st.executeQuery("SELECT Autostrada FROM tollbooths WHERE Name='" + tollbooth + "'");
-            while(rs.next()){
+            rs = st.executeQuery("SELECT Autostrada FROM tollbooths WHERE Name='" + tollbooth + "'");
+            while (rs.next()) {
                 highway = rs.getString("Autostrada");
             }
 
@@ -168,12 +166,13 @@ public class DBManager {
 
 
     }
+
     /**
      * getHighwayTU recover TU of a specific highway from DB
      *
      * @return double
      */
-    public static double getHighwayTU(String highway){
+    public static double getHighwayTU(String highway) {
 
         Connection con = DBManager.getConnection();
 
@@ -191,19 +190,16 @@ public class DBManager {
         }
 
 
-        while (true)
-        {
+        while (true) {
             try {
                 if (!rs.next()) break;
-            }
-            catch (SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
             try {
 
                 return rs.getDouble("tu");
-            }
-            catch (SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -211,28 +207,30 @@ public class DBManager {
         return 1;
 
     }
-    public static void setTU(String highway, double TU){
-        try{
+
+    public static void setTU(String highway, double TU) {
+        try {
             Statement stm = connection.createStatement();
-            stm.executeUpdate("UPDATE autostrada SET tu="+TU+" WHERE nome='"+highway+"'");
+            stm.executeUpdate("UPDATE autostrada SET tu=" + TU + " WHERE nome='" + highway + "'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
 
     }
-    public static void setHighwayName(String highway, String newName){
-        try{
+
+    public static void setHighwayName(String highway, String newName) {
+        try {
             ResultSet rs;
             Statement stm = connection.createStatement();
             Statement stm2 = connection.createStatement();
-            rs=stm2.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada='"+highway+"'");
-            stm.executeUpdate("DELETE FROM tollbooths WHERE Autostrada='"+highway+"'");
-            stm.executeUpdate("UPDATE autostrada SET nome='"+newName+"' WHERE nome='"+highway+"'");
-            while (rs.next()){
+            rs = stm2.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada='" + highway + "'");
+            stm.executeUpdate("DELETE FROM tollbooths WHERE Autostrada='" + highway + "'");
+            stm.executeUpdate("UPDATE autostrada SET nome='" + newName + "' WHERE nome='" + highway + "'");
+            while (rs.next()) {
                 stm.executeUpdate(
                         "INSERT INTO tollbooths (Autostrada, Name, KM) " +
-                                "VALUES ('"+newName+"','"+rs.getString("Name")+"','"+rs.getDouble("KM")+"')");
+                                "VALUES ('" + newName + "','" + rs.getString("Name") + "','" + rs.getDouble("KM") + "')");
 
             }
         } catch (SQLException e) {
@@ -241,38 +239,41 @@ public class DBManager {
 
 
     }
-    public static void addHighway(String name, double TU){
-        try{
+
+    public static void addHighway(String name, double TU) {
+        try {
             Statement stm = connection.createStatement();
-            stm.executeUpdate("INSERT INTO autostrada (nome,tu)  VALUES ("+"'"+name+"',"+"'"+TU+"')");
+            stm.executeUpdate("INSERT INTO autostrada (nome,tu)  VALUES (" + "'" + name + "'," + "'" + TU + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
 
     }
-    public static void delHighway(String highway){
-        try{
+
+    public static void delHighway(String highway) {
+        try {
             ResultSet rs;
             Statement stm = connection.createStatement();
             Statement stm2 = connection.createStatement();
-            stm2.executeUpdate("DELETE FROM tollbooths  WHERE Autostrada='"+highway+"'");
-            stm.executeUpdate("DELETE FROM autostrada WHERE nome='"+highway+"'");
+            stm2.executeUpdate("DELETE FROM tollbooths  WHERE Autostrada='" + highway + "'");
+            stm.executeUpdate("DELETE FROM autostrada WHERE nome='" + highway + "'");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
-    public HashMap <String, Double> getHighwayTollbooths(String highway){
+
+    public HashMap<String, Double> getHighwayTollbooths(String highway) {
         HashMap<String, Double> tb = new HashMap<String, Double>();
 
         try {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada=" + "'" + highway + "'");
 
-            while(rs.next()){
-                tb.put(rs.getString("Name"),rs.getDouble("KM"));
+            while (rs.next()) {
+                tb.put(rs.getString("Name"), rs.getDouble("KM"));
             }
 
         } catch (SQLException e) {
@@ -284,42 +285,45 @@ public class DBManager {
     }
 
     //TOLLBOOTH METHODS
-    public static void addTollboth(String highway, String name, double KM){
-        System.out.println("Aggiunto Casello: "+name+" KM: "+KM+" Autostrada: "+highway);
-        try{
+    public static void addTollboth(String highway, String name, double KM) {
+        System.out.println("Aggiunto Casello: " + name + " KM: " + KM + " Autostrada: " + highway);
+        try {
             Statement stm = connection.createStatement();
-            stm.executeUpdate("INSERT INTO tollbooths (Autostrada,Name,KM)  VALUES ("+"'"+highway+"',"+"'"+name+"',"+"'"+KM+"')");
+            stm.executeUpdate("INSERT INTO tollbooths (Autostrada,Name,KM)  VALUES (" + "'" + highway + "'," + "'" + name + "'," + "'" + KM + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
 
     }
-    public static void setTollbothName(String tollbooth, String newName){
-        try{
+
+    public static void setTollbothName(String tollbooth, String newName) {
+        try {
             Statement stm = connection.createStatement();
-            stm.executeUpdate("UPDATE tollbooths SET Name='"+newName+"' WHERE Name='"+tollbooth+"'");
+            stm.executeUpdate("UPDATE tollbooths SET Name='" + newName + "' WHERE Name='" + tollbooth + "'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
 
     }
-    public static void setTollbothKM(String tollbooth, double KM){
-        try{
+
+    public static void setTollbothKM(String tollbooth, double KM) {
+        try {
             Statement stm = connection.createStatement();
-            stm.executeUpdate("UPDATE tollbooths SET KM="+KM+" WHERE Name='"+tollbooth+"'");
+            stm.executeUpdate("UPDATE tollbooths SET KM=" + KM + " WHERE Name='" + tollbooth + "'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
 
     }
-    public static void delTollboth(String tollbooth){
-        try{
+
+    public static void delTollboth(String tollbooth) {
+        try {
             ResultSet rs;
             Statement stm = connection.createStatement();
-            stm.executeUpdate("DELETE FROM tollbooths WHERE Name='"+tollbooth+"'");
+            stm.executeUpdate("DELETE FROM tollbooths WHERE Name='" + tollbooth + "'");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -327,14 +331,15 @@ public class DBManager {
 
 
     }
-    public double getTollBothKm(String tollbooth){
-        double km=0;
+
+    public double getTollBothKm(String tollbooth) {
+        double km = 0;
 
         try {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooth + "'");
 
-            while(rs.next()){
+            while (rs.next()) {
                 km = rs.getDouble("KM");
             }
 
@@ -345,13 +350,13 @@ public class DBManager {
 
     }
 
-    public static ArrayList<TollBoth> getTollBoths(){
+    public static ArrayList<TollBoth> getTollBoths() {
         ArrayList<TollBoth> caselli = new ArrayList<TollBoth>();
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM tollbooths ");
 
-            while(rs.next()){
+            while (rs.next()) {
                 caselli.add(new TollBoth(rs.getString("Name")));
             }
 
@@ -361,51 +366,55 @@ public class DBManager {
         return caselli;
     }
 
-    public static void setTollbothHigway(String tollboth, String Higway){
-        try{
+    public static void setTollbothHigway(String tollboth, String Higway) {
+        try {
             Statement stm = connection.createStatement();
-            stm.executeUpdate("UPDATE tollbooths SET Autostrada='"+Higway+"' WHERE Name='"+tollboth+"'");
+            stm.executeUpdate("UPDATE tollbooths SET Autostrada='" + Higway + "' WHERE Name='" + tollboth + "'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     //USER METHODS
-    public static void addUser(String name, String password){
-        try{
+    public static void addUser(String name, String password) {
+        try {
             Statement stm = connection.createStatement();
-            stm.executeUpdate("INSERT INTO user (username,password)  VALUES ("+"'"+name+"',"+"'"+password+"')");
+            stm.executeUpdate("INSERT INTO user (username,password)  VALUES (" + "'" + name + "'," + "'" + password + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
-    public static void setUsername(String user, String username){
-        try{
+
+    public static void setUsername(String user, String username) {
+        try {
             Statement stm = connection.createStatement();
-            stm.executeUpdate("UPDATE user SET username='"+username+"' WHERE username='"+user+"'");
+            stm.executeUpdate("UPDATE user SET username= '" + username + "' WHERE username= '" + user + "'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
-    public static void setUserPsw (String user, String newpsw){
-        try{
+
+    public static void setUserPsw(String user, String newpsw) {
+        try {
             Statement stm = connection.createStatement();
-            stm.executeUpdate("UPDATE user SET password='"+newpsw+"' WHERE username='"+user+"'");
+            stm.executeUpdate("UPDATE user SET password='" + newpsw + "' WHERE username='" + user + "'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
-    public static boolean checkUser(String user){
+
+    public static boolean checkUser(String user) {
 
         Statement st;
         ResultSet rs;
 
         try {
             st = connection.createStatement();
-            rs=st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
-            if(!rs.next())
+            rs = st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
+            if (!rs.next())
                 return false;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -413,56 +422,56 @@ public class DBManager {
         return true;
 
 
-
     }
-    public static String getUser(String user){
+
+    public static String getUser(String user) {
 
         Statement st;
         ResultSet rs;
-        String usr="";
+        String usr = "";
 
         try {
             st = connection.createStatement();
-            rs=st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
-            while(rs.next())
-                usr=rs.getString("username");
+            rs = st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
+            while (rs.next())
+                usr = rs.getString("username");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return usr;
 
 
-
     }
-    public static String getPassword(String user){
+
+    public static String getPassword(String user) {
 
         Statement st;
         ResultSet rs;
-        String psw="";
+        String psw = "";
 
         try {
             st = connection.createStatement();
-            rs=st.executeQuery("SELECT password FROM user WHERE username='" + user + "'");
-            while(rs.next())
-                psw=rs.getString("password");
+            rs = st.executeQuery("SELECT password FROM user WHERE username='" + user + "'");
+            while (rs.next())
+                psw = rs.getString("password");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return psw;
 
 
-
     }
-    public static boolean checkUserPsw(String user, String password){
+
+    public static boolean checkUserPsw(String user, String password) {
 
         Statement st;
         ResultSet rs;
-        String psw="";
+        String psw = "";
 
         try {
             st = connection.createStatement();
-            rs=st.executeQuery("SELECT password FROM user WHERE username='" + user + "'");
-            while(rs.next()) {
+            rs = st.executeQuery("SELECT password FROM user WHERE username='" + user + "'");
+            while (rs.next()) {
                 psw = rs.getString("password");
                 if (psw.equals(password))
                     return true;
@@ -474,11 +483,12 @@ public class DBManager {
         return false;
 
     }
-    public static ArrayList <String> userList(){
+
+    public static ArrayList<String> userList() {
         Statement st;
         ResultSet rs;
 
-        ArrayList <String> userList= new ArrayList <String> () ;
+        ArrayList<String> userList = new ArrayList<String>();
         try {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT username FROM user");
@@ -486,16 +496,21 @@ public class DBManager {
                 userList.add(rs.getString("username"));
 
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return userList;
     }
 
+    public static void delUser(String username) {
+        try {
+            Statement st = connection.createStatement();
+            st.executeUpdate("DELETE FROM user WHERE username = '" + username + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-
-
+    }
 
 
 }

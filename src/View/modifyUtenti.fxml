@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ModifyUtentiController">
+   <children>
+      <HBox layoutX="43.0" layoutY="54.0" prefHeight="112.0" prefWidth="302.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="134.0" text="Modifica username:">
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin></Label>
+            <TextField fx:id="text">
+               <HBox.margin>
+                  <Insets top="18.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <Label layoutX="151.0" layoutY="14.0" text="Modifica Utente:" textFill="#5171d2">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <HBox layoutX="136.0" layoutY="150.0" prefHeight="36.0" prefWidth="134.0">
+         <children>
+            <Button mnemonicParsing="false" text="OK" fx:id="modifica">
+               <HBox.margin>
+                  <Insets left="30.0" top="4.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets left="30.0" />
+   </padding>
+</AnchorPane>

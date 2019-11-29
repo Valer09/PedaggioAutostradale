@@ -30,7 +30,7 @@ public class GestionaleFXController implements Initializable {
     @FXML
     ListView caselliList, autostradeList, listUser;
     @FXML
-    Button addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt;
+    Button addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt, deleteUt, modifyUt;
 
 
 
@@ -44,6 +44,7 @@ public class GestionaleFXController implements Initializable {
         addAutostrada.setOnAction(this::aggiungiAutostrada);
 
         addUt.setOnAction(this::aggiungiUtente);
+        modifyUt.setOnAction(this::modificaUtente);
         ObservableList data = FXCollections.observableArrayList();
         ArrayList <Highway> highways = DBManager.getHighways();
         highways.forEach(autostrada -> {
@@ -59,12 +60,8 @@ public class GestionaleFXController implements Initializable {
         });
         caselliList.setItems(list);
 
-        ArrayList <String> utenti = DBManager.userList();
-        ObservableList<String> item = FXCollections.observableArrayList();
-        utenti.forEach(utente ->{
-            item.add(utente);
-        });
-       listUser.setItems(item);
+        createUserList();
+        deleteUt.setOnAction(this::rimuoviUtente);
     }
 
     public void setUser(User user){
@@ -175,6 +172,46 @@ public class GestionaleFXController implements Initializable {
         //Evento chiusura del modale
         stage.setOnHiding((WindowEvent event1) -> {
             this.refreshCaselli();
+        });
+    }
+    public void createUserList(){
+        System.out.println("Refresh");
+        ArrayList <String> utenti = DBManager.userList();
+        ObservableList<String> item = FXCollections.observableArrayList();
+        utenti.forEach(utente ->{
+            item.add(utente);
+        });
+        listUser.setItems(item);
+    }
+
+    public void rimuoviUtente(ActionEvent e){
+        String utente = (String) listUser.getSelectionModel().getSelectedItem();
+        DBManager.delUser(utente);
+        System.out.println("Utente eliminato: "+utente);
+        createUserList();
+
+    }
+    private void modificaUtente(ActionEvent e){
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyUtenti.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        stage.setScene(new Scene(root));
+        stage.setTitle("Modifica Utente");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node) e.getSource()).getScene().getWindow() );
+        ModifyUtentiController controller = loader.getController();
+        String utente = (String) listUser.getSelectionModel().getSelectedItem();
+        controller.setUser(utente);
+        stage.show();
+        stage.setOnHiding((WindowEvent event1) -> {
+            System.out.println("Chiuso");
+            createUserList();
         });
     }
 }
