@@ -74,7 +74,7 @@ public class ModifyCaselloController implements Initializable {
         this.casello = casello;
         System.out.println(casello.getName());
         //setto i valori del casello
-        autostradaList.setValue(DBManager.getHighwayByTollbooth(casello.getName()));
+        autostradaList.setValue(casello.getAutostrada());
         nomeInput.setText(casello.getName());
         kmInput.setText(Double.toString(casello.getKm()));
     }

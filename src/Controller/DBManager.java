@@ -135,7 +135,7 @@ public class DBManager {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT nome FROM autostrada");
             while (rs.next()) {
-                highways.add(new Highway(rs.getString("nome")));
+                highways.add(new Highway(rs.getString("nome"), rs.getDouble("TU")));
 
             }
         } catch (SQLException e) {
@@ -144,24 +144,20 @@ public class DBManager {
         return highways;
     }
 
-    public static String getHighwayByTollbooth(String tollbooth) {
-
+    public static Highway getHighway(String nome){
         Statement st;
         ResultSet rs;
-        String highway = "";
+        Highway autostrada = new Highway(" ", 0);
         try {
             st = connection.createStatement();
-            rs = st.executeQuery("SELECT Autostrada FROM tollbooths WHERE Name='" + tollbooth + "'");
-            while (rs.next()) {
-                highway = rs.getString("Autostrada");
+            rs = st.executeQuery("SELECT * FROM autostrada WHERE Name = '"+nome+"'");
+            if (rs.next()) {
+                autostrada = new Highway(rs.getString("Name"), rs.getDouble("TU"));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return highway;
-
-
+        return autostrada;
     }
 
     /**
@@ -172,7 +168,6 @@ public class DBManager {
     public static double getHighwayTU(String highway) {
 
         Connection con = DBManager.getConnection();
-
         Statement stm = null;
         try {
             stm = con.createStatement();
@@ -351,7 +346,7 @@ public class DBManager {
             ResultSet rs = st.executeQuery("SELECT * FROM tollbooths ");
 
             while(rs.next()){
-                caselli.add(new TollBoth(rs.getString("Name"), rs.getDouble("KM")));
+                caselli.add(new TollBoth(rs.getString("Name"), rs.getDouble("KM"), rs.getString("Autostrada")));
             }
 
         } catch (SQLException e) {
@@ -361,13 +356,13 @@ public class DBManager {
     }
 
     public static TollBoth getTollBoth(String name){
-        TollBoth casello = new TollBoth("", 0);
+        TollBoth casello = new TollBoth("", 0, "");
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM tollbooths WHERE Name = '"+name+"'");
 
             if(rs.next()){
-                casello = new TollBoth(rs.getString("Name"), rs.getDouble("KM"));
+                casello = new TollBoth(rs.getString("Name"), rs.getDouble("KM"), rs.getString("Autostrada"));
                 return casello;
             }
 
