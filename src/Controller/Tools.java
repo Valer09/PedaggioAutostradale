@@ -17,25 +17,23 @@ import java.util.regex.Pattern;
 
 public class Tools {
 
-    public static Pair<String,Boolean> checkLogIn(String user, String password){
-        Pair <String,Boolean>status;
-        boolean exists=checkUserExists(user);
-        if (exists==false){
-            status= new Pair<String, Boolean>("Utente errato",false);
-            return status;
-        }
-        boolean pswcorrect= DBManager.checkUserPsw(user, password);
-        System.out.println(pswcorrect);
-        if (pswcorrect==false){
-            status= new Pair<String, Boolean>("Password errata",false);
-            return status;
-        }
-        status= new Pair<String, Boolean>("OK",true);
-        return status;
+    public static Pair <String,Boolean> checkLogIn(String user, String password){
+        Pair <  Pair<String,String>,  Boolean  > status;
+        status = DBManager.checkUserAndPassword(user,password);
+        Pair <String, Boolean > result=null;
 
-    }
-    public static boolean checkUserExists(String username){
-        return DBManager.checkUser(username);
+        if (status.getKey().getKey().equals("")){
+            result= new Pair < String, Boolean>("Utente Errato", false);
+            return result;
+        }
+
+        if (status.getKey().getValue().equals("")){
+            result= new Pair<String, Boolean>("Password errata",false);
+            return result;
+        }
+        result= new Pair<String, Boolean>("OK",true);
+        return result;
+
     }
 
 

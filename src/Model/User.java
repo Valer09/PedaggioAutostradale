@@ -13,8 +13,9 @@ public class User {
 
         if ( (getLogStatus() )){
 
-            username=DBManager.getUser(user);
-            password=DBManager.getPassword(user);
+            username=user;
+            password=passw;
+
         }
         else
         {
@@ -32,7 +33,7 @@ public class User {
     }
     public void setOtherUsername(String user, String username) {
         if ( (getLogStatus() )) {
-            if (Tools.checkUserExists(username) == false)
+            if (DBManager.checkUsername(user) == false)
                 System.out.println("Utente non esistente");
             else {
                 DBManager.setUsername(user, username);
@@ -75,7 +76,7 @@ public class User {
     public void editUserPsw(String user, String newpsw) {
         if ( (getLogStatus() )) {
 
-            if (Tools.checkUserExists(user)) {
+            if (DBManager.checkUsername(user)) {
                 DBManager.setUserPsw(user, newpsw);
             } else
                 System.out.println("Utente non trovato");
@@ -84,7 +85,6 @@ public class User {
             System.out.println("Utente non loggato correttamente");
 
     }
-
     public Pair<String,Boolean> getstatus(){
         return this.status;
     }

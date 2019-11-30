@@ -6,6 +6,7 @@
 package Controller;
 import Model.Highway;
 import Model.TollBoth;
+import javafx.util.Pair;
 import org.jetbrains.annotations.Contract;
 
 import java.sql.*;
@@ -411,45 +412,31 @@ public class DBManager {
 
     }
 
-    public static boolean checkUser(String user) {
-
+    public static Pair <Pair<String,String>,  Boolean  > checkUserAndPassword(String user, String password) {
+        Pair <  Pair<String,String>,  Boolean  > status=null;
         Statement st;
         ResultSet rs;
 
         try {
             st = connection.createStatement();
-            rs = st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
+            rs = st.executeQuery("SELECT username,password FROM user WHERE username='" + user + "'");
             if (!rs.next())
-                return false;
+                status= new Pair<>(new Pair<>("", ""), false);
+            else{
+                if (!rs.getString("password").equals(password) ){
+                    status= new Pair<>(new Pair<>(user, ""), false);
+                }
+                else{
+                    status= new Pair<>(new Pair<>(user, password), true);
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return true;
-
-
-
+        return status;
     }
 
-    public static String getUser(String user) {
-
-        Statement st;
-        ResultSet rs;
-        String usr="";
-
-        try {
-            st = connection.createStatement();
-            rs=st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
-            while(rs.next())
-                usr=rs.getString("username");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return usr;
-
-
-
-    }
-    public static String getPassword(String user){
+    public static boolean checkUsername(String username){
 
         Statement st;
         ResultSet rs;
@@ -457,17 +444,18 @@ public class DBManager {
 
         try {
             st = connection.createStatement();
-            rs=st.executeQuery("SELECT password FROM user WHERE username='" + user + "'");
-            while(rs.next())
-                psw=rs.getString("password");
+            rs=st.executeQuery("SELECT username FROM user WHERE username='" + username + "'");
+            if(!rs.next())
+                return false;
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return psw;
-
-
+        return false;
 
     }
+
     public static boolean checkUserPsw(String user, String password){
 
         Statement st;
@@ -489,6 +477,44 @@ public class DBManager {
         return false;
 
     }
+
+    public static String getUser(String user) {
+
+        Statement st;
+        ResultSet rs;
+        String usr="";
+
+        try {
+            st = connection.createStatement();
+            rs=st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
+            while(rs.next())
+                usr=rs.getString("username");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usr;
+
+    }
+
+
+    public static String getPassword(String user){
+
+        Statement st;
+        ResultSet rs;
+        String psw="";
+
+        try {
+            st = connection.createStatement();
+            rs=st.executeQuery("SELECT password FROM user WHERE username='" + user + "'");
+            while(rs.next())
+                psw=rs.getString("password");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return psw;
+
+    }
+
     public static ArrayList <String> userList(){
         Statement st;
         ResultSet rs;
