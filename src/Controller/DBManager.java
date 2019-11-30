@@ -124,6 +124,7 @@ public class DBManager {
     }
 
     //HIGHWAYS METHODS
+
     public static ArrayList <Highway> getHighways(){
         Statement st;
         ResultSet rs;
@@ -131,9 +132,9 @@ public class DBManager {
         ArrayList<Highway> highways = new ArrayList<Highway>();
         try {
             st = connection.createStatement();
-            rs = st.executeQuery("SELECT nome FROM autostrada");
+            rs = st.executeQuery("SELECT * FROM autostrada");
             while (rs.next()) {
-                highways.add(new Highway(rs.getString("nome")));
+                highways.add(new Highway(rs.getString("nome"), rs.getDouble("tu")));
 
             }
         } catch (SQLException e) {
@@ -141,25 +142,23 @@ public class DBManager {
         }
         return highways;
     }
-    public static String getHighwayByTollbooth(String tollbooth) {
 
+    public static Highway getHighway(String nome){
         Statement st;
         ResultSet rs;
-        String highway = "";
+        Highway autostrada = new Highway(" ", 0);
         try {
             st = connection.createStatement();
-            rs = st.executeQuery("SELECT Autostrada FROM tollbooths WHERE Name='" + tollbooth + "'");
-            while (rs.next()) {
-                highway = rs.getString("Autostrada");
+            rs = st.executeQuery("SELECT * FROM autostrada WHERE nome = '"+nome+"'");
+            if (rs.next()) {
+                autostrada = new Highway(rs.getString("nome"), rs.getDouble("tu"));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return highway;
-
-
+        return autostrada;
     }
+
     /**
      * getHighwayTU recover TU of a specific highway from DB
      *
@@ -168,7 +167,6 @@ public class DBManager {
     public static double getHighwayTU(String highway) {
 
         Connection con = DBManager.getConnection();
-
         Statement stm = null;
         try {
             stm = con.createStatement();
@@ -210,6 +208,7 @@ public class DBManager {
 
 
     }
+
     public static void setHighwayName(String highway, String newName) {
         try {
             ResultSet rs;
@@ -230,6 +229,7 @@ public class DBManager {
 
 
     }
+
     public static void addHighway(String name, double TU) {
         try {
             Statement stm = connection.createStatement();
@@ -240,6 +240,7 @@ public class DBManager {
 
 
     }
+
     public static void delHighway(String highway) {
         try {
             ResultSet rs;
@@ -253,6 +254,7 @@ public class DBManager {
         }
 
     }
+
     public HashMap<String, Double> getHighwayTollbooths(String highway) {
         HashMap<String, Double> tb = new HashMap<String, Double>();
 
@@ -284,6 +286,7 @@ public class DBManager {
 
 
     }
+
     public static void setTollbothName(String tollbooth, String newName) {
         try {
             Statement stm = connection.createStatement();
@@ -333,6 +336,7 @@ public class DBManager {
         return km;
 
     }
+
     public static ArrayList<TollBoth> getTollBoths(){
         ArrayList<TollBoth> caselli = new ArrayList<TollBoth>();
         try {
@@ -340,7 +344,7 @@ public class DBManager {
             ResultSet rs = st.executeQuery("SELECT * FROM tollbooths ");
 
             while(rs.next()){
-                caselli.add(new TollBoth(rs.getString("Name"), rs.getDouble("KM")));
+                caselli.add(new TollBoth(rs.getString("Name"), rs.getDouble("KM"), rs.getString("Autostrada")));
             }
 
         } catch (SQLException e) {
@@ -348,14 +352,15 @@ public class DBManager {
         }
         return caselli;
     }
+
     public static TollBoth getTollBoth(String name){
-        TollBoth casello = new TollBoth("", 0);
+        TollBoth casello = new TollBoth("", 0, "");
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM tollbooths WHERE Name = '"+name+"'");
 
             if(rs.next()){
-                casello = new TollBoth(rs.getString("Name"), rs.getDouble("KM"));
+                casello = new TollBoth(rs.getString("Name"), rs.getDouble("KM"), rs.getString("Autostrada"));
                 return casello;
             }
 
@@ -365,6 +370,7 @@ public class DBManager {
 
         return casello;
     }
+
     public static void setTollbothHigway(String tollboth, String Higway){
         try{
             Statement stm = connection.createStatement();
@@ -373,6 +379,7 @@ public class DBManager {
             e.printStackTrace();
         }
     }
+
     //USER METHODS
     public static void addUser(String name, String password) {
         try {
@@ -383,6 +390,7 @@ public class DBManager {
         }
 
     }
+
     public static void setUsername(String user, String username) {
         try {
             Statement stm = connection.createStatement();
@@ -392,6 +400,7 @@ public class DBManager {
         }
 
     }
+
     public static void setUserPsw(String user, String newpsw) {
         try {
             Statement stm = connection.createStatement();
@@ -401,6 +410,7 @@ public class DBManager {
         }
 
     }
+
     public static boolean checkUser(String user) {
 
         Statement st;
@@ -419,6 +429,7 @@ public class DBManager {
 
 
     }
+
     public static String getUser(String user) {
 
         Statement st;
@@ -439,6 +450,7 @@ public class DBManager {
 
     }
     public static String getPassword(String user){
+
         Statement st;
         ResultSet rs;
         String psw="";
@@ -517,6 +529,7 @@ public class DBManager {
         return cl;
 
     }
+
     public static void delUser(String username) {
         try {
             Statement st = connection.createStatement();

@@ -46,7 +46,7 @@ public class ModifyAutostradaController implements Initializable {
 
     public void setHWname(String name){
         this.highway_name = name;
-        Highway highway= new Highway(highway_name);
+        Highway highway= DBManager.getHighway(this.highway_name);
         nomeInput.setText(highway.getName());
         TU.setText(Double.toString(highway.getTU()));
     }
