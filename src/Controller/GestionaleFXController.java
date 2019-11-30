@@ -5,6 +5,7 @@ import Model.TollBoth;
 import Model.User;
 import Model.Imposte;
 import javafx.beans.Observable;
+import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,7 +31,7 @@ public class GestionaleFXController implements Initializable {
     @FXML
     ListView caselliList, autostradeList, listUser;
     @FXML
-    Button backButton ,addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt, deleteUt, modifyUt;
+    Button backButton ,addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt, deleteUt, modifyUt,editImporti,eraseButton,nuovoImporto;
     @FXML
     TableColumn <Imposte, String>key;
     @FXML
@@ -55,15 +56,10 @@ public class GestionaleFXController implements Initializable {
         caselliList.setItems(list);
 
         //Classi e imposte
-        imposte  = FXCollections.observableArrayList();
-        HashMap<String, Double> classes = DBManager.getClasses();
-        classes.forEach((K,V) -> {
-            imposte.add(new Imposte(K,V));
-        });
-        key.setCellValueFactory(cellData ->  cellData.getValue().getNomeImpostaProperty());
-        value.setCellValueFactory(cellData ->  cellData.getValue().getvaloreImpostaProperty().asObject());
-        classesTable.setItems(imposte);
-        classesTable.getSortOrder().add(key);
+        eraseButton.setOnAction(this::eliminaImporto);
+        editImporti.setOnAction(this::modificaImposta);
+        nuovoImporto.setOnAction(this::creaImposta);
+        refreshImposte();
 
         //Autostrade
         addAutostrada.setOnAction(this::aggiungiAutostrada);
@@ -89,9 +85,86 @@ public class GestionaleFXController implements Initializable {
         deleteUt.setOnAction(this::rimuoviUtente);
     }
 
-    public ObservableList<Imposte> getDatiImposte() {
-        return imposte;
+    private void eliminaImporto(ActionEvent actionEvent) {
+        String importo =  classesTable.getSelectionModel().getSelectedItem().getNomeImposta();
+        DBManager.delImposta(importo);
+        refreshImposte();
     }
+
+    private void modificaImposta(ActionEvent actionEvent) {
+        String nomeimporto;
+        Double valoreimporto ;
+        Imposte selected = classesTable.getSelectionModel().getSelectedItem();
+        nomeimporto=selected.getNomeImposta();
+        valoreimporto=selected.getValoreImposta();
+        System.out.println(nomeimporto+ " "+ valoreimporto );
+
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyImposte.fxml"));
+        try {
+            root = loader.load();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        ModifyImposteFXController controller = loader.<ModifyImposteFXController>getController();
+        controller.setReason(false);
+        controller.setFields(nomeimporto,valoreimporto);
+
+        stage.setScene(new Scene(root));
+        stage.setTitle("Crea Nuovo Imposta");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node) actionEvent.getSource()).getScene().getWindow() );
+
+        stage.show();
+        //Evento chiusura del modale
+        stage.setOnHiding((WindowEvent event1) -> {
+            this.refreshImposte();
+        });
+
+
+    }
+    private void creaImposta(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyImposte.fxml"));
+        try {
+            root = loader.load();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        ModifyImposteFXController controller = loader.<ModifyImposteFXController>getController();
+        controller.setReason(true);
+        System.out.println(controller.creating+"1");
+        stage.setScene(new Scene(root));
+        stage.setTitle("Crea Nuovo Imposta");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node) actionEvent.getSource()).getScene().getWindow() );
+
+        stage.show();
+        //Evento chiusura del modale
+        stage.setOnHiding((WindowEvent event1) -> {
+            this.refreshImposte();
+        });
+
+    }
+
+    private void refreshImposte(){
+        imposte  = FXCollections.observableArrayList();
+        HashMap<String, Double> classes = DBManager.getClasses();
+        classes.forEach((K,V) -> {
+            imposte.add(new Imposte(K,V));
+        });
+        key.setCellValueFactory(cellData ->  cellData.getValue().getNomeImpostaProperty());
+        value.setCellValueFactory(cellData ->  cellData.getValue().getvaloreImpostaProperty().asObject());
+        classesTable.setItems(imposte);
+        classesTable.getSortOrder().add(key);
+    }
+
 
 
     public void setUser(User user){

@@ -34,11 +34,10 @@ public class Tools {
         return status;
 
     }
-
-
     public static boolean checkUserExists(String username){
         return DBManager.checkUser(username);
     }
+
 
     /**
      * DA COMPLETARE; CONTROLLA IL FORMATO TARGA.
@@ -76,5 +75,18 @@ public class Tools {
         reader.close();
         return content.toString();
     }
+
+    public static boolean importoFormatCheck(double importo) {
+        if (importo > 1 || importo < 0)
+            return false;
+        return true;
+
+    }
+    public static double roundUp(double value){
+        value=Math.round(value * 10) / 10.0;
+        value=Math.round(value * 100.0) / 100.0;
+        return value;
+    }
+
 
 }

@@ -47,8 +47,7 @@ public class TollCalculator {
         amount=TU*route;
         amount+= ICTV*amount;
         amount+=(amount*DBManager.getIVA());
-        amount=Math.round(amount * 10) / 10.0;
-        amount=Math.round(amount * 100.0) / 100.0;
+        amount=Tools.roundUp(amount);
 
         return amount;
     }

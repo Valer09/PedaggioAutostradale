@@ -78,7 +78,6 @@ public class DBManager {
         }
         return res;
     }
-
     public static double getClassValue(String classe) {
 
         Statement stm = null;
@@ -125,7 +124,6 @@ public class DBManager {
     }
 
     //HIGHWAYS METHODS
-
     public static ArrayList <Highway> getHighways(){
         Statement st;
         ResultSet rs;
@@ -143,7 +141,6 @@ public class DBManager {
         }
         return highways;
     }
-
     public static String getHighwayByTollbooth(String tollbooth) {
 
         Statement st;
@@ -163,7 +160,6 @@ public class DBManager {
 
 
     }
-
     /**
      * getHighwayTU recover TU of a specific highway from DB
      *
@@ -204,7 +200,6 @@ public class DBManager {
         return 1;
 
     }
-
     public static void setTU(String highway, double TU) {
         try {
             Statement stm = connection.createStatement();
@@ -215,7 +210,6 @@ public class DBManager {
 
 
     }
-
     public static void setHighwayName(String highway, String newName) {
         try {
             ResultSet rs;
@@ -236,7 +230,6 @@ public class DBManager {
 
 
     }
-
     public static void addHighway(String name, double TU) {
         try {
             Statement stm = connection.createStatement();
@@ -247,7 +240,6 @@ public class DBManager {
 
 
     }
-
     public static void delHighway(String highway) {
         try {
             ResultSet rs;
@@ -261,7 +253,6 @@ public class DBManager {
         }
 
     }
-
     public HashMap<String, Double> getHighwayTollbooths(String highway) {
         HashMap<String, Double> tb = new HashMap<String, Double>();
 
@@ -293,7 +284,6 @@ public class DBManager {
 
 
     }
-
     public static void setTollbothName(String tollbooth, String newName) {
         try {
             Statement stm = connection.createStatement();
@@ -343,7 +333,6 @@ public class DBManager {
         return km;
 
     }
-
     public static ArrayList<TollBoth> getTollBoths(){
         ArrayList<TollBoth> caselli = new ArrayList<TollBoth>();
         try {
@@ -359,7 +348,6 @@ public class DBManager {
         }
         return caselli;
     }
-
     public static TollBoth getTollBoth(String name){
         TollBoth casello = new TollBoth("", 0);
         try {
@@ -377,7 +365,6 @@ public class DBManager {
 
         return casello;
     }
-
     public static void setTollbothHigway(String tollboth, String Higway){
         try{
             Statement stm = connection.createStatement();
@@ -386,7 +373,6 @@ public class DBManager {
             e.printStackTrace();
         }
     }
-
     //USER METHODS
     public static void addUser(String name, String password) {
         try {
@@ -397,7 +383,6 @@ public class DBManager {
         }
 
     }
-
     public static void setUsername(String user, String username) {
         try {
             Statement stm = connection.createStatement();
@@ -407,7 +392,6 @@ public class DBManager {
         }
 
     }
-
     public static void setUserPsw(String user, String newpsw) {
         try {
             Statement stm = connection.createStatement();
@@ -417,7 +401,6 @@ public class DBManager {
         }
 
     }
-
     public static boolean checkUser(String user) {
 
         Statement st;
@@ -436,7 +419,6 @@ public class DBManager {
 
 
     }
-
     public static String getUser(String user) {
 
         Statement st;
@@ -457,7 +439,6 @@ public class DBManager {
 
     }
     public static String getPassword(String user){
-
         Statement st;
         ResultSet rs;
         String psw="";
@@ -536,7 +517,6 @@ public class DBManager {
         return cl;
 
     }
-
     public static void delUser(String username) {
         try {
             Statement st = connection.createStatement();
@@ -545,6 +525,33 @@ public class DBManager {
             e.printStackTrace();
         }
 
+    }
+    public static void delImposta(String nomeImposta){
+        try{
+        Statement stm = connection.createStatement();
+        stm.executeUpdate("DELETE FROM costants WHERE Name='"+nomeImposta+"'");
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public static void addImposta(String nomeImposta, double valoreImposta){
+        try{
+            Statement stm = connection.createStatement();
+            stm.executeUpdate("INSERT INTO costants (Name, Val) VALUES (" + "'" + nomeImposta + "'," + "'" + valoreImposta + "')");
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public static void setImposta(String nomeImposta, String newNomeImposta, double valoreImposta){
+        try {
+            Statement stm = connection.createStatement();
+            System.out.println(nomeImposta+ " "+ newNomeImposta+" "+ valoreImposta);
+            stm.executeUpdate("UPDATE costants SET Name='"+newNomeImposta+"', Val='"+valoreImposta+"' WHERE Name='"+nomeImposta+"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
