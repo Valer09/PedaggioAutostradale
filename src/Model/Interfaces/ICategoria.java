@@ -9,7 +9,6 @@ package Model.Interfaces;
  *   @author Mattia Lenza
  *
  * */
-
 public interface ICategoria {
 
     /**

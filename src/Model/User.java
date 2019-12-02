@@ -1,5 +1,4 @@
 package Model;
-
 import Controller.DBManager;
 import Controller.Tools;
 import javafx.util.Pair;
