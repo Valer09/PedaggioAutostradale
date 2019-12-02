@@ -19,10 +19,10 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-            Parent root = FXMLLoader.load(getClass().getResource("../View/home.fxml"));
-            primaryStage.setTitle("Pedaggio Autostradale");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("../View/home.fxml"));
+        primaryStage.setTitle("Pedaggio Autostradale");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 
     public static void main(String []args){
