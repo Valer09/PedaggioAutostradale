@@ -71,6 +71,7 @@ public class ModifyImposteFXController implements Initializable {
             }
             else{
                 Errore.setText("Importo non valido. /nL'importo deve indicare una percentuale e quindi essere compreso tra 0 e 1");
+
             }
         }
     }
