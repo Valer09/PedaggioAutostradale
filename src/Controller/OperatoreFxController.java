@@ -1,9 +1,8 @@
 package Controller;
 
 import Model.Highway;
-import Model.TollBoth;
 import Model.Vehicle;
-import javafx.beans.Observable;
+import Model.TollBoth;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class OperatoreFxController implements Initializable {

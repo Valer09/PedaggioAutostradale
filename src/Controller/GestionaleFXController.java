@@ -4,7 +4,6 @@ import Model.Highway;
 import Model.TollBoth;
 import Model.User;
 import Model.Imposte;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
