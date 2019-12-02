@@ -17,28 +17,25 @@ import java.util.regex.Pattern;
 
 public class Tools {
 
-    public static Pair<String,Boolean> checkLogIn(String user, String password){
-        Pair <String,Boolean>status;
-        boolean exists=checkUserExists(user);
-        if (exists==false){
-            status= new Pair<String, Boolean>("Utente errato",false);
-            return status;
+    public static Pair <String,Boolean> checkLogIn(String user, String password){
+        Pair <  Pair<String,String>,  Boolean  > status;
+        status = DBManager.checkUserAndPassword(user,password);
+        Pair <String, Boolean > result=null;
+
+        if (status.getKey().getKey().equals("")){
+            result= new Pair < String, Boolean>("Utente Errato", false);
+            return result;
         }
-        boolean pswcorrect= DBManager.checkUserPsw(user, password);
-        System.out.println(pswcorrect);
-        if (pswcorrect==false){
-            status= new Pair<String, Boolean>("Password errata",false);
-            return status;
+
+        if (status.getKey().getValue().equals("")){
+            result= new Pair<String, Boolean>("Password errata",false);
+            return result;
         }
-        status= new Pair<String, Boolean>("OK",true);
-        return status;
+        result= new Pair<String, Boolean>("OK",true);
+        return result;
 
     }
 
-
-    public static boolean checkUserExists(String username){
-        return DBManager.checkUser(username);
-    }
 
     /**
      * DA COMPLETARE; CONTROLLA IL FORMATO TARGA.
@@ -76,5 +73,18 @@ public class Tools {
         reader.close();
         return content.toString();
     }
+
+    public static boolean importoFormatCheck(double importo) {
+        if (importo > 1 || importo < 0)
+            return false;
+        return true;
+
+    }
+    public static double roundUp(double value){
+        value=Math.round(value * 10) / 10.0;
+        value=Math.round(value * 100.0) / 100.0;
+        return value;
+    }
+
 
 }

@@ -9,12 +9,11 @@ public class Highway {
     private String name;
     private HashMap <String, Double> tollbooths = null;
 
-    public Highway(String highway){
+    public Highway(String name, double TU){
         DBManager db=new DBManager();
-        TU = db.getHighwayTU(highway);
-        this.name = highway;
-        tollbooths = db.getHighwayTollbooths(highway);
-
+        this.TU = TU;
+        this.name = name;
+        tollbooths = db.getHighwayTollbooths(name);
     }
 
 

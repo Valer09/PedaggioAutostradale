@@ -16,7 +16,7 @@ public class Imposte{
 
 
     public String getNomeImposta() {
-        return nomeImposta.getName();
+        return nomeImposta.getValue();
     }
     public Double getValoreImposta() {
         return valoreImposta.getValue();

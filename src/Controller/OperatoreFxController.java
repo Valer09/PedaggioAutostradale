@@ -61,7 +61,7 @@ public class OperatoreFxController implements Initializable {
                 }
                 else{
                     TollBoth endingTB = DBManager.getTollBoth((String) tbSelect.getValue());
-                    Highway autostrada = new Highway(DBManager.getHighwayByTollbooth(startingTB.getName()));
+                    Highway autostrada = DBManager.getHighway(startingTB.getAutostrada());
                     double prezzo = TollCalculator.getToll(macchina, autostrada, startingTB, endingTB);
                     setVehicleValues(macchina);
                     setRouteValues(autostrada, startingTB, endingTB);
@@ -114,7 +114,8 @@ public class OperatoreFxController implements Initializable {
         String fileContent = Tools.fileReader(this.ticket.getPath());
         JSONObject obj = new JSONObject(fileContent.toString());
         String startingTBname = obj.getString("startingTB");
-        Highway autostrada = new Highway (DBManager.getHighwayByTollbooth(startingTBname));
+        TollBoth casello = DBManager.getTollBoth(startingTBname);
+        Highway autostrada = DBManager.getHighway(casello.getAutostrada());
         HashMap <String, Double> tollboths = autostrada.getTollbooths();
         ObservableList<String> list = FXCollections.observableArrayList();
         tollboths.forEach((k,v) ->{

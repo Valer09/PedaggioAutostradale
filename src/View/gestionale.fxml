@@ -81,8 +81,8 @@
                               
                               <HBox alignment="CENTER" layoutX="2.0" layoutY="258.0" prefHeight="54.0" prefWidth="582.0" spacing="50.0">
                                   <children>
-                                      <Button fx:id="addAmbientalClass" mnemonicParsing="false" text="Nuova Classe Ambientale" />
-                                      <Button fx:id="editButton" mnemonicParsing="false" text="Modifica importi" />
+                                    <Button fx:id="nuovoImporto" mnemonicParsing="false" text="Crea Nuova Imposta" />
+                                      <Button fx:id="editImporti" mnemonicParsing="false" text="Modifica" />
                                       <Button fx:id="eraseButton" mnemonicParsing="false" text="Elimina" />
                                   </children>
                               </HBox>
