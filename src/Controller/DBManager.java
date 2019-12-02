@@ -504,6 +504,12 @@ public class DBManager {
 
     }
 
+    /**
+     * Metodo prevalentemente utilizzato da Tools.checkLogin. Le query sul DB controllano l'esistenza della username, chiave della tabella users e la correttezza della password. Dunque costruisce la struttura status per il metodo checkLogin di Tools.
+     * @param user username
+     * @param password password
+     * @return <b>Pair "Pair-Boolean"</b> - <b>status</>: struttura dati contentente username, password e bool=true se entrambi fanno match nel DB
+     */
     public static Pair <Pair<String,String>,  Boolean  > checkUserAndPassword(String user, String password) {
         Pair <  Pair<String,String>,  Boolean  > status=null;
         Statement st;
