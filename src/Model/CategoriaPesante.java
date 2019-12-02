@@ -2,12 +2,24 @@ package Model;
 import Model.Interfaces.*;
 import Controller.DBManager;
 
+/**
+ * Modello CategoriaPesante: rappresenta i dati delle categorie pesanti di veicoli
+ * @author Valerio Marchitelli
+ * @author Jacopo Cicoria
+ * @author Antonio Angelini
+ * @author Mattia Lenza
+ *
+ */
 
 public class CategoriaPesante  implements ICategoria {
 
     private String classe;
     private double valore;
 
+    /**
+     * Cotruttore per il modello Categoria Pesante. In base al numero di assi, imposta il nome della classe ed il valore dell'imposta
+     * @param assi
+     */
     public CategoriaPesante(int assi) {
 
         if (assi==2)
@@ -19,12 +31,16 @@ public class CategoriaPesante  implements ICategoria {
 
     }
 
+    /**
+     * @return <b>String</> - restituisce il nome della categoria veicolo
+     */
     public String getNomeCategoria() {
         return this.classe;
     }
 
-    ;
-
+    /**
+     * @return <b>double</> - Restituisce il valore di imposta della categoria veicolo
+     */
     public double getValoreCategoria() {
         return this.valore;
     }
