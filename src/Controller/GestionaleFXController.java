@@ -74,19 +74,10 @@ public class GestionaleFXController implements Initializable {
         ArrayList <Highway> highways = DBManager.getHighways();
         deleteAutostrada.setOnAction(this::rimuoviAutostrada);
         modifyAutostrada.setOnAction(this::modificaAutostrada);
-        ArrayList<Highway> highways = DBManager.getHighways();
-        ObservableList<String> data = FXCollections.observableArrayList();
         highways.forEach(autostrada -> {
             data.add(autostrada.getName());
         });
         autostradeList.setItems(data);
-
-        System.out.println(highways);
-        ArrayList<TollBoth> caselli = DBManager.getTollBoths();
-        ObservableList<String> list = FXCollections.observableArrayList();
-        caselli.forEach(casello -> {
-            list.add(casello.getName());
-        });
         caselliList.setItems(list);
 
         createUserList();
@@ -209,14 +200,12 @@ public class GestionaleFXController implements Initializable {
         });
         caselliList.setItems(list);
     }
-
     private void rimuoviCasello(ActionEvent e){
         String casello = (String) caselliList.getSelectionModel().getSelectedItem();
         DBManager.delTollboth(casello);
         System.out.println("Eliminato il casello: "+casello);
         this.refreshCaselli();
     }
-
     private void modificaCasello(ActionEvent e){
         //ottengo il nome del casello dalla selezione
         TollBoth casello = DBManager.getTollBoth((String) caselliList.getSelectionModel().getSelectedItem());
@@ -245,6 +234,7 @@ public class GestionaleFXController implements Initializable {
             this.refreshCaselli();
         });
     }
+
     public void createUserList(){
         System.out.println("Refresh");
         ArrayList <String> utenti = DBManager.userList();
@@ -254,7 +244,6 @@ public class GestionaleFXController implements Initializable {
         });
         listUser.setItems(item);
     }
-
     public void rimuoviUtente(ActionEvent e){
         String utente = (String) listUser.getSelectionModel().getSelectedItem();
         DBManager.delUser(utente);
