@@ -23,11 +23,20 @@ Button modifica;
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modifica.setOnAction(this::modUt);
     }
+
+    /**
+     * Seleziona un utente dalla lista utenti
+     * @param utente
+     */
     public void setUser(String utente){
         this.user = utente;
         text.setText(this.user);
     }
 
+    /**
+     * Modifica un utente nel database
+     * @param actionEvent
+     */
     private void modUt(javafx.event.ActionEvent actionEvent) {
         String username = "";
         username = text.getText();
@@ -37,14 +46,4 @@ Button modifica;
         stage.close();
     }
 
-    /*private void modUt( ActionEvent e) {
-        String username = "";
-        String user = (String) listUser.getSelectionModel().getSelectedItem();
-        username = text.getText();
-        DBManager.setUsername(username, user);
-        System.out.println(username);
-        Stage stage = (Stage) modifica.getScene().getWindow();
-        stage.close();
-
-    }*/
 }

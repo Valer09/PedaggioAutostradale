@@ -63,7 +63,7 @@ public class User {
      */
     public void setOtherUsername(String user, String username) {
         if ( (getLogStatus() )) {
-            if (DBManager.checkUsername(user) == false)
+            if (DBManager.checkUser(user) == false)
                 System.out.println("Utente non esistente");
             else {
                 DBManager.setUsername(user, username);
@@ -124,7 +124,7 @@ public class User {
     public void editUserPsw(String user, String newpsw) {
         if ( (getLogStatus() )) {
 
-            if (DBManager.checkUsername(user)) {
+            if (DBManager.checkUser(user)) {
                 DBManager.setUserPsw(user, newpsw);
             } else
                 System.out.println("Utente non trovato");

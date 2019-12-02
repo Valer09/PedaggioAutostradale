@@ -17,6 +17,10 @@ public class HomeFxController implements Initializable {
     @FXML
     Button Gbtn;
 
+    /**
+     * Carica dalla Home, attraverso il bottone, la schermata "operatore"
+     * @param event
+     */
     private void switchToOperatorScene(javafx.event.ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/operatore.fxml"));
         Stage stage = (Stage) op.getScene().getWindow();
@@ -29,6 +33,10 @@ public class HomeFxController implements Initializable {
         stage.setScene(scene);
     }
 
+    /**
+     * Carica dalla, attraverso il bottone, la schermata login per gli admin
+     * @param event
+     */
     private void switchToLoginScene(javafx.event.ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/login.fxml"));
         Stage stage = (Stage) Gbtn.getScene().getWindow();

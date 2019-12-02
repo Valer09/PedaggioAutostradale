@@ -23,6 +23,10 @@ public class AddUtentiModalController  implements Initializable {
         btn.setOnAction(this::addUtente);
     }
 
+    /**
+     * Aggiunge un utente al database
+     * @param e
+     */
     public void addUtente(ActionEvent e){
         String user = "";
         String password = "";
