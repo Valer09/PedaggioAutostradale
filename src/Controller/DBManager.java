@@ -21,21 +21,22 @@ public class DBManager {
     private static Connection connection = initializeConnection();
 
     //DB METHODS
-    public static Connection initializeConnection() {
 
+    /**
+     * initializeConnection inizializza la connessione con il DB
+     * @return
+     */
+    public static Connection initializeConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("ciao");
         }
-
         try {
             return DriverManager.getConnection("jdbc:mysql://" + path, "b5d4014795a1c2", "ea612ec6");
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
-
         return connection;
     }
 
@@ -47,6 +48,11 @@ public class DBManager {
     }
 
     //IVA
+
+    /**
+     * getIVA ritorna il valore dell'iva
+     * @return
+     */
     public static double getIVA() {
         double res = 0;
         try {
@@ -64,21 +70,31 @@ public class DBManager {
     }
 
     //VEHICLE METHODS
+
+    /**
+     * getAmbientalClassValue ritorna il valore della costante associata al nome della classe passata come paramentro
+     * @param nomeClasse
+     * @return
+     */
     public static double getAmbientalClassValue(String nomeClasse) {
         double res = 0;
         try {
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = '" + nomeClasse + "'");
             while (rs.next()) {
-
                 res = rs.getDouble("Val");
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return res;
     }
+
+    /**
+     * getClassValue ritorna il valore della costante associata al nome della classe passata come parametro
+     * @param classe
+     * @return
+     */
     public static double getClassValue(String classe) {
 
         Statement stm = null;
@@ -112,6 +128,12 @@ public class DBManager {
 
 
     }
+
+    /**
+     * getVeichleInfo ritorna le informazioni associate ad un veicolo
+     * @param vlp
+     * @return
+     */
     public ResultSet getVeichleInfo(String vlp){
 
         try {
@@ -126,6 +148,10 @@ public class DBManager {
 
     //HIGHWAYS METHODS
 
+    /**
+     * getHighways recupera i nomi di tutte le autostrade
+     * @return
+     */
     public static ArrayList <Highway> getHighways(){
         Statement st;
         ResultSet rs;
@@ -168,6 +194,7 @@ public class DBManager {
     public static double getHighwayTU(String highway) {
 
         Connection con = DBManager.getConnection();
+
         Statement stm = null;
         try {
             stm = con.createStatement();
@@ -199,6 +226,13 @@ public class DBManager {
         return 1;
 
     }
+
+    /**
+     * setTU imposta il valore della tariffa unitaria di un'autostrada nel DB
+     *
+     * @param highway
+     * @param TU
+     */
     public static void setTU(String highway, double TU) {
         try {
             Statement stm = connection.createStatement();
@@ -206,10 +240,13 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
+    /**
+     * setHighwayName aggiorna il nome di un'autostrada e aggiorna i rispettivi caselli
+     * @param highway
+     * @param newName
+     */
     public static void setHighwayName(String highway, String newName) {
         try {
             ResultSet rs;
@@ -231,6 +268,11 @@ public class DBManager {
 
     }
 
+    /**
+     * addHighway aggiunge una nuova autostrada
+     * @param name
+     * @param TU
+     */
     public static void addHighway(String name, double TU) {
         try {
             Statement stm = connection.createStatement();
@@ -238,10 +280,12 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
+    /**
+     * elimina un'autostrada e i riferimenti ai caselli associati
+     * @param highway
+     */
     public static void delHighway(String highway) {
         try {
             ResultSet rs;
@@ -256,26 +300,33 @@ public class DBManager {
 
     }
 
+    /**
+     * getHighwayTollbooths recupera il nome e il chilometro dei caselli associati ad un'autostrada
+     * @param highway
+     * @return
+     */
     public HashMap<String, Double> getHighwayTollbooths(String highway) {
         HashMap<String, Double> tb = new HashMap<String, Double>();
-
         try {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT Name,KM FROM tollbooths WHERE Autostrada=" + "'" + highway + "'");
-
             while (rs.next()) {
                 tb.put(rs.getString("Name"), rs.getDouble("KM"));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return tb;
-
     }
 
     //TOLLBOOTH METHODS
+
+    /**
+     * addTollboth inserisce un nuovo casello
+     * @param highway
+     * @param name
+     * @param KM
+     */
     public static void addTollboth(String highway, String name, double KM) {
         System.out.println("Aggiunto Casello: " + name + " KM: " + KM + " Autostrada: " + highway);
         try {
@@ -284,10 +335,13 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
+    /**
+     * setTollbothName aggiorna il nome di un casello
+     * @param tollbooth
+     * @param newName
+     */
     public static void setTollbothName(String tollbooth, String newName) {
         try {
             Statement stm = connection.createStatement();
@@ -298,6 +352,12 @@ public class DBManager {
 
 
     }
+
+    /**
+     * setTollbothKM aggiorna il chilometro di un casello
+     * @param tollbooth
+     * @param KM
+     */
     public static void setTollbothKM(String tollbooth, double KM){
         try{
             Statement stm = connection.createStatement();
@@ -305,39 +365,45 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
+
+    /**
+     * delTollboth cancella un casello
+     * @param tollbooth
+     */
     public static void delTollboth(String tollbooth){
         try{
             ResultSet rs;
             Statement stm = connection.createStatement();
             stm.executeUpdate("DELETE FROM tollbooths WHERE Name='"+tollbooth+"'");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
+
+    /**
+     * getTollBothKM recupera il chilometro associato ad un casello
+     * @param tollbooth
+     * @return
+     */
     public double getTollBothKm(String tollbooth){
         double km=0;
-
         try {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT KM FROM tollbooths WHERE Name=" + "'" + tollbooth + "'");
-
             while(rs.next()){
                 km = rs.getDouble("KM");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return km;
-
     }
 
+    /**
+     * getTollBoths recupera tutti i caselli
+     * @return
+     */
     public static ArrayList<TollBoth> getTollBoths(){
         ArrayList<TollBoth> caselli = new ArrayList<TollBoth>();
         try {
@@ -354,6 +420,11 @@ public class DBManager {
         return caselli;
     }
 
+    /**
+     * getTollBoth recupera un casello
+     * @param name
+     * @return
+     */
     public static TollBoth getTollBoth(String name){
         TollBoth casello = new TollBoth("", 0, "");
         try {
@@ -372,6 +443,11 @@ public class DBManager {
         return casello;
     }
 
+    /**
+     * setTollbothHighway aggiorna l'autostrada associata ad un casello
+     * @param tollboth
+     * @param Higway
+     */
     public static void setTollbothHigway(String tollboth, String Higway){
         try{
             Statement stm = connection.createStatement();
@@ -382,6 +458,12 @@ public class DBManager {
     }
 
     //USER METHODS
+
+    /**
+     * addUser aggiunge un nuovo utente
+     * @param name
+     * @param password
+     */
     public static void addUser(String name, String password) {
         try {
             Statement stm = connection.createStatement();
@@ -392,6 +474,11 @@ public class DBManager {
 
     }
 
+    /**
+     * setUsername aggiorna l'username associato ad un utente
+     * @param user
+     * @param username
+     */
     public static void setUsername(String user, String username) {
         try {
             Statement stm = connection.createStatement();
@@ -402,6 +489,11 @@ public class DBManager {
 
     }
 
+    /**
+     * setUserPsw aggiorna la password associata all'utente
+     * @param user
+     * @param newpsw
+     */
     public static void setUserPsw(String user, String newpsw) {
         try {
             Statement stm = connection.createStatement();
@@ -436,19 +528,20 @@ public class DBManager {
         return status;
     }
 
-    public static boolean checkUsername(String username){
+    /**
+     * checkUser controlla che un utente è nel DB
+     * @param user
+     * @return
+     */
+    public static boolean checkUser(String user) {
 
         Statement st;
         ResultSet rs;
-        String psw="";
-
         try {
             st = connection.createStatement();
-            rs=st.executeQuery("SELECT username FROM user WHERE username='" + username + "'");
-            if(!rs.next())
+            rs = st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
+            if (!rs.next())
                 return false;
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -456,6 +549,12 @@ public class DBManager {
 
     }
 
+    /**
+     * checkUserPsw controlla che la password passata al metodo sia uguale a quella salvata nel DB
+     * @param user
+     * @param password
+     * @return
+     */
     public static boolean checkUserPsw(String user, String password){
 
         Statement st;
@@ -478,6 +577,11 @@ public class DBManager {
 
     }
 
+    /**
+     * getUser recupera l'username di un utente
+     * @param user
+     * @return
+     */
     public static String getUser(String user) {
 
         Statement st;
@@ -496,7 +600,11 @@ public class DBManager {
 
     }
 
-
+    /**
+     * getPassword recupera la password di un utente
+     * @param user
+     * @return
+     */
     public static String getPassword(String user){
 
         Statement st;
@@ -515,6 +623,10 @@ public class DBManager {
 
     }
 
+    /**
+     * userList recupera la lista degli username degli utenti
+     * @return
+     */
     public static ArrayList <String> userList(){
         Statement st;
         ResultSet rs;
@@ -535,6 +647,11 @@ public class DBManager {
     }
 
     //CLASS METHODS
+
+    /**
+     * getClasses recupera nome e valore delle costanti ordinate secondo il nome
+     * @return
+     */
     public static HashMap <String, Double> getClasses(){
         HashMap<String, Double> cl = new HashMap<String, Double>();
         Statement st;
@@ -556,6 +673,10 @@ public class DBManager {
 
     }
 
+    /**
+     * delUser elimina un utente
+     * @param username
+     */
     public static void delUser(String username) {
         try {
             Statement st = connection.createStatement();
@@ -592,10 +713,6 @@ public class DBManager {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 
 

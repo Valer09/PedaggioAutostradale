@@ -5,7 +5,6 @@ import Model.TollBoth;
 import Model.User;
 import Model.Imposte;
 import javafx.beans.Observable;
-import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -189,11 +188,11 @@ public class GestionaleFXController implements Initializable {
     }
     private void refreshAutostrade(){
         ArrayList<Highway> highways = DBManager.getHighways();
-        ObservableList<String> data = FXCollections.observableArrayList();
+        autostradeLista = FXCollections.observableArrayList();
         highways.forEach(autostrada -> {
-            data.add(autostrada.getName());
+            autostradeLista.add(autostrada.getName());
         });
-        autostradeList.setItems(data);
+        autostradeList.setItems(autostradeLista);
     }
     private void rimuoviAutostrada(ActionEvent e){
         String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
@@ -260,18 +259,19 @@ public class GestionaleFXController implements Initializable {
         stage.initOwner(
                 ((Node) e.getSource()).getScene().getWindow() );
         stage.show();
-        stage.setOnCloseRequest((WindowEvent event1) -> {
+        stage.setOnHiding((WindowEvent event1) -> {
             System.out.println("Chiuso");
+            this.createUserList();
         });
     }
 
     private void refreshCaselli(){
         ArrayList<TollBoth> caselli = DBManager.getTollBoths();
-        ObservableList<String> list = FXCollections.observableArrayList();
+        caselliLista = FXCollections.observableArrayList();
         caselli.forEach(casello -> {
-            list.add(casello.getName());
+            caselliLista.add(casello.getName());
         });
-        caselliList.setItems(list);
+        caselliList.setItems(caselliLista);
     }
 
     private void rimuoviCasello(ActionEvent e){
@@ -309,6 +309,7 @@ public class GestionaleFXController implements Initializable {
             this.refreshCaselli();
         });
     }
+
     public void createUserList(){
         System.out.println("Refresh");
         ArrayList <String> utenti = DBManager.userList();
@@ -323,7 +324,7 @@ public class GestionaleFXController implements Initializable {
         String utente = (String) listUser.getSelectionModel().getSelectedItem();
         DBManager.delUser(utente);
         System.out.println("Utente eliminato: "+utente);
-        createUserList();
+        this.createUserList();
 
     }
     private void modificaUtente(ActionEvent e){
@@ -346,7 +347,7 @@ public class GestionaleFXController implements Initializable {
         stage.show();
         stage.setOnHiding((WindowEvent event1) -> {
             System.out.println("Chiuso");
-            createUserList();
+            this.createUserList();
         });
     }
 
@@ -361,4 +362,5 @@ public class GestionaleFXController implements Initializable {
         }
         stage.setScene(scene);
     }
+
 }
