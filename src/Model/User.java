@@ -17,7 +17,9 @@ public class User {
     Pair<String,Boolean> status=null;
 
     /**
-     * La classe viene istanziata al momento della login, se quest'ultima va a buon fine attraverso il costruttore.
+     * La classe viene istanziata al momento della login, (se quest'ultima va a buon fine) attraverso il costruttore.
+     * Il costruttore si serve della struttura <b>status</b> generata nel controller Tools per decidere se instanziare l'oggetto impostandone i parametri.
+     * Nonostante la gestione della login avviene nel LoginFXController, questa scelta fornisce ulteriore sicurezza sulla login, in quanto una eventuale istanza di classe successiva ud un login fallito, determina l'impossibilità di utilizzare i metodi della classe User
      * @param user Username
      * @param passw Password
      */

@@ -78,12 +78,20 @@ public class GestionaleFXController implements Initializable {
         createUserList();
     }
 
+    /**
+     * Elimina Imposta: elimina il record di Imposta selezionato
+     * @param actionEvent Evento click del pulstante <b>eraseImpostaButton</b>
+     */
     private void eliminaImposta(ActionEvent actionEvent) {
         String importo =  classesTable.getSelectionModel().getSelectedItem().getNomeImposta();
         DBManager.delImposta(importo);
         refreshImposte();
     }
 
+    /**
+     * Modifica di una imposta: apre un modale (view modifyImposte.fxml) che consente la modifica del nome e valore dell'imposta
+     * @param actionEvent Evento click del pulstante <b>editImpostaButton</b>
+     */
     private void modificaImposta(ActionEvent actionEvent) {
         String nomeimporto;
         Double valoreimporto ;
@@ -119,6 +127,11 @@ public class GestionaleFXController implements Initializable {
 
 
     }
+
+    /**
+     * Crea una nuova imposta: apre un modale (view modifyImposte.fxml) che consente la modifica del nome e valore dell'imposta
+     * @param actionEvent Evento click del pulstante <b>newImpostaButton</b>
+     */
     private void creaImposta(ActionEvent actionEvent) {
         Stage stage = new Stage();
         Parent root = null;
@@ -146,8 +159,13 @@ public class GestionaleFXController implements Initializable {
 
     }
 
+    /**
+     * Il metodo crea riempie la TableView <b>classesTable</b>; vengono utilizzate due strutture dati di apposggio: una HashMap ed una ObslervableList di tipo Imposte (Modello)
+     */
     private void refreshImposte(){
         imposte  = FXCollections.observableArrayList();
+
+        //chiave-valore => Nome-valore imposte
         HashMap<String, Double> classes = DBManager.getClasses();
         classes.forEach((K,V) -> {
             imposte.add(new Imposte(K,V));
