@@ -29,7 +29,7 @@ public class GestionaleFXController implements Initializable {
     @FXML
     ListView caselliList, autostradeList, listUser;
     @FXML
-    Button backButton ,addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt, deleteUt, modifyUt,editImporti,eraseButton,nuovoImporto;
+    Button backButton ,addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt, deleteUt, modifyUt,eraseImpostaButton,newImpostaButton,editImpostaButton;
     @FXML
     TableColumn <Imposte, String>key;
     @FXML
@@ -55,9 +55,9 @@ public class GestionaleFXController implements Initializable {
         caselliList.setItems(caselliLista);
 
         //Classi e imposte
-        eraseButton.setOnAction(this::eliminaImporto);
-        editImporti.setOnAction(this::modificaImposta);
-        nuovoImporto.setOnAction(this::creaImposta);
+        eraseImpostaButton.setOnAction(this::eliminaImposta);
+        editImpostaButton.setOnAction(this::modificaImposta);
+        newImpostaButton.setOnAction(this::creaImposta);
         refreshImposte();
 
         //Autostrade
@@ -78,7 +78,7 @@ public class GestionaleFXController implements Initializable {
         createUserList();
     }
 
-    private void eliminaImporto(ActionEvent actionEvent) {
+    private void eliminaImposta(ActionEvent actionEvent) {
         String importo =  classesTable.getSelectionModel().getSelectedItem().getNomeImposta();
         DBManager.delImposta(importo);
         refreshImposte();
