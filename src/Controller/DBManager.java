@@ -27,20 +27,16 @@ public class DBManager {
      * @return
      */
     public static Connection initializeConnection() {
-
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("ciao");
         }
-
         try {
             return DriverManager.getConnection("jdbc:mysql://" + path, "b5d4014795a1c2", "ea612ec6");
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
-
         return connection;
     }
 
@@ -86,9 +82,7 @@ public class DBManager {
             Statement stm = connection.createStatement();
             ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = '" + nomeClasse + "'");
             while (rs.next()) {
-
                 res = rs.getDouble("Val");
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -534,16 +528,19 @@ public class DBManager {
         return status;
     }
 
-    public static boolean checkUsername(String username){
+    /**
+     * checkUser controlla che un utente è nel DB
+     * @param user
+     * @return
+     */
+    public static boolean checkUser(String user) {
 
         Statement st;
         ResultSet rs;
-        String psw="";
-
         try {
             st = connection.createStatement();
-            rs=st.executeQuery("SELECT username FROM user WHERE username='" + username + "'");
-            if(!rs.next())
+            rs = st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
+            if (!rs.next())
                 return false;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -580,6 +577,11 @@ public class DBManager {
 
     }
 
+    /**
+     * getUser recupera l'username di un utente
+     * @param user
+     * @return
+     */
     public static String getUser(String user) {
 
         Statement st;
@@ -595,8 +597,6 @@ public class DBManager {
             e.printStackTrace();
         }
         return usr;
-
-
 
     }
 
@@ -620,8 +620,6 @@ public class DBManager {
             e.printStackTrace();
         }
         return psw;
-
-
 
     }
 
@@ -715,8 +713,6 @@ public class DBManager {
             e.printStackTrace();
         }
     }
-
-
 
 
 
