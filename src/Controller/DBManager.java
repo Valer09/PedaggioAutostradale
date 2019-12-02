@@ -6,6 +6,7 @@
 package Controller;
 import Model.Highway;
 import Model.TollBoth;
+import javafx.util.Pair;
 import org.jetbrains.annotations.Contract;
 
 import java.sql.*;
@@ -160,7 +161,7 @@ public class DBManager {
             st = connection.createStatement();
             rs = st.executeQuery("SELECT nome FROM autostrada");
             while (rs.next()) {
-                highways.add(new Highway(rs.getString("nome")));
+                highways.add(new Highway(rs.getString("nome"), rs.getDouble("TU")));
 
             }
         } catch (SQLException e) {
@@ -416,7 +417,7 @@ public class DBManager {
             ResultSet rs = st.executeQuery("SELECT * FROM tollbooths ");
 
             while(rs.next()){
-                caselli.add(new TollBoth(rs.getString("Name"), rs.getDouble("KM")));
+                caselli.add(new TollBoth(rs.getString("Name"), rs.getDouble("KM"), rs.getString("Autostrada")));
             }
 
         } catch (SQLException e) {
@@ -431,13 +432,13 @@ public class DBManager {
      * @return
      */
     public static TollBoth getTollBoth(String name){
-        TollBoth casello = new TollBoth("", 0);
+        TollBoth casello = new TollBoth("", 0, "");
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM tollbooths WHERE Name = '"+name+"'");
 
             if(rs.next()){
-                casello = new TollBoth(rs.getString("Name"), rs.getDouble("KM"));
+                casello = new TollBoth(rs.getString("Name"), rs.getDouble("KM"), rs.getString("Autostrada"));
                 return casello;
             }
 
@@ -668,7 +669,29 @@ public class DBManager {
 
     }
 
+    public static Pair <Pair<String,String>,  Boolean  > checkUserAndPassword(String user, String password) {
+        Pair <  Pair<String,String>,  Boolean  > status=null;
+        Statement st;
+        ResultSet rs;
 
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT username,password FROM user WHERE username='" + user + "'");
+            if (!rs.next())
+                status= new Pair<>(new Pair<>("", ""), false);
+            else{
+                if (!rs.getString("password").equals(password) ){
+                    status= new Pair<>(new Pair<>(user, ""), false);
+                }
+                else{
+                    status= new Pair<>(new Pair<>(user, password), true);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
 
 
 
