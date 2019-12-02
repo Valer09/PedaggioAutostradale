@@ -37,19 +37,19 @@ public class ModifyCaselloController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //setto il metodo per la gestione dell'evento click
         saveButton.setOnAction(this::salva);
-
-
         // Impongo al textField per i KM di accettare solo numeri in input
         Pattern pattern = Pattern.compile("\\d*|\\d+\\.\\d*");
         TextFormatter formatter = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
             return pattern.matcher(change.getControlNewText()).matches() ? change : null;
         });
         kmInput.setTextFormatter(formatter);
-
-
     }
 
-
+    /**
+     * Questo metodo prende i valori dei due TextField e della ChoiceBox ed effettua un update dei vari campi del casello
+     * ed infine
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void salva(ActionEvent e){
         //prendo in input i dati
         String autostrada = (String) autostradaList.getValue();
@@ -64,6 +64,11 @@ public class ModifyCaselloController implements Initializable {
         stage.close();
     }
 
+    /**
+     *
+     * @param casello di tipo TollBoth perchè è fregno
+     * @param autostrade é un ObservableList di tipo String che contiene tutti i nomi delle autostrade
+     */
     public void setTb(TollBoth casello, ObservableList<String> autostrade){
         System.out.println("Pare che sta dentro");
         this.casello = casello;

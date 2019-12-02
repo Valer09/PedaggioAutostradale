@@ -4,8 +4,6 @@ import Model.Highway;
 import Model.TollBoth;
 import Model.User;
 import Model.Imposte;
-import javafx.beans.Observable;
-import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -309,6 +307,7 @@ public class GestionaleFXController implements Initializable {
             this.refreshCaselli();
         });
     }
+
     public void createUserList(){
         System.out.println("Refresh");
         ArrayList <String> utenti = DBManager.userList();
