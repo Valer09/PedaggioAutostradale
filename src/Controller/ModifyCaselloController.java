@@ -34,6 +34,9 @@ public class ModifyCaselloController implements Initializable {
     TollBoth casello;
     ObservableList<String> autostrade;
     @Override
+    /**
+     * Questo Metodo viene chiamato all'inizio della creazione della finestra. Imposta l'azione
+     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //setto il metodo per la gestione dell'evento click
         saveButton.setOnAction(this::salva);
@@ -49,7 +52,11 @@ public class ModifyCaselloController implements Initializable {
 
     }
 
-
+    /**
+     * Questo metodo prende i valori dei due TextField e della ChoiceBox ed effettua un update dei vari campi del casello
+     * ed infine
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void salva(ActionEvent e){
         //prendo in input i dati
         String autostrada = (String) autostradaList.getValue();
@@ -64,6 +71,13 @@ public class ModifyCaselloController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Questo metodo prende in input un oggetto di tipo casello e un ObservableList di Stringhe che contiene la lista dei nomi delle autostrade.
+     * Assegna i parametri in input alle variabili della classe, assegna la lista passata in input alla ListView
+     * e infine popola i TextField con il nome del casello, il KM e inposta l'autostrada associata al casello come valore selezionato nella ChoiceBox
+     * @param casello Parametro di tipo TollBoth che contiene l'istanza di un casello
+     * @param autostrade Parametro di tipo ObservableList di tipo String che contiene tutti i nomi delle autostrade
+     */
     public void setTb(TollBoth casello, ObservableList<String> autostrade){
         System.out.println("Pare che sta dentro");
         this.casello = casello;
