@@ -15,6 +15,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * LoginFXController: Gestisce la logica e cattura i dati della view login.fxml
+ *
+ *   @author Valerio Marchitelli
+ *   @author Jacopo Cicoria
+ *   @author Antonio Angelini
+ *   @author Mattia Lenza
+ *
+ * */
 public class LoginxFXController implements Initializable {
     private boolean logged=false;
     private boolean isfirst=true;
@@ -41,6 +50,10 @@ public class LoginxFXController implements Initializable {
     };
 
     EventHandler click = new EventHandler() {
+        /**
+         * Gestione dell'eveno di click di login. Istanzia la classe User con i dati da esso forniti, e ne controlla lo stato; imposta quindi un booleano <b>logged</b> che consente a login() di gestire il login in base alla correttezza dei dati.
+         * @param event
+         */
         @Override
         public void handle(Event event) {
 
@@ -67,6 +80,11 @@ public class LoginxFXController implements Initializable {
         }
     };
 
+    /**
+     * Logica di controllo accesso al modulo gestionale
+     * Se durante l'istanziazione utente della gestione dell'evento click, è stato superato il checkLogin, fornisce l'accesso alla pagina gestionale.
+     * In caso contrario tiene conto del numero di accessi (<b>accesslimit</b>) e al superamento della soglia disabilita il pulsante di login
+     */
     private void login()  {
 
         if (!logged && limitaccess <= 10) {
@@ -85,6 +103,11 @@ public class LoginxFXController implements Initializable {
 
         }
     }
+
+    /**
+     * Gestisce l'apertura della view del modulo gestionale passando al suo controller lo User loggato (istanziato)
+     * @param usr Utente loggato
+     */
     private void switchToGestionalScene(User usr){
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gestionale.fxml"));
@@ -102,6 +125,10 @@ public class LoginxFXController implements Initializable {
         stage.setScene(scene);
     }
 
+    /**
+     * Gestisce l'apertura della view home.fxml dopo il click sul pulsante annulla
+     * @param event - evento di click sul pulsante annulla
+     */
     private void switchToHomeScene(javafx.event.ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/home.fxml"));
         Stage stage = (Stage) annulla.getScene().getWindow();
