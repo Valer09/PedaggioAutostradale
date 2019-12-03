@@ -38,6 +38,13 @@ public class OperatoreFxController implements Initializable {
     @FXML
     HBox caselloSelect;
 
+    /**
+     * Nei seguenti bottoni vengono impostati tre metodi. I quali servono rispettivamenete per calcolare il pedaggio autostradale,
+     * la selezione di un file "txt" che simula il biglietto di entrata al casello di uscita ed
+     * "goBack" è il metodo che permette di tornare alla view precedente
+     * @param url
+     * @param resourceBundle
+     */
         @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
             submit.setOnAction(this::calcolaPedaggio);
@@ -45,6 +52,10 @@ public class OperatoreFxController implements Initializable {
             backButton.setOnAction(this::goBack);
     }
 
+    /**
+     *
+     * @param event
+     */
     private void calcolaPedaggio(ActionEvent event){
             if (this.ticket != null){
                 String fileContent = Tools.fileReader(this.ticket.getPath());
@@ -125,6 +136,10 @@ public class OperatoreFxController implements Initializable {
         caselloSelect.setVisible(true);
     }
 
+    /**
+     * Viene caricata la schermata home, attraverso il bottone "backButton"
+     * @param event
+     */
     private void goBack(ActionEvent event ){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/home.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
