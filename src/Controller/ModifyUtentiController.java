@@ -19,6 +19,11 @@ Button modifica;
 
     String  user;
 
+    /**
+     *Metodo che viene inizializzato all'apertura della view
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         modifica.setOnAction(this::modUt);
