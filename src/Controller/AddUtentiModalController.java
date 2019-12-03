@@ -18,6 +18,11 @@ public class AddUtentiModalController  implements Initializable {
     @FXML
     TextField text, text1;
 
+    /**
+     *Metodo che viene inizializzato all'apertura della view
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btn.setOnAction(this::addUtente);
