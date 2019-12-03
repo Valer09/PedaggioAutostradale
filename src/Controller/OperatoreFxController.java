@@ -53,8 +53,10 @@ public class OperatoreFxController implements Initializable {
     }
 
     /**
-     *
-     * @param event
+     * Metodo che si occupa del Calcolo del Pedaggio. Legge il file ticket e il casello di uscita selezionato. Dopo aver parsato dal formato JSON il contenuto del ticket
+     * ne estrae la targa del veicolo e il nome del casello di entrata. Dopo aver ottenuto questi dati chiama il metodo getToll del Controller TollCalculator che si occupa del calcolo del pedaggio.
+     * Infine chiama i metodi setVehicleValues e setRouteValues per visualizzare i dettagli del veicolo e del percorso.
+     * @param event Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
     private void calcolaPedaggio(ActionEvent event){
             if (this.ticket != null){
@@ -85,6 +87,11 @@ public class OperatoreFxController implements Initializable {
 
     }
 
+    /**
+     * Metodo che si occupa di stampare i dettagli del veicolo nella sezione Dettagli.
+     * Visualizza la targa del veicolo, il modello, la marca, il peso, l'altezza, la cilindrata, l'anno, il numero di assi, la classe tariffaria e la classe ambientale
+     * @param macchina Parametro di tipo Veichle che rapresenta il veicolo
+     */
     private void setVehicleValues(Vehicle macchina){
             targaValue.setText(macchina.getVlp());
             modelloValue.setText(macchina.getModel());
@@ -101,6 +108,13 @@ public class OperatoreFxController implements Initializable {
             caValue.setText(macchina.getAmbiental_class());
     }
 
+    /**
+     * Metodo che si occupa di stampare i dettagli del precorso nella sezione Dettagli.
+     * Visualizza il nome dell'autostrada, il casello di entrata, il casello di uscita e il numero di km percorsi
+     * @param autostrada Parametro di tipo Highway che rappresenta l'autostrada
+     * @param startingTB Parametro di tipo TollBoth che rappresenta il casello di entrata
+     * @param endingTB Parametro di tipo TollBoth che rappresenta il casello di uscita
+     */
     private void setRouteValues(Highway autostrada, TollBoth startingTB, TollBoth endingTB){
         autostradaValue.setText(autostrada.getName());
         startingTBValue.setText(startingTB.getName());
@@ -110,6 +124,11 @@ public class OperatoreFxController implements Initializable {
         routeValue.setText(tmp+" km");
     }
 
+    /**
+     * Questo metodo si occupa di aprire la finestra di Dialogo per la selezione del File. Successivamente legge il contenuto del file, estrae il nome del casello di entrata,
+     * trova l'autostrada associata a quel casello e successivamente trova la lista dei caselli di quell'autostrada. Infine imposta la ChoiceBox con quest'ultima lista
+     * @param event Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void scegliFile(ActionEvent event){
         Stage stage = (Stage) sfoglia.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
@@ -138,7 +157,7 @@ public class OperatoreFxController implements Initializable {
 
     /**
      * Viene caricata la schermata home, attraverso il bottone "backButton"
-     * @param event
+     * @param event Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
     private void goBack(ActionEvent event ){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/home.fxml"));
