@@ -1,6 +1,6 @@
 package Model;
 import Model.Interfaces.*;
-import Controller.DBManager;
+import Controller.DB_Controller.DBManager;
 
 /**
  * Modello CategoriaPesante: rappresenta i dati delle categorie pesanti di veicoli

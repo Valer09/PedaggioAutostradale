@@ -1,5 +1,5 @@
 
-package Controller;
+package Controller.View_Controller;
 import Model.User;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -111,7 +111,7 @@ public class LoginxFXController implements Initializable {
      */
     private void switchToGestionalScene(User usr){
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/gestionale.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/gestionale.fxml"));
         Stage stage = (Stage) accedi.getScene().getWindow();
         Scene scene = null;
         try {
@@ -131,7 +131,7 @@ public class LoginxFXController implements Initializable {
      * @param event Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
     private void switchToHomeScene(ActionEvent event){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/home.fxml"));
         Stage stage = (Stage) annulla.getScene().getWindow();
         Scene scene = null;
         try {

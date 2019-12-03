@@ -1,5 +1,6 @@
-package Controller;
+package Controller.View_Controller;
 
+import Controller.DB_Controller.DBManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

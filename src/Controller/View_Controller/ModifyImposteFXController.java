@@ -1,5 +1,7 @@
-package Controller;
+package Controller.View_Controller;
 
+import Controller.DB_Controller.DBManager;
+import Controller.Tools;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,6 +35,7 @@ public class ModifyImposteFXController implements Initializable {
 
     private String oldName;
     private Double valore;
+
 
 
     /**

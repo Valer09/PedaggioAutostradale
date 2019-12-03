@@ -3,7 +3,7 @@
  *
  * @author Valerio Marchitelli
  */
-package Controller;
+package Controller.DB_Controller;
 import Model.Highway;
 import Model.TollBoth;
 import javafx.util.Pair;

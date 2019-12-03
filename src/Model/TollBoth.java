@@ -1,6 +1,6 @@
 package Model;
 
-import Controller.DBManager;
+import Controller.DB_Controller.DBManager;
 
 public class TollBoth {
     private String name;

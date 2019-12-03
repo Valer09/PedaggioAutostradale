@@ -1,5 +1,5 @@
 package Model;
-import Controller.DBManager;
+import Controller.DB_Controller.DBManager;
 
 import java.util.HashMap;
 

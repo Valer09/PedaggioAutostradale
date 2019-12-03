@@ -1,4 +1,4 @@
-package Controller;
+package Controller.View_Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +22,7 @@ public class HomeFxController implements Initializable {
      * @param event
      */
     private void switchToOperatorScene(javafx.event.ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/operatore.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/operatore.fxml"));
         Stage stage = (Stage) op.getScene().getWindow();
         Scene scene = null;
         try {
@@ -38,7 +38,7 @@ public class HomeFxController implements Initializable {
      * @param event
      */
     private void switchToLoginScene(javafx.event.ActionEvent event){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/login.fxml"));
         Stage stage = (Stage) Gbtn.getScene().getWindow();
         Scene scene = null;
         try {

@@ -1,5 +1,6 @@
-package Controller;
+package Controller.View_Controller;
 
+import Controller.DB_Controller.DBManager;
 import Model.Highway;
 import Model.TollBoth;
 import Model.User;
@@ -103,7 +104,7 @@ public class GestionaleFXController implements Initializable {
 
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyImposte.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/modifyImposte.fxml"));
         try {
             root = loader.load();
 
@@ -136,7 +137,7 @@ public class GestionaleFXController implements Initializable {
     private void creaImposta(ActionEvent actionEvent) {
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyImposte.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/modifyImposte.fxml"));
         try {
             root = loader.load();
 
@@ -188,7 +189,7 @@ public class GestionaleFXController implements Initializable {
         Parent root = null;
         try {
             root = FXMLLoader.load(
-                    AddUtentiModalController.class.getResource("../View/modaleUtenti.fxml"));
+                    AddUtentiModalController.class.getResource("../../View/modaleUtenti.fxml"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -236,7 +237,7 @@ public class GestionaleFXController implements Initializable {
     private void modificaUtente(ActionEvent e){
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyUtenti.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/modifyUtenti.fxml"));
         try {
             root = loader.load();
         } catch (IOException ex) {
@@ -268,7 +269,7 @@ public class GestionaleFXController implements Initializable {
         Parent root = null;
         try {
             root = FXMLLoader.load(
-                    AddAutostradeModalController.class.getResource("../View/modaleAutostrade.fxml"));
+                    AddAutostradeModalController.class.getResource("../../View/modaleAutostrade.fxml"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -314,7 +315,7 @@ public class GestionaleFXController implements Initializable {
         String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyAutostrada.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/modifyAutostrada.fxml"));
         try {
             if (loader == null) System.out.println("Vuoto");
             root = loader.load();
@@ -347,7 +348,7 @@ public class GestionaleFXController implements Initializable {
         Parent root = null;
         try {
             root = FXMLLoader.load(
-                    getClass().getResource("../View/addCasello.fxml"));
+                    getClass().getResource("../../View/addCasello.fxml"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -396,7 +397,7 @@ public class GestionaleFXController implements Initializable {
         //Creo il modale per la modifica del casello
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyCasello.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/modifyCasello.fxml"));
         try {
             if (loader == null) System.out.println("Vuoto");
             root = loader.load();
@@ -427,7 +428,7 @@ public class GestionaleFXController implements Initializable {
      * @param event Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
     private void goBack(ActionEvent event){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/home.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
         Scene scene = null;
         try {

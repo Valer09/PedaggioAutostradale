@@ -1,5 +1,8 @@
-package Controller;
+package Controller.View_Controller;
 
+import Controller.DB_Controller.DBManager;
+import Controller.TollCalculator;
+import Controller.Tools;
 import Model.Highway;
 import Model.Vehicle;
 import Model.TollBoth;
@@ -166,7 +169,7 @@ public class OperatoreFxController implements Initializable {
      * @param event Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
     private void goBack(ActionEvent event ){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/home.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
         Scene scene = null;
         try {

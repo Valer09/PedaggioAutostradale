@@ -1,5 +1,6 @@
 package Controller;
 
+import Controller.DB_Controller.DBManager;
 import Model.Highway;
 import Model.TollBoth;
 import Model.Vehicle;
@@ -81,7 +82,7 @@ public class TollCalculator {
         double amount = 0;
         amount=TU*route;
         amount+= ICTV*amount;
-        amount+=(amount*DBManager.getIVA());
+        amount+=(amount* DBManager.getIVA());
         amount=Tools.roundUp(amount);
 
         return amount;

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controller.ModifyAutostradaController"
+            fx:controller="Controller.View_Controller.ModifyAutostradaController"
             prefHeight="200.0" prefWidth="400.0">
     <children>
         <BorderPane prefHeight="200.0" prefWidth="400.0">

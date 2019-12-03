@@ -1,5 +1,6 @@
-package Controller;
+package Controller.View_Controller;
 
+import Controller.DB_Controller.DBManager;
 import Model.Highway;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
