@@ -18,7 +18,7 @@ public class HomeFxController implements Initializable {
     Button Gbtn;
 
     /**
-     * Carica dalla Home, attraverso il bottone, la schermata "operatore"
+     * Carica dalla Home, attraverso il bottone op, la schermata "operatore"
      * @param event
      */
     private void switchToOperatorScene(javafx.event.ActionEvent event) {
@@ -34,7 +34,7 @@ public class HomeFxController implements Initializable {
     }
 
     /**
-     * Carica dalla, attraverso il bottone, la schermata login per gli admin
+     *Viene caricata la schermata di login, che permette ad un admin di accedervi
      * @param event
      */
     private void switchToLoginScene(javafx.event.ActionEvent event){

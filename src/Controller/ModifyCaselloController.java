@@ -29,7 +29,7 @@ public class ModifyCaselloController implements Initializable {
 
     @Override
     /**
-     * Questo Metodo viene chiamato all'inizio della creazione della finestra. Imposta l'azione
+     * Questo Metodo viene chiamato all'inizio della creazione della finestra.
      */
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //setto il metodo per la gestione dell'evento click

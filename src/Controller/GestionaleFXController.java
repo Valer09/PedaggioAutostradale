@@ -29,7 +29,7 @@ public class GestionaleFXController implements Initializable {
     @FXML
     ListView caselliList, autostradeList, listUser;
     @FXML
-    Button backButton ,addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt, deleteUt, modifyUt,editImporti,eraseButton,nuovoImporto;
+    Button backButton, addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt, deleteUt, modifyUt, eraseImpostaButton, newImpostaButton, editImpostaButton;
     @FXML
     TableColumn <Imposte, String>key;
     @FXML
@@ -55,9 +55,9 @@ public class GestionaleFXController implements Initializable {
         caselliList.setItems(caselliLista);
 
         //Classi e imposte
-        eraseButton.setOnAction(this::eliminaImporto);
-        editImporti.setOnAction(this::modificaImposta);
-        nuovoImporto.setOnAction(this::creaImposta);
+        eraseImpostaButton.setOnAction(this::eliminaImposta);
+        editImpostaButton.setOnAction(this::modificaImposta);
+        newImpostaButton.setOnAction(this::creaImposta);
         refreshImposte();
 
         //Autostrade
@@ -78,12 +78,21 @@ public class GestionaleFXController implements Initializable {
         createUserList();
     }
 
-    private void eliminaImporto(ActionEvent actionEvent) {
+    //Imposte
+    /**
+     * Elimina Imposta: elimina il record di Imposta selezionato
+     * @param actionEvent Evento click del pulstante <b>eraseImpostaButton</b>
+     */
+    private void eliminaImposta(ActionEvent actionEvent) {
         String importo =  classesTable.getSelectionModel().getSelectedItem().getNomeImposta();
         DBManager.delImposta(importo);
         refreshImposte();
     }
 
+    /**
+     * Modifica di una imposta: apre un modale (view modifyImposte.fxml) che consente la modifica del nome e valore dell'imposta
+     * @param actionEvent Evento click del pulstante <b>editImpostaButton</b>
+     */
     private void modificaImposta(ActionEvent actionEvent) {
         String nomeimporto;
         Double valoreimporto ;
@@ -119,6 +128,11 @@ public class GestionaleFXController implements Initializable {
 
 
     }
+
+    /**
+     * Crea una nuova imposta: apre un modale (view modifyImposte.fxml) che consente la modifica del nome e valore dell'imposta
+     * @param actionEvent Evento click del pulstante <b>newImpostaButton</b>
+     */
     private void creaImposta(ActionEvent actionEvent) {
         Stage stage = new Stage();
         Parent root = null;
@@ -146,8 +160,13 @@ public class GestionaleFXController implements Initializable {
 
     }
 
+    /**
+     * Il metodo crea riempie la TableView <b>classesTable</b>; vengono utilizzate due strutture dati di apposggio: una HashMap ed una ObslervableList di tipo Imposte (Modello)
+     */
     private void refreshImposte(){
         imposte  = FXCollections.observableArrayList();
+
+        //chiave-valore => Nome-valore imposte
         HashMap<String, Double> classes = DBManager.getClasses();
         classes.forEach((K,V) -> {
             imposte.add(new Imposte(K,V));
@@ -158,13 +177,92 @@ public class GestionaleFXController implements Initializable {
         classesTable.getSortOrder().add(key);
     }
 
+    //Utenti
 
-
-    public void setUser(User user){
-        this.user=user;
-        System.out.println(user.getUsername());
+    /**
+     * Questo metodo crea una nuova finestra modale per l'aggiunta di un nuovo Utente. Al termine della creazione chiama il metodo createUserList() per aggiornare la lista degli utenti
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
+    private void aggiungiUtente(ActionEvent e){
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(
+                    AddUtentiModalController.class.getResource("../View/modaleUtenti.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        stage.setScene(new Scene(root));
+        stage.setTitle("Aggiungi Utente");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node) e.getSource()).getScene().getWindow() );
+        stage.show();
+        stage.setOnHiding((WindowEvent event1) -> {
+            System.out.println("Chiuso");
+            this.createUserList();
+        });
     }
 
+    /**
+     * Questo metodo prende la lista degli Utenti dal DB e dopo aver creato una lista l'assegna alla ListView associata agli utenti
+     */
+    public void createUserList(){
+        System.out.println("Refresh");
+        ArrayList <String> utenti = DBManager.userList();
+        utentiLista = FXCollections.observableArrayList();
+        utenti.forEach(utente ->{
+            utentiLista.add(utente);
+        });
+        listUser.setItems(utentiLista);
+    }
+
+    /**
+     * Questo metodo si occupa della rimozione dell'utente selezionato dal DB
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
+    public void rimuoviUtente(ActionEvent e){
+        String utente = (String) listUser.getSelectionModel().getSelectedItem();
+        DBManager.delUser(utente);
+        System.out.println("Utente eliminato: "+utente);
+        this.createUserList();
+
+    }
+
+    /**
+     * Queato metodo crea una nuova finestra modale per la modifica dell'utente selezionato. Al termine chiam il metodo createUserList() per aggiornare la lista degli Utenti
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
+    private void modificaUtente(ActionEvent e){
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyUtenti.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        stage.setScene(new Scene(root));
+        stage.setTitle("Modifica Utente");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node) e.getSource()).getScene().getWindow() );
+        ModifyUtentiController controller = loader.getController();
+        String utente = (String) listUser.getSelectionModel().getSelectedItem();
+        controller.setUser(utente);
+        stage.show();
+        stage.setOnHiding((WindowEvent event1) -> {
+            System.out.println("Chiuso");
+            this.createUserList();
+        });
+    }
+
+    //Autostrade
+
+    /**
+     * Queato metodo crea una nuova finestra modale per l'aggiunta di una nuova autostrada. Al termine chiama il metodo refreshAutostrade() per aggiornare la lista delle autostrade
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void aggiungiAutostrada(ActionEvent e){
         Stage stage = new Stage();
         Parent root = null;
@@ -185,6 +283,10 @@ public class GestionaleFXController implements Initializable {
             this.refreshAutostrade();
         });
     }
+
+    /**
+     * Queato metodo prende le autostrade dal DB e dopo aver creato una lista l'assegna alla ListView associata alle Autostrade
+     */
     private void refreshAutostrade(){
         ArrayList<Highway> highways = DBManager.getHighways();
         autostradeLista = FXCollections.observableArrayList();
@@ -193,11 +295,21 @@ public class GestionaleFXController implements Initializable {
         });
         autostradeList.setItems(autostradeLista);
     }
+
+    /**
+     * Questo metodo si occupa della rimozione dell'autostrada selezionata. Al termine chiama il metodo refreshAutostrade() per aggiornare la lista delle autostrade
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void rimuoviAutostrada(ActionEvent e){
         String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
         DBManager.delHighway(autostrada);
         this.refreshAutostrade();
     }
+
+    /**
+     * Questo metodo crea una nuova finestra modale per la modifica dell'autostrada selezionata. Al termine chiama il metodo refreshAutostrade() per aggiornare la lista delle autostrade
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void modificaAutostrada(ActionEvent e){
         String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
         Stage stage = new Stage();
@@ -223,6 +335,13 @@ public class GestionaleFXController implements Initializable {
         });
     }
 
+    //Caselli
+
+    /**
+     * Questo metodo si occupa di creare una nuova finestra modale per l'aggiunta di un nuovo casello.
+     * Quando viene chiusta la finestra modale, questo metodo si occupa di intercettare l'evento e ricaricare la lista dei caselli
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void aggiungiCasello(ActionEvent e){
         Stage stage = new Stage();
         Parent root = null;
@@ -243,27 +362,10 @@ public class GestionaleFXController implements Initializable {
             this.refreshCaselli();
         });
     }
-    private void aggiungiUtente(ActionEvent e){
-        Stage stage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(
-                    AddUtentiModalController.class.getResource("../View/modaleUtenti.fxml"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        stage.setScene(new Scene(root));
-        stage.setTitle("Aggiungi Utente");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(
-                ((Node) e.getSource()).getScene().getWindow() );
-        stage.show();
-        stage.setOnHiding((WindowEvent event1) -> {
-            System.out.println("Chiuso");
-            this.createUserList();
-        });
-    }
 
+    /**
+     * Questo metodo pernde tutti i caselli nel DB e dopo averli inseriti in una lista li mostra nella ListView associata ai caselli
+     */
     private void refreshCaselli(){
         ArrayList<TollBoth> caselli = DBManager.getTollBoths();
         caselliLista = FXCollections.observableArrayList();
@@ -273,6 +375,10 @@ public class GestionaleFXController implements Initializable {
         caselliList.setItems(caselliLista);
     }
 
+    /**
+     * Questo metodo si occupa della cancellazione di un casello dal DB. Dopo aver effettuato l'operazione di rimozione chiama il metodo refreshCaselli() per aggiornare la lista
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void rimuoviCasello(ActionEvent e){
         String casello = (String) caselliList.getSelectionModel().getSelectedItem();
         DBManager.delTollboth(casello);
@@ -280,6 +386,10 @@ public class GestionaleFXController implements Initializable {
         this.refreshCaselli();
     }
 
+    /**
+     * Questo metodo crea una nuova finestra modale per la modifica del casello selezionato. Alla chiusura chiama il metodo refreshCaselli() per aggiornare la lista dei caselli
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void modificaCasello(ActionEvent e){
         //ottengo il nome del casello dalla selezione
         TollBoth casello = DBManager.getTollBoth((String) caselliList.getSelectionModel().getSelectedItem());
@@ -309,47 +419,13 @@ public class GestionaleFXController implements Initializable {
         });
     }
 
-    public void createUserList(){
-        System.out.println("Refresh");
-        ArrayList <String> utenti = DBManager.userList();
-        utentiLista = FXCollections.observableArrayList();
-        utenti.forEach(utente ->{
-            utentiLista.add(utente);
-        });
-        listUser.setItems(utentiLista);
-    }
 
-    public void rimuoviUtente(ActionEvent e){
-        String utente = (String) listUser.getSelectionModel().getSelectedItem();
-        DBManager.delUser(utente);
-        System.out.println("Utente eliminato: "+utente);
-        this.createUserList();
+    //Generale
 
-    }
-    private void modificaUtente(ActionEvent e){
-        Stage stage = new Stage();
-        Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/modifyUtenti.fxml"));
-        try {
-            root = loader.load();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        stage.setScene(new Scene(root));
-        stage.setTitle("Modifica Utente");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(
-                ((Node) e.getSource()).getScene().getWindow() );
-        ModifyUtentiController controller = loader.getController();
-        String utente = (String) listUser.getSelectionModel().getSelectedItem();
-        controller.setUser(utente);
-        stage.show();
-        stage.setOnHiding((WindowEvent event1) -> {
-            System.out.println("Chiuso");
-            this.createUserList();
-        });
-    }
-
+    /**
+     * Questo metodo associato al pulsante Indietro si occupa di cambiare finestra e tornare alla Home
+     * @param event Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void goBack(ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/home.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
@@ -362,4 +438,12 @@ public class GestionaleFXController implements Initializable {
         stage.setScene(scene);
     }
 
+    /**
+     * Questo metodo viene chiamato dopo aver effettuato il login e si occupa di preservare l'utente nella parte gestionale
+     * @param user Parametro di tipo Utente
+     */
+    public void setUser(User user){
+        this.user=user;
+        System.out.println(user.getUsername());
+    }
 }

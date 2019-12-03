@@ -22,11 +22,15 @@ public class Tools {
 
     /**
      * Questo metodo, interagendo con l'apposito metodo che genera le query sul DB, fa un check sulla username e password inserite da un utente nella view di login.
-     * @param user
-     * @param password
+     * <b>status</b> - è una coppia "Pair-Boolean", dove il valore booleano è vero soltanto se la username esiste e la password è corretta; la chiave Pair "String-String" contiene le stringhe username-password le quali saranno vuote se non corrispondono nel database. Questo consente di generare dei messaggi di errore dinamici. L'utilizzo di questa struttura dati, consente di effettuare una sola query dal DBManager, ma ciò nonostante, restituire tutti i dati necessari alla gestione della logica di login; questo si rende necessarrio dal momento in cui il linguaggio Java non consente la restituzione di più tipi di dato.
+     * La struttura <b>status</b> viene riempita in maniera pertinente nel DBManager dove si effettua il Controllo sul DB dell'esattezza dei dati. Il metodo <b>checkLogin</b> quindi si serve del DBManager per costruire tale struttura dati e gestirne la logica.
+     * <b>checkLogin</b> viene principalmente utilizzato dal modello User durante un tentativo di instanzione dello stesso nella fase di login, e quindi nel controller che gestisce la view login.fxml
+     * @param user - username da testare
+     * @param password - password da testare
      * @return Pair - Resistuisce una coppia chiave-valore corrispondente a String-boolean che indica se il check è andato a buon fine (user e password corrispondenti) e l'eventuale causa di un fallimento (username o password errati)
      */
     public static Pair <String,Boolean> checkLogIn(String user, String password){
+        //è una coppia <Pair-Boolean>. Boolean<=>username e password validi in DB; Pair <username,password>
         Pair <  Pair<String,String>,  Boolean  > status;
         status = DBManager.checkUserAndPassword(user,password);
         Pair <String, Boolean > result=null;
@@ -51,6 +55,7 @@ public class Tools {
      * @param lp targa veicolo
      * @return <b> boolean </b> - restituisce true se il formato è valido
      */
+    @Deprecated
     public static boolean LPCheck(@NotNull String lp){
         boolean format=true;
 
@@ -65,7 +70,7 @@ public class Tools {
 
     /**
      * Questo metodo legge un file in input e memorizza il contenuto in una stringa
-     * @param filePath
+     * @param filePath percorso del file
      * @return <b>String</b> - restituisce il contenuto del file
      */
     public static String fileReader(String filePath){
@@ -91,7 +96,7 @@ public class Tools {
     /**
      * Questo metodo verifica che il valore di un imposta sia nel formato corretto (razionale positivo compreso tra 0 e 1)
      * @param importo importo dell'imposta
-     * @return <b>boolean</> - restituisce true se l'importo è nel formato corretto
+     * @return <b>boolean</b> - restituisce true se l'importo è nel formato corretto
      */
     public static boolean importoFormatCheck(double importo) {
         if (importo > 1 || importo < 0)
