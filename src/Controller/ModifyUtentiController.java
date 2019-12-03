@@ -31,7 +31,7 @@ Button modifica;
 
     /**
      * Seleziona un utente dalla lista utenti
-     * @param utente
+     * @param utente Parametro di tipo Stringa che rappresenta il nome dell'utente
      */
     public void setUser(String utente){
         this.user = utente;
@@ -40,7 +40,7 @@ Button modifica;
 
     /**
      * Modifica un utente nel database
-     * @param actionEvent
+     * @param actionEvent Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
     private void modUt(javafx.event.ActionEvent actionEvent) {
         String username = "";
