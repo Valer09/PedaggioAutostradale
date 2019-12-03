@@ -136,6 +136,10 @@ public class OperatoreFxController implements Initializable {
         caselloSelect.setVisible(true);
     }
 
+    /**
+     * Viene caricata la schermata home, attraverso il bottone "backButton"
+     * @param event
+     */
     private void goBack(ActionEvent event ){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/home.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
