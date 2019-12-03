@@ -179,6 +179,10 @@ public class GestionaleFXController implements Initializable {
 
     //Utenti
 
+    /**
+     * Questo metodo crea una nuova finestra modale per l'aggiunta di un nuovo Utente. Al termine della creazione chiama il metodo createUserList() per aggiornare la lista degli utenti
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void aggiungiUtente(ActionEvent e){
         Stage stage = new Stage();
         Parent root = null;
@@ -200,6 +204,9 @@ public class GestionaleFXController implements Initializable {
         });
     }
 
+    /**
+     * Questo metodo prende la lista degli Utenti dal DB e dopo aver creato una lista l'assegna alla ListView associata agli utenti
+     */
     public void createUserList(){
         System.out.println("Refresh");
         ArrayList <String> utenti = DBManager.userList();
@@ -210,6 +217,10 @@ public class GestionaleFXController implements Initializable {
         listUser.setItems(utentiLista);
     }
 
+    /**
+     * Questo metodo si occupa della rimozione dell'utente selezionato dal DB
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     public void rimuoviUtente(ActionEvent e){
         String utente = (String) listUser.getSelectionModel().getSelectedItem();
         DBManager.delUser(utente);
@@ -217,6 +228,11 @@ public class GestionaleFXController implements Initializable {
         this.createUserList();
 
     }
+
+    /**
+     * Queato metodo crea una nuova finestra modale per la modifica dell'utente selezionato. Al termine chiam il metodo createUserList() per aggiornare la lista degli Utenti
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void modificaUtente(ActionEvent e){
         Stage stage = new Stage();
         Parent root = null;
@@ -243,6 +259,10 @@ public class GestionaleFXController implements Initializable {
 
     //Autostrade
 
+    /**
+     * Queato metodo crea una nuova finestra modale per l'aggiunta di una nuova autostrada. Al termine chiama il metodo refreshAutostrade() per aggiornare la lista delle autostrade
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void aggiungiAutostrada(ActionEvent e){
         Stage stage = new Stage();
         Parent root = null;
@@ -263,6 +283,10 @@ public class GestionaleFXController implements Initializable {
             this.refreshAutostrade();
         });
     }
+
+    /**
+     * Queato metodo prende le autostrade dal DB e dopo aver creato una lista l'assegna alla ListView associata alle Autostrade
+     */
     private void refreshAutostrade(){
         ArrayList<Highway> highways = DBManager.getHighways();
         autostradeLista = FXCollections.observableArrayList();
@@ -271,11 +295,21 @@ public class GestionaleFXController implements Initializable {
         });
         autostradeList.setItems(autostradeLista);
     }
+
+    /**
+     * Questo metodo si occupa della rimozione dell'autostrada selezionata. Al termine chiama il metodo refreshAutostrade() per aggiornare la lista delle autostrade
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void rimuoviAutostrada(ActionEvent e){
         String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
         DBManager.delHighway(autostrada);
         this.refreshAutostrade();
     }
+
+    /**
+     * Questo metodo crea una nuova finestra modale per la modifica dell'autostrada selezionata. Al termine chiama il metodo refreshAutostrade() per aggiornare la lista delle autostrade
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     private void modificaAutostrada(ActionEvent e){
         String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
         Stage stage = new Stage();
