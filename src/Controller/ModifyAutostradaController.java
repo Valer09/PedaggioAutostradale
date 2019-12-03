@@ -33,6 +33,10 @@ public class ModifyAutostradaController implements Initializable {
         TU.setTextFormatter(formatter);
     }
 
+    /**
+     * Metodo che si occupa di prendere i valori delle TextField ed aggiornare l'autostrada sul DB
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
     public void modifica(ActionEvent e){
         String nome = nomeInput.getText();
         double TarUni= Double.parseDouble(TU.getText());
@@ -44,6 +48,10 @@ public class ModifyAutostradaController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Metodo che viene chiamato dalla finestra precedente. Si occupa di creare un'istanza di Autostrada quando gli viene passato il nome. Successivamente inserisce i valori del nome e della Tariffa Unitaria nei rispettivi TextField
+     * @param name
+     */
     public void setHWname(String name){
         this.highway_name = name;
         Highway highway= DBManager.getHighway(this.highway_name);

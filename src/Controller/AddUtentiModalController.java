@@ -30,7 +30,7 @@ public class AddUtentiModalController  implements Initializable {
 
     /**
      * Aggiunge un utente al database
-     * @param e
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
     public void addUtente(ActionEvent e){
         String user = "";
@@ -41,4 +41,5 @@ public class AddUtentiModalController  implements Initializable {
         Stage stage = (Stage) btn.getScene().getWindow();
         stage.close();
     }
+
 }
