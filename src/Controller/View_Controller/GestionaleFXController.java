@@ -187,9 +187,9 @@ public class GestionaleFXController implements Initializable {
     private void aggiungiUtente(ActionEvent e){
         Stage stage = new Stage();
         Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/modaleUtenti.fxml"));
         try {
-            root = FXMLLoader.load(
-                    AddUtentiModalController.class.getResource("../../View/modaleUtenti.fxml"));
+            root = loader.load();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -198,6 +198,8 @@ public class GestionaleFXController implements Initializable {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(
                 ((Node) e.getSource()).getScene().getWindow() );
+        AddUtentiModalController controller = loader.getController();
+        controller.setUser(this.user);
         stage.show();
         stage.setOnHiding((WindowEvent event1) -> {
             System.out.println("Chiuso");
@@ -206,28 +208,14 @@ public class GestionaleFXController implements Initializable {
     }
 
     /**
-     * Questo metodo prende la lista degli Utenti dal DB e dopo aver creato una lista l'assegna alla ListView associata agli utenti
-     */
-    public void createUserList(){
-        System.out.println("Refresh");
-        ArrayList <String> utenti = DBManager.userList();
-        utentiLista = FXCollections.observableArrayList();
-        utenti.forEach(utente ->{
-            utentiLista.add(utente);
-        });
-        listUser.setItems(utentiLista);
-    }
-
-    /**
      * Questo metodo si occupa della rimozione dell'utente selezionato dal DB
      * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
     public void rimuoviUtente(ActionEvent e){
         String utente = (String) listUser.getSelectionModel().getSelectedItem();
-        DBManager.delUser(utente);
+        this.user.delUser(utente);
         System.out.println("Utente eliminato: "+utente);
         this.createUserList();
-
     }
 
     /**
@@ -250,12 +238,25 @@ public class GestionaleFXController implements Initializable {
                 ((Node) e.getSource()).getScene().getWindow() );
         ModifyUtentiController controller = loader.getController();
         String utente = (String) listUser.getSelectionModel().getSelectedItem();
-        controller.setUser(utente);
+        controller.setUser(utente, this.user);
         stage.show();
         stage.setOnHiding((WindowEvent event1) -> {
             System.out.println("Chiuso");
             this.createUserList();
         });
+    }
+
+    /**
+     * Questo metodo prende la lista degli Utenti dal DB e dopo aver creato una lista l'assegna alla ListView associata agli utenti
+     */
+    public void createUserList(){
+        System.out.println("Refresh");
+        ArrayList <String> utenti = DBManager.userList();
+        utentiLista = FXCollections.observableArrayList();
+        utenti.forEach(utente ->{
+            utentiLista.add(utente);
+        });
+        listUser.setItems(utentiLista);
     }
 
     //Autostrade
@@ -286,24 +287,12 @@ public class GestionaleFXController implements Initializable {
     }
 
     /**
-     * Queato metodo prende le autostrade dal DB e dopo aver creato una lista l'assegna alla ListView associata alle Autostrade
-     */
-    private void refreshAutostrade(){
-        ArrayList<Highway> highways = DBManager.getHighways();
-        autostradeLista = FXCollections.observableArrayList();
-        highways.forEach(autostrada -> {
-            autostradeLista.add(autostrada.getName());
-        });
-        autostradeList.setItems(autostradeLista);
-    }
-
-    /**
      * Questo metodo si occupa della rimozione dell'autostrada selezionata. Al termine chiama il metodo refreshAutostrade() per aggiornare la lista delle autostrade
      * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
     private void rimuoviAutostrada(ActionEvent e){
         String autostrada = (String) autostradeList.getSelectionModel().getSelectedItem();
-        DBManager.delHighway(autostrada);
+        Highway.delHighway(autostrada);
         this.refreshAutostrade();
     }
 
@@ -336,6 +325,18 @@ public class GestionaleFXController implements Initializable {
         });
     }
 
+    /**
+     * Questo metodo prende le autostrade dal DB e dopo aver creato una lista l'assegna alla ListView associata alle Autostrade
+     */
+    private void refreshAutostrade(){
+        ArrayList<Highway> highways = DBManager.getHighways();
+        autostradeLista = FXCollections.observableArrayList();
+        highways.forEach(autostrada -> {
+            autostradeLista.add(autostrada.getName());
+        });
+        autostradeList.setItems(autostradeLista);
+    }
+
     //Caselli
 
     /**
@@ -365,24 +366,12 @@ public class GestionaleFXController implements Initializable {
     }
 
     /**
-     * Questo metodo pernde tutti i caselli nel DB e dopo averli inseriti in una lista li mostra nella ListView associata ai caselli
-     */
-    private void refreshCaselli(){
-        ArrayList<TollBoth> caselli = DBManager.getTollBoths();
-        caselliLista = FXCollections.observableArrayList();
-        caselli.forEach(casello -> {
-            caselliLista.add(casello.getName());
-        });
-        caselliList.setItems(caselliLista);
-    }
-
-    /**
      * Questo metodo si occupa della cancellazione di un casello dal DB. Dopo aver effettuato l'operazione di rimozione chiama il metodo refreshCaselli() per aggiornare la lista
      * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
     private void rimuoviCasello(ActionEvent e){
         String casello = (String) caselliList.getSelectionModel().getSelectedItem();
-        DBManager.delTollboth(casello);
+        TollBoth.delTollBooth(casello);
         System.out.println("Eliminato il casello: "+casello);
         this.refreshCaselli();
     }
@@ -420,6 +409,17 @@ public class GestionaleFXController implements Initializable {
         });
     }
 
+    /**
+     * Questo metodo pernde tutti i caselli nel DB e dopo averli inseriti in una lista li mostra nella ListView associata ai caselli
+     */
+    private void refreshCaselli(){
+        ArrayList<TollBoth> caselli = DBManager.getTollBoths();
+        caselliLista = FXCollections.observableArrayList();
+        caselli.forEach(casello -> {
+            caselliLista.add(casello.getName());
+        });
+        caselliList.setItems(caselliLista);
+    }
 
     //Generale
 

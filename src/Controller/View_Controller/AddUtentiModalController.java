@@ -1,6 +1,7 @@
 package Controller.View_Controller;
 
 import Controller.DB_Controller.DBManager;
+import Model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ public class AddUtentiModalController  implements Initializable {
     Button btn;
     @FXML
     TextField text, text1;
+    User admin;
 
     /**
      *Metodo che viene inizializzato all'apertura della view
@@ -36,9 +38,13 @@ public class AddUtentiModalController  implements Initializable {
         String password = "";
         user = text.getText();
         password = text1.getText();
-        DBManager.addUser(user, password);
+        this.admin.addUser(user,password);
         Stage stage = (Stage) btn.getScene().getWindow();
         stage.close();
+    }
+
+    public void setUser(User admin){
+        this.admin = admin;
     }
 
 }

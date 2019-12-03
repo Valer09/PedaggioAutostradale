@@ -2,6 +2,7 @@ package Controller.View_Controller;
 
 import Controller.DB_Controller.DBManager;
 import Model.Highway;
+import Model.TollBoth;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,7 +60,7 @@ public class AddCaselloModalController implements Initializable {
         String nome = nomeInput.getText();
         double km = Double.parseDouble(kmInput.getText());
         //Aggiungo al database
-        DBManager.addTollboth(autostrada, nome, km);
+        TollBoth.addTollboth(autostrada, nome, km);
         //Chiudo il modale
         Stage stage = (Stage) addButton.getScene().getWindow();
         stage.close();

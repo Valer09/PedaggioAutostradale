@@ -115,5 +115,22 @@ public class User {
 
     }
 
+    /**
+     * addUser aggiunge un nuovo utente
+     * @param user stringa che rappresenta il nome del nuovo utente
+     * @param psw stringa che rappresenta la password del nuovo utente
+     */
+    public void addUser(String user, String psw){
+        DBManager.addUser(user, psw);
+    }
+
+    /**
+     * delUser elimina un utente
+     * @param user stringa che rappresenta l'username dell'utente da eliminare
+     */
+    public void delUser(String user){
+        DBManager.delUser(user);
+    }
+
 
 }

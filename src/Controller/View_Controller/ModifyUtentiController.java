@@ -1,6 +1,8 @@
 package Controller.View_Controller;
 
 import Controller.DB_Controller.DBManager;
+import Model.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,6 +19,7 @@ Button modifica;
     TextField text;
 
     String  user;
+    User admin;
 
     /**
      *Metodo che viene inizializzato all'apertura della view
@@ -32,8 +35,9 @@ Button modifica;
      * Seleziona un utente dalla lista utenti
      * @param utente Parametro di tipo Stringa che rappresenta il nome dell'utente
      */
-    public void setUser(String utente){
+    public void setUser(String utente, User admin){
         this.user = utente;
+        this.admin = admin;
         text.setText(this.user);
     }
 
@@ -41,10 +45,10 @@ Button modifica;
      * Modifica un utente nel database
      * @param actionEvent Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
-    private void modUt(javafx.event.ActionEvent actionEvent) {
+    private void modUt(ActionEvent actionEvent) {
         String username = "";
         username = text.getText();
-        DBManager.setUsername(user, username);
+        this.admin.setUserUsername(this.user, username);
         System.out.println(username);
         Stage stage = (Stage) modifica.getScene().getWindow();
         stage.close();

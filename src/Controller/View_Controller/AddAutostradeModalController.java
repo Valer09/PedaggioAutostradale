@@ -1,6 +1,7 @@
 package Controller.View_Controller;
 
 import Controller.DB_Controller.DBManager;
+import Model.Highway;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -44,7 +45,7 @@ public class AddAutostradeModalController implements Initializable {
         String nome = nomeInput.getText();
         double tu = Double.parseDouble(TU.getText());
         //Aggiungo al database
-        DBManager.addHighway(nome, tu);
+        Highway.addHighway(nome, tu);
         //Chiudo il modale
         Stage stage = (Stage) addButton.getScene().getWindow();
         stage.close();

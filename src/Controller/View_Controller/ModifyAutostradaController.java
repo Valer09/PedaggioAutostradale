@@ -40,11 +40,9 @@ public class ModifyAutostradaController implements Initializable {
      */
     public void modifica(ActionEvent e){
         String nome = nomeInput.getText();
-        double TarUni= Double.parseDouble(TU.getText());
-
-        DBManager.setTU(highway_name,TarUni);
-        DBManager.setHighwayName(highway_name,nome);
-
+        double tu= Double.parseDouble(TU.getText());
+        Highway.setName(highway_name, nome);
+        Highway.setTU(highway_name, tu);
         Stage stage = (Stage) modButton.getScene().getWindow();
         stage.close();
     }

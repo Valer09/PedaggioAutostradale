@@ -54,9 +54,9 @@ public class ModifyCaselloController implements Initializable {
         String nome = nomeInput.getText();
         double km = Double.parseDouble(kmInput.getText());
         //Aggiungo al database
-        DBManager.setTollbothHigway(casello.getName(), autostrada);
-        DBManager.setTollbothKM(casello.getName(), km);
-        DBManager.setTollbothName(casello.getName(), nome);
+        TollBoth.setHighway(casello.getName(), autostrada);
+        TollBoth.setName(casello.getName(), nome);
+        TollBoth.setKM(casello.getName(), km);
         //Chiudo il modale
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();

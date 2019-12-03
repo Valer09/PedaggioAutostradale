@@ -37,6 +37,7 @@ public class TollBoth {
      * @param KM
      */
     public static void setKM(String tollbooth, double KM) {
+
         DBManager.setTollbothKM(tollbooth,KM);
     }
 
@@ -47,6 +48,7 @@ public class TollBoth {
      * @param KM Parametro di tipo double che rappresenta il km dove è posizionato il casello
      */
     public static void addTollboth(String highway, String name, double KM){
+
         DBManager.addTollboth(highway,name,KM);
     }
 
@@ -55,6 +57,7 @@ public class TollBoth {
      * @param tollbooth
      */
     public static void delTollBooth(String tollbooth){
+
         DBManager.delTollboth(tollbooth);
     }
 
@@ -64,7 +67,17 @@ public class TollBoth {
      * @param newName
      */
     public static void setName(String toolbooth, String newName) {
+
         DBManager.setTollbothName(toolbooth, newName);
+    }
+
+    /**
+     * Metodo che setta l'autostrada associata al casello
+     * @param nome Parametro di tipo Stringa che rappresenta il nome del casello
+     * @param autostrada Parametro di tipo Stringa che rappresenta il nome dell'autostrada
+     */
+    public static void setHighway(String nome, String autostrada){
+        DBManager.setTollbothHigway(nome, autostrada);
     }
 
 }
