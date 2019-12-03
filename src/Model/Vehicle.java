@@ -20,6 +20,10 @@ public class Vehicle {
     private ICategoria cat;
     private String ambiental_class;
 
+    /**
+     * Costruttore della classe vehicle, dove viene istanziata la connessione al database per potersi prendere i valori associati alla tabella vehicle
+     * @param vlp
+     */
     public Vehicle(String vlp){
         this.vlp = vlp;
         DBManager db=new DBManager();
