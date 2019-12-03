@@ -51,16 +51,6 @@ public class Highway {
     }
 
     /**
-     * Richiama il metodo addTollBoth del DBManager
-     * @param highway Parametro di tipo Stringa che rappresenta il nome dell'autostrada
-     * @param name Parametro di tipo Stringa che rappresenta il nome del casello
-     * @param KM Parametro di tipo double che rappresenta il km dove è posizionato il casello
-     */
-    public static void addTollboth(String highway, String name, double KM){
-        DBManager.addTollboth(highway,name,KM);
-    }
-
-    /**
      * Richiama il metodo addHigway del DBManager
      * @param name Parametro di tipo Stringa che rappresenta il nome dell'autostrada
      * @param TU Parametro di tipo double che rappresenta la Tariffa Unitaria dell'autostrada

@@ -1,5 +1,6 @@
 package Model;
 
+import Model.Interfaces.IImposte;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,7 +15,7 @@ import javafx.beans.property.StringProperty;
  *   @author Mattia Lenza
  *
  * */
-public class Imposte{
+public class ImposteGeneriche implements IImposte {
     private final StringProperty nomeImposta;
     private final DoubleProperty valoreImposta;
 
@@ -23,22 +24,23 @@ public class Imposte{
      * @param nome nome dell'imposta
      * @param valore valore dell'imposta
      */
-    public Imposte(String nome, Double valore){
+    public ImposteGeneriche(String nome, Double valore){
         this.nomeImposta=   new SimpleStringProperty(nome);
         this.valoreImposta= new SimpleDoubleProperty(valore);
     }
 
     /**
-     * @return <b>String</b> - restituisce il nome dell'imposta
+     * @return <b>String</b> - Restituisce il nome dell'imposta
      */
-    public String getNomeImposta() {
+    @Override
+    public String getNome() {
         return nomeImposta.getValue();
     }
-
     /**
-     * @return <b>Double</b> - restituisce il valore dell'imposta
+     * @return <b>Double</b> - Restituisce il valore dell'imposta
      */
-    public Double getValoreImposta() {
+    @Override
+    public double getValore() {
         return valoreImposta.getValue();
     }
 
@@ -55,6 +57,7 @@ public class Imposte{
     public DoubleProperty getvaloreImpostaProperty(){
         return valoreImposta;
     }
+
 
 }
 

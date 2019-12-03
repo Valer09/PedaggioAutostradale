@@ -11,7 +11,7 @@ import Controller.DB_Controller.DBManager;
  *
  */
 
-public class CategoriaPesante  implements ICategoria {
+public class CategoriaPesante implements IImposte {
 
     private String classe;
     private double valore;
@@ -34,14 +34,16 @@ public class CategoriaPesante  implements ICategoria {
     /**
      * @return <b>String</> - restituisce il nome della categoria veicolo
      */
-    public String getNomeCategoria() {
+    @Override
+    public String getNome() {
         return this.classe;
     }
 
     /**
      * @return <b>double</> - Restituisce il valore di imposta della categoria veicolo
      */
-    public double getValoreCategoria() {
+    @Override
+    public double getValore() {
         return this.valore;
     }
 }

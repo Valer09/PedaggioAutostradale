@@ -63,7 +63,7 @@ public class LoginxFXController implements Initializable {
             String usern = un;
             String passw = pw;
             user = new User(usern, passw);
-            if (user.getstatus().getValue()) {
+            if (user.getStatus().getValue()) {
                 logged = true;
             } else {
                 logged = false;
@@ -89,7 +89,7 @@ public class LoginxFXController implements Initializable {
     private void login()  {
 
         if (!logged && limitaccess <= 10) {
-                Error.setText(user.getstatus().getKey());
+                Error.setText(user.getStatus().getKey());
                 limitaccess++;
         }
 

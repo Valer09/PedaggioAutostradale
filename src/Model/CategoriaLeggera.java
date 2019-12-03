@@ -11,7 +11,7 @@ import Controller.DB_Controller.DBManager;
  *
  */
 
-public class CategoriaLeggera implements ICategoria{
+public class CategoriaLeggera implements IImposte {
     private String classe;
     private double valore;
 
@@ -28,14 +28,14 @@ public class CategoriaLeggera implements ICategoria{
     /**
      * @return <b>String</> - restituisce il nome della categoria veicolo
      */
-    public String getNomeCategoria(){
+    public String getNome(){
         return this.classe;
     }
 
     /**
      * @return <b>double</> - Restituisce il valore di imposta della categoria veicolo
      */
-    public double getValoreCategoria(){
+    public double getValore(){
         return this.valore;
     };
 

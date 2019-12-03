@@ -9,16 +9,16 @@ package Model.Interfaces;
  *   @author Mattia Lenza
  *
  * */
-public interface ICategoria {
+public interface IImposte {
 
     /**
      * @return - <b>String</> Restituisce il nome della categoria veicolo
      */
-    String getNomeCategoria();
+    String getNome();
 
     /**
      * @return - <b>double</> Restituisce il valore di imposta della categoria veicolo
      */
-    double getValoreCategoria();
+    double getValore();
 
 }

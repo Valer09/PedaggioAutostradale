@@ -1,7 +1,7 @@
 package Model;
 
 import Controller.DB_Controller.DBManager;
-import Model.Interfaces.ICategoria;
+import Model.Interfaces.IImposte;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,7 +16,7 @@ public class Vehicle {
     private Float weight;
     private Float height;
     private int cylinder_capacity;
-    private ICategoria cat;
+    private IImposte cat;
     private String ambiental_class;
 
     /**
@@ -87,7 +87,7 @@ public class Vehicle {
     }
 
     public String getTariff_class() {
-        return cat.getNomeCategoria();
+        return cat.getNome();
     }
 
     public String getVlp() {
@@ -96,11 +96,11 @@ public class Vehicle {
 
 
    public String getCategoriaName(){
-        return cat.getNomeCategoria();
+        return cat.getNome();
    }
 
    public double getIncrementoCT(){
-        return cat.getValoreCategoria();
+        return cat.getValore();
    }
 
    public double getIncrementoCA(){

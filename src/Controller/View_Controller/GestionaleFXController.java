@@ -4,7 +4,7 @@ import Controller.DB_Controller.DBManager;
 import Model.Highway;
 import Model.TollBoth;
 import Model.User;
-import Model.Imposte;
+import Model.ImposteGeneriche;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,12 +32,12 @@ public class GestionaleFXController implements Initializable {
     @FXML
     Button backButton, addAutostrada, deleteAutostrada, modifyAutostrada, addCasello, modifyCasello, deleteCasello, addUt, deleteUt, modifyUt, eraseImpostaButton, newImpostaButton, editImpostaButton;
     @FXML
-    TableColumn <Imposte, String>key;
+    TableColumn <ImposteGeneriche, String>key;
     @FXML
-    TableColumn <Imposte, Double>value;
+    TableColumn <ImposteGeneriche, Double>value;
     @FXML
-    TableView <Imposte> classesTable;
-    ObservableList <Imposte> imposte;
+    TableView <ImposteGeneriche> classesTable;
+    ObservableList <ImposteGeneriche> imposteGeneriche;
     ObservableList <String> autostradeLista, caselliLista, utentiLista;
 
     @Override
@@ -85,8 +85,8 @@ public class GestionaleFXController implements Initializable {
      * @param actionEvent Evento click del pulstante <b>eraseImpostaButton</b>
      */
     private void eliminaImposta(ActionEvent actionEvent) {
-        String importo =  classesTable.getSelectionModel().getSelectedItem().getNomeImposta();
-        DBManager.delImposta(importo);
+        String imposta =  classesTable.getSelectionModel().getSelectedItem().getNome();
+        DBManager.delImposta(imposta);
         refreshImposte();
     }
 
@@ -95,12 +95,12 @@ public class GestionaleFXController implements Initializable {
      * @param actionEvent Evento click del pulstante <b>editImpostaButton</b>
      */
     private void modificaImposta(ActionEvent actionEvent) {
-        String nomeimporto;
-        Double valoreimporto ;
-        Imposte selected = classesTable.getSelectionModel().getSelectedItem();
-        nomeimporto=selected.getNomeImposta();
-        valoreimporto=selected.getValoreImposta();
-        System.out.println(nomeimporto+ " "+ valoreimporto );
+        String nomeImposta;
+        Double valoreImposta ;
+        ImposteGeneriche selected = classesTable.getSelectionModel().getSelectedItem();
+        nomeImposta=selected.getNome();
+        valoreImposta=selected.getValore();
+        System.out.println(nomeImposta+ " "+ valoreImposta );
 
         Stage stage = new Stage();
         Parent root = null;
@@ -113,7 +113,7 @@ public class GestionaleFXController implements Initializable {
         }
         ModifyImposteFXController controller = loader.<ModifyImposteFXController>getController();
         controller.setReason(false);
-        controller.setFields(nomeimporto,valoreimporto);
+        controller.setFields(nomeImposta, valoreImposta);
 
         stage.setScene(new Scene(root));
         stage.setTitle("Crea Nuovo Imposta");
@@ -165,16 +165,16 @@ public class GestionaleFXController implements Initializable {
      * Il metodo crea riempie la TableView <b>classesTable</b>; vengono utilizzate due strutture dati di apposggio: una HashMap ed una ObslervableList di tipo Imposte (Modello)
      */
     private void refreshImposte(){
-        imposte  = FXCollections.observableArrayList();
+        imposteGeneriche = FXCollections.observableArrayList();
 
         //chiave-valore => Nome-valore imposte
         HashMap<String, Double> classes = DBManager.getClasses();
         classes.forEach((K,V) -> {
-            imposte.add(new Imposte(K,V));
+            imposteGeneriche.add(new ImposteGeneriche(K,V));
         });
         key.setCellValueFactory(cellData ->  cellData.getValue().getNomeImpostaProperty());
         value.setCellValueFactory(cellData ->  cellData.getValue().getvaloreImpostaProperty().asObject());
-        classesTable.setItems(imposte);
+        classesTable.setItems(imposteGeneriche);
         classesTable.getSortOrder().add(key);
     }
 
