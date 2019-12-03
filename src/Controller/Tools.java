@@ -2,13 +2,12 @@ package Controller;
 
 import javafx.util.Pair;
 import org.jetbrains.annotations.NotNull;
-
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import Exception.WrongLPException;
 
 /**
  * Utility controller: contiente dei metodi statici utili per supportare la fase di sviluppo
@@ -51,21 +50,18 @@ public class Tools {
 
 
     /**
-     * DA COMPLETARE; CONTROLLA IL FORMATO TARGA.
+     * CONTROLLA IL FORMATO TARGA.
      * @param lp targa veicolo
      * @return <b> boolean </b> - restituisce true se il formato è valido
      */
-    @Deprecated
-    public static boolean LPCheck(@NotNull String lp){
+    public static boolean LPCheck(@NotNull String lp) throws WrongLPException {
         boolean format=true;
-
-        if (! ( lp.length()==7 ) )
-            return false;
+        if (! ( lp.length()==7 ) ) {
+            throw new WrongLPException();
+        }
         Matcher m = Pattern.compile("[a-zA-Z0-9. ]*").matcher(lp);
-        if (m.find())
-            return true;
-
-        return false;
+        if (m.find()) return true;
+        throw new WrongLPException();
     }
 
     /**
@@ -102,7 +98,6 @@ public class Tools {
         if (importo > 1 || importo < 0)
             return false;
         return true;
-
     }
 
     /**

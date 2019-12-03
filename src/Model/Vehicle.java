@@ -1,10 +1,11 @@
 package Model;
 
 import Controller.DBManager;
+import Controller.Tools;
 import Model.Interfaces.ICategoria;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import Exception.WrongLPException;
 
 
 public class Vehicle {

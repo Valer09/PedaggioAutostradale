@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import Exception.WrongLPException;
 
 public class OperatoreFxController implements Initializable {
     private File ticket;
@@ -63,6 +64,11 @@ public class OperatoreFxController implements Initializable {
                 String fileContent = Tools.fileReader(this.ticket.getPath());
                 JSONObject obj = new JSONObject(fileContent.toString());
                 String targa = obj.getString("vehicle_vlp");
+                try {
+                    Tools.LPCheck(targa);
+                } catch (WrongLPException e) {
+                    return;
+                }
                 Vehicle macchina = new Vehicle(targa);
                 String startingTBName = obj.getString("startingTB");
                 TollBoth startingTB = DBManager.getTollBoth(startingTBName);
