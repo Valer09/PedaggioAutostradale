@@ -34,7 +34,12 @@ public class AddAutostradeModalController implements Initializable {
         });
     }
 
-    private void aggiungi(ActionEvent actionEvent) {
+    /**
+     * Metodo che al click del pulsante Aggiungi prende i valori dei due TextField e li passa come parametri al metodo addHigway per aggiungere una nuova autostrada al DB.
+     * Al termine chiude la finestra modale.
+     * @param e Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
+     */
+    private void aggiungi(ActionEvent e) {
         String nome = nomeInput.getText();
         double tu = Double.parseDouble(TU.getText());
         //Aggiungo al database

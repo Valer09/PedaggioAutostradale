@@ -1,6 +1,7 @@
 
 package Controller;
 import Model.User;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -52,7 +53,7 @@ public class LoginxFXController implements Initializable {
     EventHandler click = new EventHandler() {
         /**
          * Gestione dell'eveno di click di login. Istanzia la classe User con i dati da esso forniti, e ne controlla lo stato; imposta quindi un booleano <b>logged</b> che consente a login() di gestire il login in base alla correttezza dei dati.
-         * @param event
+         * @param event Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
          */
         @Override
         public void handle(Event event) {
@@ -127,9 +128,9 @@ public class LoginxFXController implements Initializable {
 
     /**
      * Gestisce l'apertura della view home.fxml dopo il click sul pulsante annulla
-     * @param event - evento di click sul pulsante annulla
+     * @param event Parametro di tipo ActionEvent che rappresenta l'evento che ha causato la chiamata al metodo
      */
-    private void switchToHomeScene(javafx.event.ActionEvent event){
+    private void switchToHomeScene(ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/home.fxml"));
         Stage stage = (Stage) annulla.getScene().getWindow();
         Scene scene = null;
@@ -157,11 +158,6 @@ public class LoginxFXController implements Initializable {
         isfirst=true;
         accedi.setOnAction(click);
         annulla.setOnAction(this::switchToHomeScene);
-
-
-
-
-
 
     }
 
