@@ -24,7 +24,7 @@ public class DBManager {
 
     /**
      * initializeConnection inizializza la connessione con il DB
-     * @return
+     * @return la connessione con il DB
      */
     public static Connection initializeConnection() {
         try {
@@ -50,8 +50,8 @@ public class DBManager {
     //IVA
 
     /**
-     * getIVA ritorna il valore dell'iva
-     * @return
+     * getIVA chiede al DB il valore dell'IVA
+     * @return il valore double dell'IVA
      */
     public static double getIVA() {
         double res = 0;
@@ -72,9 +72,9 @@ public class DBManager {
     //VEHICLE METHODS
 
     /**
-     * getAmbientalClassValue ritorna il valore della costante associata al nome della classe passata come paramentro
-     * @param nomeClasse
-     * @return
+     * getAmbientalClassValue chiede al DB il valore della classe ambientale
+     * @param nomeClasse stringa che rappresenta il nome della classe di cui si vogliono recuperare le informazioni
+     * @return ritorna il valore double della costante associata al nome della classe passata come paramentro
      */
     public static double getAmbientalClassValue(String nomeClasse) {
         double res = 0;
@@ -91,9 +91,9 @@ public class DBManager {
     }
 
     /**
-     * getClassValue ritorna il valore della costante associata al nome della classe passata come parametro
-     * @param classe
-     * @return
+     * getClassValue chiede al db il valore della classe
+     * @param classe stringa che rappresenta il nome della classe di cui si vogliono recuperare le informazioni
+     * @return ritorna il valore double della costante associata al nome della classe passata come parametro
      */
     public static double getClassValue(String classe) {
 
@@ -130,9 +130,9 @@ public class DBManager {
     }
 
     /**
-     * getVeichleInfo ritorna le informazioni associate ad un veicolo
-     * @param vlp
-     * @return
+     * getVeichleInfo chiede al DB le informazioni riguardo un veicolo
+     * @param vlp stringa che rappresenta la targa del veicolo di cui si vogliono conoscere le informazioni
+     * @return ritorna un ResultSet contenente le informazioni associate ad un veicolo
      */
     public ResultSet getVeichleInfo(String vlp){
 
@@ -149,8 +149,8 @@ public class DBManager {
     //HIGHWAYS METHODS
 
     /**
-     * getHighways recupera i nomi di tutte le autostrade
-     * @return
+     * getHighways chiede al DB tutte le autostrade
+     * @return ritorna un array di tutte le autostrade
      */
     public static ArrayList <Highway> getHighways(){
         Statement st;
@@ -170,6 +170,11 @@ public class DBManager {
         return highways;
     }
 
+    /**
+     * getHighway chiede al DB le informazioni riguardanti un'autostrada
+     * @param nome stringa che rappresenta il nome dell'autostrada di cui si vogliono le informazioni
+     * @return ritorna un oggetto di tipo autorstrada
+     */
     public static Highway getHighway(String nome){
         Statement st;
         ResultSet rs;
@@ -187,9 +192,9 @@ public class DBManager {
     }
 
     /**
-     * getHighwayTU recover TU of a specific highway from DB
+     * getHighwayTU chiede al DB la TU di una specifica autostrada
      *
-     * @return double
+     * @return ritorna la TU di tipo double
      */
     public static double getHighwayTU(String highway) {
 
@@ -230,8 +235,8 @@ public class DBManager {
     /**
      * setTU imposta il valore della tariffa unitaria di un'autostrada nel DB
      *
-     * @param highway
-     * @param TU
+     * @param highway stringa che rappresenta l'autostrada a cui si vuole cambiare il valore della TU
+     * @param TU paramentro di tipo double che rappresenta il nuovo valore della TU
      */
     public static void setTU(String highway, double TU) {
         try {
@@ -244,8 +249,8 @@ public class DBManager {
 
     /**
      * setHighwayName aggiorna il nome di un'autostrada e aggiorna i rispettivi caselli
-     * @param highway
-     * @param newName
+     * @param highway stringa che rappresenta l'autostrada di cui si vuole modificare il nome
+     * @param newName stringa che rappresenta il nuovo nome dell'autostrada
      */
     public static void setHighwayName(String highway, String newName) {
         try {
@@ -270,8 +275,8 @@ public class DBManager {
 
     /**
      * addHighway aggiunge una nuova autostrada
-     * @param name
-     * @param TU
+     * @param name stringa che rappresenta il nome della nuova autostrada
+     * @param TU valore della TU della nuova autostrada di tipo double
      */
     public static void addHighway(String name, double TU) {
         try {
@@ -283,8 +288,8 @@ public class DBManager {
     }
 
     /**
-     * elimina un'autostrada e i riferimenti ai caselli associati
-     * @param highway
+     * delHighway elimina un'autostrada e i riferimenti ai caselli associati
+     * @param highway stringa che rappresenta il nome dell'autostrada da eliminare
      */
     public static void delHighway(String highway) {
         try {
@@ -302,8 +307,8 @@ public class DBManager {
 
     /**
      * getHighwayTollbooths recupera il nome e il chilometro dei caselli associati ad un'autostrada
-     * @param highway
-     * @return
+     * @param highway stringa che rappresenta il nome dell'autostrada di cui si vogliono recuperare le informazioni
+     * @return ritorna un'HashMap con il nome e il chilometro dei caselli
      */
     public HashMap<String, Double> getHighwayTollbooths(String highway) {
         HashMap<String, Double> tb = new HashMap<String, Double>();
@@ -323,9 +328,9 @@ public class DBManager {
 
     /**
      * addTollboth inserisce un nuovo casello
-     * @param highway
-     * @param name
-     * @param KM
+     * @param highway stringa che rappresenta l'autostrada in cui si vuole inserire il casello
+     * @param name stringa che rappresenta il nome del nuovo casello
+     * @param KM valore di tipo double che rappresenta il chilometro del nuovo casello
      */
     public static void addTollboth(String highway, String name, double KM) {
         System.out.println("Aggiunto Casello: " + name + " KM: " + KM + " Autostrada: " + highway);
@@ -339,8 +344,8 @@ public class DBManager {
 
     /**
      * setTollbothName aggiorna il nome di un casello
-     * @param tollbooth
-     * @param newName
+     * @param tollbooth stringa che rappresenta il nome del casello da modificare
+     * @param newName stringa che rappresenta il nuovo nome del casello
      */
     public static void setTollbothName(String tollbooth, String newName) {
         try {
@@ -355,8 +360,8 @@ public class DBManager {
 
     /**
      * setTollbothKM aggiorna il chilometro di un casello
-     * @param tollbooth
-     * @param KM
+     * @param tollbooth stringa che rappresenta il nome del casello che si vuole aggiornare
+     * @param KM valore di tipo double che rappresenta il nuovo chilometro del casello
      */
     public static void setTollbothKM(String tollbooth, double KM){
         try{
@@ -369,7 +374,7 @@ public class DBManager {
 
     /**
      * delTollboth cancella un casello
-     * @param tollbooth
+     * @param tollbooth stringa che rappresenta il nome del casello da eliminare
      */
     public static void delTollboth(String tollbooth){
         try{
@@ -383,8 +388,8 @@ public class DBManager {
 
     /**
      * getTollBothKM recupera il chilometro associato ad un casello
-     * @param tollbooth
-     * @return
+     * @param tollbooth stringa che rappresenta il nome del casello di cui si vuole conoscere il chilometro
+     * @return ritorna un valore di tipo duoble che rappresenta il chilometro del casello
      */
     public double getTollBothKm(String tollbooth){
         double km=0;
@@ -402,7 +407,7 @@ public class DBManager {
 
     /**
      * getTollBoths recupera tutti i caselli
-     * @return
+     * @return ritorna un array di caselli
      */
     public static ArrayList<TollBoth> getTollBoths(){
         ArrayList<TollBoth> caselli = new ArrayList<TollBoth>();
@@ -422,8 +427,8 @@ public class DBManager {
 
     /**
      * getTollBoth recupera un casello
-     * @param name
-     * @return
+     * @param name stringa che rappresenta il nome del casello che si vuole recuperare
+     * @return ritorna un oggetto casello
      */
     public static TollBoth getTollBoth(String name){
         TollBoth casello = new TollBoth("", 0, "");
@@ -445,8 +450,8 @@ public class DBManager {
 
     /**
      * setTollbothHighway aggiorna l'autostrada associata ad un casello
-     * @param tollboth
-     * @param Higway
+     * @param tollboth stringa che rappresenta il casello di cui si vuole modificare l'autostrada associata
+     * @param Higway stringa che rappresenta il nuovo ome dell'autostrada
      */
     public static void setTollbothHigway(String tollboth, String Higway){
         try{
@@ -461,8 +466,8 @@ public class DBManager {
 
     /**
      * addUser aggiunge un nuovo utente
-     * @param name
-     * @param password
+     * @param name stringa che rappresenta il nome del nuovo utente
+     * @param password stringa che rappresenta la password del nuovo utente
      */
     public static void addUser(String name, String password) {
         try {
@@ -476,8 +481,8 @@ public class DBManager {
 
     /**
      * setUsername aggiorna l'username associato ad un utente
-     * @param user
-     * @param username
+     * @param user stringa che rappresenta l'user di cui si vuole modificare l'username
+     * @param username stringa che rappresenta il nuovo username dell'utente
      */
     public static void setUsername(String user, String username) {
         try {
@@ -491,8 +496,8 @@ public class DBManager {
 
     /**
      * setUserPsw aggiorna la password associata all'utente
-     * @param user
-     * @param newpsw
+     * @param user stringa che rappresenta l'user di cui si vuole modificare la password
+     * @param newpsw stringa che rappresenta la nuova password dell'utente
      */
     public static void setUserPsw(String user, String newpsw) {
         try {
@@ -505,10 +510,12 @@ public class DBManager {
     }
 
     /**
-     * Metodo prevalentemente utilizzato da Tools.checkLogin. Le query sul DB controllano l'esistenza della username, chiave della tabella users e la correttezza della password. Dunque costruisce la struttura status per il metodo checkLogin di Tools.
-     * @param user username
-     * @param password password
-     * @return <b>Pair "Pair-Boolean"</b> - <b>status</>: struttura dati contentente username, password e bool=true se entrambi fanno match nel DB
+     * checkUserAndPassword controlla che l'username esista e la password associata a quest'ultimo sia uguale a quella passata come paramentro
+     * @param user stringa che rappresenta l'utente di cui si vuole controllare l'esistenza
+     * @param password stringa che rappresenta la password di cui si vuole controllare la correttezza
+     * @return ritorna un pair di cui il primo valore è un pair con all'interno utente e password se il check è andato a buon fine, il secondo
+     * valore è un booleano che rappresenta lo stato del check( true se l'utente è stato trovato e la password associata è uguale a quella passata come
+     * paramentro, false altrimenti)
      */
     public static Pair <Pair<String,String>,  Boolean  > checkUserAndPassword(String user, String password) {
         Pair <  Pair<String,String>,  Boolean  > status=null;
@@ -536,8 +543,8 @@ public class DBManager {
 
     /**
      * checkUser controlla che un utente è nel DB
-     * @param user
-     * @return
+     * @param user stringa che rappresenta l'username dell'utente
+     * @return un booleano che ha valore true se l'utente è stato trovato, false altrimenti
      */
     public static boolean checkUser(String user) {
 
@@ -557,9 +564,9 @@ public class DBManager {
 
     /**
      * checkUserPsw controlla che la password passata al metodo sia uguale a quella salvata nel DB
-     * @param user
-     * @param password
-     * @return
+     * @param user stringa che rappresenta l'username dell'utente del quale si vuole controllare la correttezza della password
+     * @param password stringa che rappresenta la password da confrontare con quella salvata nel DB
+     * @return un booleano che ha valore true se la password passata come paramentro è uguale a quella presente nel DB, false altrimenti
      */
     public static boolean checkUserPsw(String user, String password){
 
@@ -584,54 +591,8 @@ public class DBManager {
     }
 
     /**
-     * getUser recupera l'username di un utente
-     * @param user
-     * @return
-     */
-    public static String getUser(String user) {
-
-        Statement st;
-        ResultSet rs;
-        String usr="";
-
-        try {
-            st = connection.createStatement();
-            rs=st.executeQuery("SELECT username FROM user WHERE username='" + user + "'");
-            while(rs.next())
-                usr=rs.getString("username");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return usr;
-
-    }
-
-    /**
-     * getPassword recupera la password di un utente
-     * @param user
-     * @return
-     */
-    public static String getPassword(String user){
-
-        Statement st;
-        ResultSet rs;
-        String psw="";
-
-        try {
-            st = connection.createStatement();
-            rs=st.executeQuery("SELECT password FROM user WHERE username='" + user + "'");
-            while(rs.next())
-                psw=rs.getString("password");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return psw;
-
-    }
-
-    /**
-     * userList recupera la lista degli username degli utenti
-     * @return
+     * userList chiede al DB la lista degli username degli utenti
+     * @return ritorna un array di stringhe che rappresentano gli username degli utenti
      */
     public static ArrayList <String> userList(){
         Statement st;
@@ -656,7 +617,7 @@ public class DBManager {
 
     /**
      * getClasses recupera nome e valore delle costanti ordinate secondo il nome
-     * @return
+     * @return ritorna un HashMap contenente una stringa e un valore double che rappresentano nome e valore delle costanti
      */
     public static HashMap <String, Double> getClasses(){
         HashMap<String, Double> cl = new HashMap<String, Double>();
@@ -681,7 +642,7 @@ public class DBManager {
 
     /**
      * delUser elimina un utente
-     * @param username
+     * @param username stringa che rappresenta l'username dell'utente da eliminare
      */
     public static void delUser(String username) {
         try {
@@ -692,6 +653,11 @@ public class DBManager {
         }
 
     }
+
+    /**
+     * delImposta elimina il valore dell'imposta
+     * @param nomeImposta stringa che rappresenta il nome dell'imposta da eliminare
+     */
     public static void delImposta(String nomeImposta){
         try{
         Statement stm = connection.createStatement();
@@ -701,6 +667,12 @@ public class DBManager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * addImposta aggiunge una nuova imposta
+     * @param nomeImposta stringa che rappresenta il nome della nuova imposta
+     * @param valoreImposta valore double della nuova imposta
+     */
     public static void addImposta(String nomeImposta, double valoreImposta){
         try{
             Statement stm = connection.createStatement();
@@ -710,6 +682,13 @@ public class DBManager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * setImposta aggiorna il valore di un'imposta
+     * @param nomeImposta stringa che rappresenta il nome dell'imposta da modificare
+     * @param newNomeImposta stringa che rappresenta il nuovo nome dell'imposta
+     * @param valoreImposta valore double che rappresenta il nuovo valore dell'imposta
+     */
     public static void setImposta(String nomeImposta, String newNomeImposta, double valoreImposta){
         try {
             Statement stm = connection.createStatement();
