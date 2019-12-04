@@ -71,24 +71,6 @@ public class DBManager {
 
     //VEHICLE METHODS
 
-    /**
-     * getAmbientalClassValue chiede al DB il valore della classe ambientale
-     * @param nomeClasse stringa che rappresenta il nome della classe di cui si vogliono recuperare le informazioni
-     * @return ritorna il valore double della costante associata al nome della classe passata come paramentro
-     */
-    public static double getAmbientalClassValue(String nomeClasse) {
-        double res = 0;
-        try {
-            Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT Val FROM costants WHERE Name = '" + nomeClasse + "'");
-            while (rs.next()) {
-                res = rs.getDouble("Val");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
 
     /**
      * getClassValue chiede al db il valore della classe
@@ -191,46 +173,6 @@ public class DBManager {
         return autostrada;
     }
 
-    /**
-     * getHighwayTU chiede al DB la TU di una specifica autostrada
-     *
-     * @return ritorna la TU di tipo double
-     */
-    public static double getHighwayTU(String highway) {
-
-        Connection con = DBManager.getConnection();
-
-        Statement stm = null;
-        try {
-            stm = con.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ResultSet rs = null;
-        try {
-            rs = stm.executeQuery("SELECT tu FROM autostrada WHERE nome=" + "'" + highway + "'");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        while (true) {
-            try {
-                if (!rs.next()) break;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-
-                return rs.getDouble("tu");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return 1;
-
-    }
 
     /**
      * setTU imposta il valore della tariffa unitaria di un'autostrada nel DB
@@ -594,7 +536,7 @@ public class DBManager {
      * userList chiede al DB la lista degli username degli utenti
      * @return ritorna un array di stringhe che rappresentano gli username degli utenti
      */
-    public static ArrayList <String> userList(){
+    public static ArrayList <String> getUserList(){
         Statement st;
         ResultSet rs;
 

@@ -251,7 +251,7 @@ public class GestionaleFXController implements Initializable {
      */
     public void createUserList(){
         System.out.println("Refresh");
-        ArrayList <String> utenti = DBManager.userList();
+        ArrayList <String> utenti = DBManager.getUserList();
         utentiLista = FXCollections.observableArrayList();
         utenti.forEach(utente ->{
             utentiLista.add(utente);
