@@ -49,7 +49,7 @@ public class ModifyAutostradaController implements Initializable {
 
     /**
      * Metodo che viene chiamato dalla finestra precedente. Si occupa di creare un'istanza di Autostrada quando gli viene passato il nome. Successivamente inserisce i valori del nome e della Tariffa Unitaria nei rispettivi TextField
-     * @param name
+     * @param name nome autostrada
      */
     public void setHWname(String name){
         this.highway_name = name;

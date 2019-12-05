@@ -53,6 +53,7 @@ public class Tools {
     /**
      * CONTROLLA IL FORMATO TARGA.
      * @param lp targa veicolo
+     * @throws WrongLPException - Eccezione per formata targa errato
      * @return <b> boolean </b> - restituisce true se il formato è valido
      */
     public static boolean LPCheck(@NotNull String lp) throws WrongLPException {

@@ -64,31 +64,37 @@ public class ModifyImposteFXController implements Initializable {
      * @param actionEvent evento di click sul pulsante enter
      */
     private void creaOmodifica(ActionEvent actionEvent) {
-        if (creating){
-            valore=Double.parseDouble(valuefield.getText());
-            label1.setText("Creazione Nuova Imposta");
-            if (Tools.importoFormatCheck(valore)){
-                DBManager.addImposta(nametext.getText(), valore);
-                Stage stage = (Stage) enter.getScene().getWindow();
-                stage.close();
-            }
-            else
-                {
-                Errore.setText("Importo non valido. \nL'importo deve indicare una percentuale \ne quindi essere compreso tra 0 e 1");
+        if (creating) {
+            try {
+                valore = Double.parseDouble(valuefield.getText());
+                label1.setText("Creazione Nuova Imposta");
+                if (Tools.importoFormatCheck(valore)) {
+                    DBManager.addImposta(nametext.getText(), valore);
+                    Stage stage = (Stage) enter.getScene().getWindow();
+                    stage.close();
+                } else {
+                    Errore.setText("Importo non valido. \nL'importo deve indicare una percentuale \ne quindi essere compreso tra 0 e 1");
                 }
 
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                Errore.setText("Importo non valido. \nL'importo deve indicare una percentuale \ne quindi essere compreso tra 0 e 1");
+            }
         }
         else
             {
-            valore=Double.parseDouble(valuefield.getText());
-            label1.setText("Modifica Imposta");
-            if (Tools.importoFormatCheck(valore)){
-                DBManager.setImposta(oldName,nametext.getText(), valore);
-                Stage stage = (Stage) enter.getScene().getWindow();
-                stage.close();
-            }
-            else{
-                Errore.setText("Importo non valido. /nL'importo deve indicare una percentuale e quindi essere compreso tra 0 e 1");
+            try {
+                valore = Double.parseDouble(valuefield.getText());
+                label1.setText("Modifica Imposta");
+                if (Tools.importoFormatCheck(valore)) {
+                    DBManager.setImposta(oldName, nametext.getText(), valore);
+                    Stage stage = (Stage) enter.getScene().getWindow();
+                    stage.close();
+                } else {
+                    Errore.setText("Importo non valido. \nL'importo deve indicare una percentuale \ne quindi essere compreso tra 0 e 1");
+                }
+            }catch (NumberFormatException nf){
+                Errore.setText("Importo non valido. \nL'importo deve indicare una percentuale \ne quindi essere compreso tra 0 e 1");
             }
         }
     }

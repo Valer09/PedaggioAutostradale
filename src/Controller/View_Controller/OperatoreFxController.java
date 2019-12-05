@@ -46,8 +46,8 @@ public class OperatoreFxController implements Initializable {
      * Nei seguenti bottoni vengono impostati tre metodi. I quali servono rispettivamenete per calcolare il pedaggio autostradale,
      * la selezione di un file "txt" che simula il biglietto di entrata al casello di uscita ed
      * "goBack" è il metodo che permette di tornare alla view precedente
-     * @param url
-     * @param resourceBundle
+     * @param url - url
+     * @param resourceBundle - local specific object
      */
         @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

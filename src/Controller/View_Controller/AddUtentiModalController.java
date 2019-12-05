@@ -21,8 +21,8 @@ public class AddUtentiModalController  implements Initializable {
 
     /**
      *Metodo che viene inizializzato all'apertura della view
-     * @param url
-     * @param resourceBundle
+     * @param url url
+     * @param resourceBundle local specific object
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -111,7 +111,7 @@ public class TollCalculator {
      * Calcola i KM effettuati dall'utente
      * @param startingKM Chilometro di partenza
      * @param arrivalKM Chilometro di arrivo
-     * @return
+     * @return <b>double</b> - Chilometri percorsi dall'utente
      */
     public static double getRoute(double startingKM, double arrivalKM){
         double route = 0;

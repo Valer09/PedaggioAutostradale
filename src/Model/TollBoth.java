@@ -9,9 +9,9 @@ public class TollBoth {
 
     /**
      * Costruttore della classe User, prende in input 3 valori quali, il nome, il km del casello ed l'autostrada dove è posizionato
-     * @param name
-     * @param km
-     * @param autostrada
+     * @param name - nome casello
+     * @param km - km casello
+     * @param autostrada - Oggetto autostrada che gestisce il casello
      */
     public TollBoth(String name, double km, String autostrada) {
         this.name = name;
@@ -33,8 +33,8 @@ public class TollBoth {
 
     /**
      * Vengono impostati nel database il casello e il km appartenente ad esso
-     * @param tollbooth
-     * @param KM
+     * @param tollbooth casello
+     * @param KM - km del casello
      */
     public static void setKM(String tollbooth, double KM) {
 
@@ -54,7 +54,7 @@ public class TollBoth {
 
     /**
      * Viene cancellato dal database il casello
-     * @param tollbooth
+     * @param tollbooth nome del casello
      */
     public static void delTollBooth(String tollbooth){
 
@@ -63,8 +63,8 @@ public class TollBoth {
 
     /**
      * Viene modificato il nome del casello sul database
-     * @param toolbooth
-     * @param newName
+     * @param toolbooth - nome casello
+     * @param newName - nuovo nome casello
      */
     public static void setName(String toolbooth, String newName) {
 

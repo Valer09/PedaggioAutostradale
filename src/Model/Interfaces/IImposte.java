@@ -12,12 +12,12 @@ package Model.Interfaces;
 public interface IImposte {
 
     /**
-     * @return - <b>String</> Restituisce il nome della categoria veicolo
+     * @return - <b>String</b> Restituisce il nome della categoria veicolo
      */
     String getNome();
 
     /**
-     * @return - <b>double</> Restituisce il valore di imposta della categoria veicolo
+     * @return - <b>double</b> Restituisce il valore di imposta della categoria veicolo
      */
     double getValore();
 

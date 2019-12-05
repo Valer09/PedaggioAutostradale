@@ -18,7 +18,7 @@ public class CategoriaPesante implements IImposte {
 
     /**
      * Cotruttore per il modello Categoria Pesante. In base al numero di assi, imposta il nome della classe ed il valore dell'imposta
-     * @param assi
+     * @param assi <b>int</b> - numero assi veicolo
      */
     public CategoriaPesante(int assi) {
 
@@ -32,7 +32,7 @@ public class CategoriaPesante implements IImposte {
     }
 
     /**
-     * @return <b>String</> - restituisce il nome della categoria veicolo
+     * @return <b>String</b> - restituisce il nome della categoria veicolo
      */
     @Override
     public String getNome() {
@@ -40,7 +40,7 @@ public class CategoriaPesante implements IImposte {
     }
 
     /**
-     * @return <b>double</> - Restituisce il valore di imposta della categoria veicolo
+     * @return <b>double</b> - Restituisce il valore di imposta della categoria veicolo
      */
     @Override
     public double getValore() {

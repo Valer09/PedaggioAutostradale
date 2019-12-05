@@ -26,14 +26,14 @@ public class CategoriaLeggera implements IImposte {
     }
 
     /**
-     * @return <b>String</> - restituisce il nome della categoria veicolo
+     * @return <b>String</b> - restituisce il nome della categoria veicolo
      */
     public String getNome(){
         return this.classe;
     }
 
     /**
-     * @return <b>double</> - Restituisce il valore di imposta della categoria veicolo
+     * @return <b>double</b> - Restituisce il valore di imposta della categoria veicolo
      */
     public double getValore(){
         return this.valore;

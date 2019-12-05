@@ -23,8 +23,8 @@ Button modifica;
 
     /**
      *Metodo che viene inizializzato all'apertura della view
-     * @param url
-     * @param resourceBundle
+     * @param url - url
+     * @param resourceBundle - local specific object
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -34,6 +34,7 @@ Button modifica;
     /**
      * Seleziona un utente dalla lista utenti
      * @param utente Parametro di tipo Stringa che rappresenta il nome dell'utente
+     * @param admin oggetto User corrispondente all'admin loggato
      */
     public void setUser(String utente, User admin){
         this.user = utente;

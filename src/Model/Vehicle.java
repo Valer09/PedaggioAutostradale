@@ -21,7 +21,7 @@ public class Vehicle {
 
     /**
      * Costruttore della classe vehicle, dove viene istanziata la connessione al database per potersi prendere i valori associati alla tabella vehicle
-     * @param vlp
+     * @param vlp stringa contentente la targa veicolo
      */
     public Vehicle(String vlp){
         this.vlp = vlp;
@@ -104,6 +104,6 @@ public class Vehicle {
    }
 
    public double getIncrementoCA(){
-        return DBManager.getAmbientalClassValue(this.ambiental_class);
+        return DBManager.getClassValue(this.ambiental_class);
    }
 }
